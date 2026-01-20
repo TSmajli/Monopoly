@@ -1,0 +1,9 @@
+/home/user/Projekte_Qt/Client/build/Desktop_Qt_6_9_2-Debug/CMakeFiles/Client.dir
+/home/user/Projekte_Qt/Client/build/Desktop_Qt_6_9_2-Debug/CMakeFiles/edit_cache.dir
+/home/user/Projekte_Qt/Client/build/Desktop_Qt_6_9_2-Debug/CMakeFiles/rebuild_cache.dir
+/home/user/Projekte_Qt/Client/build/Desktop_Qt_6_9_2-Debug/CMakeFiles/list_install_components.dir
+/home/user/Projekte_Qt/Client/build/Desktop_Qt_6_9_2-Debug/CMakeFiles/install.dir
+/home/user/Projekte_Qt/Client/build/Desktop_Qt_6_9_2-Debug/CMakeFiles/install/local.dir
+/home/user/Projekte_Qt/Client/build/Desktop_Qt_6_9_2-Debug/CMakeFiles/install/strip.dir
+/home/user/Projekte_Qt/Client/build/Desktop_Qt_6_9_2-Debug/CMakeFiles/Client_autogen_timestamp_deps.dir
+/home/user/Projekte_Qt/Client/build/Desktop_Qt_6_9_2-Debug/CMakeFiles/Client_autogen.dir
