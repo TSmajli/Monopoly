@@ -32,6 +32,7 @@ void GameServer::onNewConnection()
         connect(client, &QTcpSocket::readyRead, this, &GameServer::onReadyRead);
         connect(client, &QTcpSocket::disconnected, this, &GameServer::onClientDisconnected);
 
+
         // Spieler-ID zurücksenden
         QJsonObject msg;
         msg["type"] = "assignPlayerId";
@@ -52,7 +53,6 @@ void GameServer::onReadyRead()
     if (it == players.end()) return;
 
     Player &player = *it;
-
     while (senderSocket->canReadLine()) {
         QByteArray line = senderSocket->readLine();
         QJsonDocument doc = QJsonDocument::fromJson(line);
@@ -67,22 +67,51 @@ void GameServer::processMessage(Player &player, const QJsonObject &msg)
 {
     QString type = msg["type"].toString();
 
-    if (type == "rollDice") {
-        // Beispiel: Würfelergebnis erzeugen
-        int dice1 =  6 + 1;
-        int dice2 =  6 + 1;
-        int newPos = (dice1 + dice2); // Beispiel, einfach hochzählen
+    // ❗ Nur aktueller Spieler darf würfeln
+    if (&player != &game.currentPlayer())
+        return;
 
-        // Antwort an den Client
+    if (type == "rollDice") {
+
+        // 1️⃣ Würfeln
+        int dice1 = QRandomGenerator::global()->bounded(1, 7);
+        int dice2 = QRandomGenerator::global()->bounded(1, 7);
+        int steps = dice1 + dice2;
+
+        int oldPos = player.position;
+        player.position =
+            (player.position + steps) % game.board.size();
+
+        // 2️⃣ Über Start?
+        if (oldPos + steps >= game.board.size()) {
+            player.money += 200;
+        }
+
+        // 3️⃣ Feld betreten
+        Field* field = game.board.getField(player.position);
+        field->onLand(player);
+
+        // 4️⃣ Antwort bauen
         QJsonObject reply;
         reply["type"] = "diceResult";
         reply["dice1"] = dice1;
         reply["dice2"] = dice2;
-        reply["newPosition"] = newPos;
+        reply["position"] = player.position;
+        reply["money"] = player.money;
+        reply["field"] = field->name;
 
-        player.socket->write(QJsonDocument(reply).toJson(QJsonDocument::Compact) + "\n");
+        // 5️⃣ Senden
+        player.socket->write(
+            QJsonDocument(reply).toJson(QJsonDocument::Compact) + "\n"
+            );
 
-        qDebug() << player.name << "würfelt:" << dice1 << "+" << dice2 << "=" << newPos;
+        qDebug() << player.name
+                 << "würfelt"
+                 << dice1 << "+" << dice2
+                 << "→" << field->name;
+
+        // 6️⃣ Nächster Spieler
+        game.nextTurn();
     }
 }
 

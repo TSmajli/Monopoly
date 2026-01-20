@@ -30,20 +30,13 @@ MainWindow::MainWindow(QWidget *parent)
     });
 
     connect(ui->rollDiceButton, &QPushButton::clicked, this, [=]() {
-        network->sendRollDice(1); // 1 = Spieler-ID
+        network->NetworkClient::sendRollDice(1); // 1 = Spieler-ID
+        qDebug() << "RollDice";
     });
 
 }
 
-void sendRollDice(QTcpSocket *socket)
-{
-    QJsonObject msg;
-    msg["type"] = "rollDice";
-    msg["playerId"] = 1;
 
-    QJsonDocument doc(msg);
-    socket->write(doc.toJson(QJsonDocument::Compact) + "\n");
-}
 
 MainWindow::~MainWindow()
 {

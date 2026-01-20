@@ -9,6 +9,18 @@ qt_standard_project_setup()
 qt_add_executable(MonopolyServer
     main.cpp
     gameserver.h gameserver.cpp
+    player.h player.cpp
+    field.h
+    propertyfield.h propertyfield.cpp
+    streetfield.h streetfield.cpp
+    railroadfield.h railroadfield.cpp
+    utilityfield.h utilityfield.cpp
+    taxfield.h taxfield.cpp
+    startfield.h startfield.cpp
+    board.h board.cpp
+    game.h game.cpp
+
+
 )
 
 target_link_libraries(MonopolyServer

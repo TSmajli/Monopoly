@@ -29,7 +29,7 @@ void NetworkClient::connectToServer(const QString &host, quint16 port)
 void NetworkClient::sendJson(const QJsonObject &obj)
 {
     QJsonDocument doc(obj);
-    socket->write(doc.toJson(QJsonDocument::Compact));
+    socket->write(doc.toJson(QJsonDocument::Compact)+ "\n");
 }
 
 void NetworkClient::onReadyRead()
@@ -49,4 +49,5 @@ void NetworkClient::sendRollDice(int playerId)
 
     // Sende die Nachricht
     sendJson(msg);
+
 }
