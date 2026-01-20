@@ -1,0 +1,26 @@
+cmake_minimum_required(VERSION 3.19)
+project(MonopolyServer LANGUAGES CXX)
+
+find_package(Qt6 6.5 REQUIRED COMPONENTS Core Network)
+
+
+qt_standard_project_setup()
+
+qt_add_executable(MonopolyServer
+    main.cpp
+    gameserver.h gameserver.cpp
+)
+
+target_link_libraries(MonopolyServer
+    PRIVATE
+        Qt::Core
+        Qt::Network
+)
+
+include(GNUInstallDirs)
+
+install(TARGETS MonopolyServer
+    BUNDLE  DESTINATION .
+    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+)
