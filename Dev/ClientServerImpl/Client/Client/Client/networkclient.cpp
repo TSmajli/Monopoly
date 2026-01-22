@@ -34,18 +34,42 @@ void NetworkClient::sendJson(const QJsonObject &obj)
 
 void NetworkClient::onReadyRead()
 {
-    QByteArray data = socket->readAll();
-    QJsonDocument doc = QJsonDocument::fromJson(data);
+    buffer.append(socket->readAll());
 
-    if (doc.isObject()) {
+    while (true) {
+        int nl = buffer.indexOf('\n');
+        if (nl < 0) break;
+
+        QByteArray line = buffer.left(nl);
+        buffer.remove(0, nl + 1);
+
+        line = line.trimmed();
+        if (line.isEmpty()) continue;
+
+        QJsonParseError err;
+        QJsonDocument doc = QJsonDocument::fromJson(line, &err);
+
+        if (err.error != QJsonParseError::NoError || !doc.isObject()) {
+            qDebug() << "JSON Parse Error:" << err.errorString()
+            << "raw=" << line;
+            continue;
+        }
+
         emit jsonReceived(doc.object());
     }
 }
-void NetworkClient::sendRollDice(int playerId)
+
+void NetworkClient::sendRollDice()
 {
     QJsonObject msg;
     msg["type"] = "rollDice";
-    msg["playerId"] = playerId;
+    sendJson(msg);
+}
+
+void NetworkClient::sendStartGame()
+{
+    QJsonObject msg;
+    msg["type"] = "startGame";
 
     // Sende die Nachricht
     sendJson(msg);

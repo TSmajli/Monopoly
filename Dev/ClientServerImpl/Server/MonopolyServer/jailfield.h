@@ -1,10 +1,7 @@
-#ifndef JAILFIELD_H
-#define JAILFIELD_H
+#pragma once
+#include "field.h"
 
-class JailField
-{
+class JailField : public Field {
 public:
-    JailField();
+    void onLand(Player& player) override;
 };
-
-#endif // JAILFIELD_H

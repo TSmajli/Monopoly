@@ -25,12 +25,34 @@ MainWindow::MainWindow(QWidget *parent)
         qDebug() << "Netzwerkfehler:" << err;
     });
 
-    connect(network, &NetworkClient::jsonReceived, this, [](const QJsonObject &obj) {
+    connect(network, &NetworkClient::jsonReceived, this, [=](const QJsonObject &obj) mutable {
         qDebug() << "Nachricht vom Server:" << obj;
+
+        const QString type = obj.value("type").toString();
+
+        if (type == "assignPlayerId") {
+            myPlayerId = obj.value("playerId").toInt(-1);
+            qDebug() << "✅ Meine Spieler-ID ist jetzt:" << myPlayerId;
+            return;
+        }
+
+        if (type == "state") {
+            int current = obj.value("currentPlayerId").toInt(-1);
+            qDebug() << "STATE reason=" << obj.value("reason").toString()
+                     << "currentPlayerId=" << current
+                     << "myPlayerId=" << myPlayerId;
+        }
     });
 
+
     connect(ui->rollDiceButton, &QPushButton::clicked, this, [=]() {
-        network->NetworkClient::sendRollDice(1); // 1 = Spieler-ID
+        network->sendRollDice(); // ohne ID
+        qDebug() << "RollDice";
+    });
+
+
+    connect(ui->StartGameButton, &QPushButton::clicked, this, [=]() {
+        network->NetworkClient::sendStartGame(); // 1 = Spieler-ID
         qDebug() << "RollDice";
     });
 

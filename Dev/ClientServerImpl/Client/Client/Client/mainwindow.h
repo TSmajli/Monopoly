@@ -21,6 +21,7 @@ public:
 
 private:
     Ui::MainWindow *ui;
+    int myPlayerId = -1;
 
 private:
     NetworkClient *network;

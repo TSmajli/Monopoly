@@ -1,14 +1,33 @@
 #include "game.h"
 
-void Game::startGame() {
-    currentPlayer = 0;
+void Game::addPlayer(Player* player)
+{
+    players.append(player);
 }
 
-void Game::nextTurn() {
-    currentPlayer = (currentPlayer + 1) % players.size();
+void Game::removePlayer(Player* player)
+{
+    players.removeAll(player);
+    if (currentPlayerIndex >= players.size())
+        currentPlayerIndex = 0;
 }
 
-Player& Game::getCurrentPlayer() {
-    return players[currentPlayer];
+Player* Game::getCurrentPlayer()
+{
+    if (players.isEmpty()) return nullptr;
+    return players[currentPlayerIndex];
 }
 
+
+void Game::nextTurn()
+{
+    if (players.isEmpty())
+        return;
+
+    currentPlayerIndex = (currentPlayerIndex + 1) % players.size();
+}
+
+int Game::boardSize() const
+{
+    return 40; // Monopoly Standard
+}

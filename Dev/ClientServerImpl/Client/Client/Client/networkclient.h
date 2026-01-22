@@ -14,7 +14,8 @@ public:
 
     void connectToServer(const QString &host, quint16 port);
     void sendJson(const QJsonObject &obj);
-    void sendRollDice(int playerId);
+    void sendRollDice();
+    void sendStartGame();
 
 
 signals:
@@ -25,6 +26,7 @@ signals:
 
 private:
     QTcpSocket *socket;
+    QByteArray buffer;
 
 private slots:
     void onReadyRead();
