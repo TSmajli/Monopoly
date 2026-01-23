@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/new/images">
+        <file>images/rechter-pfeil.png</file>
+        <file>images/lehren(2).png</file>
+        <file>images/lehren(1).png</file>
+        <file>images/lehren.png</file>
+        <file>images/Unterricht</file>
+        <file>images/BUS-Logo.svg.png</file>
+    </qresource>
+</RCC>
