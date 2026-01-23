@@ -22,6 +22,7 @@ public:
 private:
     Ui::MainWindow *ui;
     int myPlayerId = -1;
+    int pendingBuyFieldIndex  = -1;
 
 private:
     NetworkClient *network;

@@ -75,3 +75,22 @@ void NetworkClient::sendStartGame()
     sendJson(msg);
 
 }
+
+void NetworkClient::sendBuyDecision(bool decision, int playerId, int pendingBuyFieldIndex)
+{
+    QJsonObject msg;
+    msg["type"] = "buyDecision";
+    msg["playerId"] = playerId;               // vorher gespeichert
+    msg["fieldIndex"] = pendingBuyFieldIndex; // aus buyRequest
+    msg["buy"] = decision;
+
+    sendJson(msg);
+
+    qDebug() << "[CLIENT] buyDecision sent:"
+             << "pid=" << playerId
+             << "field=" << pendingBuyFieldIndex
+             << "buy=" << decision;
+
+    pendingBuyFieldIndex = -1;
+}
+

@@ -1,6 +1,12 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+#include <QJsonArray>
+#include <QJsonObject>
+#include <QJsonValue>
+#include <QDebug>
+
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -36,11 +42,38 @@ MainWindow::MainWindow(QWidget *parent)
             return;
         }
 
+        if (type == "buyRequest") {
+            pendingBuyFieldIndex = obj.value("fieldIndex").toInt(-1);
+
+            qDebug() << "🟢 BUY REQUEST:"
+                     << "fieldIndex=" << pendingBuyFieldIndex
+                     << "fieldName=" << obj.value("fieldName").toString()
+                     << "price=" << obj.value("price").toInt();
+
+            // 👉 HIER UI anzeigen (Ja / Nein)
+            return;
+        }
+
         if (type == "state") {
-            int current = obj.value("currentPlayerId").toInt(-1);
-            qDebug() << "STATE reason=" << obj.value("reason").toString()
-                     << "currentPlayerId=" << current
-                     << "myPlayerId=" << myPlayerId;
+            qDebug() << "🟦 STATE RECEIVED reason="
+                     << obj.value("reason").toString();
+
+
+            QJsonArray players = obj.value("players").toArray();
+            for (const QJsonValue &v : players) {
+                QJsonObject p = v.toObject();
+
+                int id = p.value("id").toInt();
+                int pos = p.value("newPosition").toInt();
+                int money = p.value("money").toInt();
+
+                if (id == myPlayerId) {
+                    qDebug() << "🧍 ICH:"
+                             << "Position =" << pos
+                             << "Geld =" << money;
+                             //<< "am Zug?" << (id == current);
+                }
+            }
         }
     });
 
@@ -51,11 +84,17 @@ MainWindow::MainWindow(QWidget *parent)
     });
 
 
-    connect(ui->StartGameButton, &QPushButton::clicked, this, [=]() {
-        network->NetworkClient::sendStartGame(); // 1 = Spieler-ID
-        qDebug() << "RollDice";
+    connect(ui->BuyDecisonYes_Button, &QPushButton::clicked, this, [=]() {
+        network->sendBuyDecision(true,myPlayerId,pendingBuyFieldIndex);
     });
 
+    connect(ui->BuyDecsionNo_Button, &QPushButton::clicked, this, [=]() {
+        network->sendBuyDecision(false,myPlayerId,pendingBuyFieldIndex);
+    });
+
+    connect(ui->StartGame_Button, &QPushButton::clicked, this, [=]() {
+        network->sendStartGame();
+    });
 }
 
 

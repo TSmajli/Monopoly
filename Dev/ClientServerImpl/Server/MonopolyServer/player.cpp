@@ -1,14 +1,13 @@
 #include "player.h"
 
-void Player::move(int steps, int boardSize)
-{
-    int oldPos = position;
-    position = (position + steps) % boardSize;
-
-    // Über Start gelaufen?
-    if (position < oldPos)
-        receive(200);
+void Player::move(int steps) {
+    position += steps;
+    if (position >= 40) {
+        position -= 40; // Startbonus könnte hier kommen
+        money += 200;          // Startfeld Bonus
+    }
 }
+
 
 
 void Player::pay(int amount)

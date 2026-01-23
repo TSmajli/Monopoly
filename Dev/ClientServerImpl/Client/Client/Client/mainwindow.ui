@@ -17,8 +17,8 @@
    <widget class="QPushButton" name="rollDiceButton">
     <property name="geometry">
      <rect>
-      <x>320</x>
-      <y>210</y>
+      <x>390</x>
+      <y>80</y>
       <width>141</width>
       <height>25</height>
      </rect>
@@ -27,17 +27,66 @@
      <string>rollDiceButton</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="StartGameButton">
+   <widget class="QPushButton" name="StartGame_Button">
     <property name="geometry">
      <rect>
-      <x>330</x>
-      <y>140</y>
+      <x>390</x>
+      <y>40</y>
       <width>141</width>
       <height>25</height>
      </rect>
     </property>
     <property name="text">
      <string>Start Game</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="BuyDecisonYes_Button">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>50</y>
+      <width>151</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>BuyDecsionYes</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="BuyDecsionNo_Button">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>100</y>
+      <width>151</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>BuyDecisonNo</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="EndTurn_Button">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>150</y>
+      <width>151</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>EndTurn</string>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="textEdit">
+    <property name="geometry">
+     <rect>
+      <x>570</x>
+      <y>20</y>
+      <width>104</width>
+      <height>70</height>
+     </rect>
     </property>
    </widget>
   </widget>

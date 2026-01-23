@@ -16,6 +16,9 @@ public:
     void sendJson(const QJsonObject &obj);
     void sendRollDice();
     void sendStartGame();
+    void sendBuyDecision(bool decision, int playerId, int pendingBuyFieldIndex);
+
+
 
 
 signals:
