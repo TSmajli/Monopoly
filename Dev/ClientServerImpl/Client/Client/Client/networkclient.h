@@ -18,6 +18,7 @@ public:
     void sendStartGame();
     void sendBuyDecision(bool decision, int playerId, int pendingBuyFieldIndex);
     void sendEndTurn();
+    void sendGetState();
 
 
 

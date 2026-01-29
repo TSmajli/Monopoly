@@ -59,6 +59,7 @@ MainWindow::MainWindow(QWidget *parent)
             qDebug() << "✅ Meine Spieler-ID ist jetzt:" << myPlayerId;
             ui->playerIdValue->setText(QString::number(myPlayerId));
             appendLog(QString("🎲 Spieler-ID erhalten: %1").arg(myPlayerId));
+            network->sendGetState();
             return;
         }
 
@@ -115,6 +116,21 @@ MainWindow::MainWindow(QWidget *parent)
             const int currentPlayerId = obj.value("currentPlayerId").toInt(-1);
             const bool awaitingBuyDecision = obj.value("awaitingBuyDecision").toBool(false);
             const bool awaitingEndTurn = obj.value("awaitingEndTurn").toBool(false);
+            const bool gameStarted = obj.value("gameStarted").toBool(false);
+
+            ui->currentPlayerValue->setText(
+                (gameStarted && currentPlayerId > 0) ? QString("%1").arg(currentPlayerId) : "-");
+            ui->turnStatusValue->setText(
+                !gameStarted
+                    ? "Warte auf Start"
+                    : (awaitingBuyDecision
+                        ? "Warte auf Kauf"
+                        : (awaitingEndTurn ? "Ende des Zuges" : "In Aktion")));
+
+            const bool isMyTurn = (currentPlayerId == myPlayerId);
+            ui->rollDiceButton->setEnabled(isMyTurn && !awaitingBuyDecision && !awaitingEndTurn);
+            ui->EndTurn_Button->setEnabled(isMyTurn && awaitingEndTurn && !awaitingBuyDecision);
+
 
             ui->currentPlayerValue->setText(
                 currentPlayerId >= 0 ? QString("%1").arg(currentPlayerId) : "-");
@@ -144,7 +160,6 @@ MainWindow::MainWindow(QWidget *parent)
                              //<< "am Zug?" << (id == current);
                     ui->positionValue->setText(QString::number(pos));
                     ui->moneyValue->setText(QString("%1$").arg(money));
-
                 }
             }
 
@@ -182,6 +197,13 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(ui->StartGame_Button, &QPushButton::clicked, this, [=]() {
         network->sendStartGame();
+        network->sendGetState();
+    });
+
+    connect(ui->EndTurn_Button, &QPushButton::clicked, this, [=]() {
+        network->sendEndTurn();
+        ui->EndTurn_Button->setEnabled(false);
+        appendLog("🔁 Zugende angefragt.");
     });
 
     connect(ui->EndTurn_Button, &QPushButton::clicked, this, [=]() {

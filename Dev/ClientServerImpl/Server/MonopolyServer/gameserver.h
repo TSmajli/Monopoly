@@ -4,9 +4,10 @@
 #include <QObject>
 #include <QTcpServer>
 #include <QTcpSocket>
-#include <QVector>
 #include <QHash>
 #include <QJsonObject>
+#include <memory>
+#include <vector>
 
 #include "game.h"
 #include "player.h"
@@ -26,7 +27,7 @@ private:
     // newline-delimited JSON: wir puffern je Socket
     QHash<QTcpSocket*, QByteArray> recvBuffers;
 
-    QVector<Player> players;
+    std::vector<std::unique_ptr<Player>> players;
     int nextPlayerId = 1;
 
     Game game;
