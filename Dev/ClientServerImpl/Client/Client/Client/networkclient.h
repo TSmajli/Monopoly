@@ -17,6 +17,7 @@ public:
     void sendRollDice();
     void sendStartGame();
     void sendBuyDecision(bool decision, int playerId, int pendingBuyFieldIndex);
+    void sendEndTurn();
 
 
 
