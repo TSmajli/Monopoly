@@ -13,7 +13,13 @@ qt_add_executable(monopoly3
     mainwindow.ui
     images.qrc
 )
+qt_add_resources(app_resources
+images.qrc
+)
 
+target_sources(monopoly3 PRIVATE
+    ${app_resources}
+)
 target_link_libraries(monopoly3
     PRIVATE
         Qt::Core
@@ -34,3 +40,5 @@ qt_generate_deploy_app_script(
     NO_UNSUPPORTED_PLATFORM_ERROR
 )
 install(SCRIPT ${deploy_script})
+
+

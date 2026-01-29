@@ -1,0 +1,10 @@
+# ninja log v6
+9	995	7908638810384022	Client_autogen/timestamp	a9aedf4561cb58b5
+9	995	7908638810384022	Client_autogen/mocs_compilation.cpp	a9aedf4561cb58b5
+9	995	7908638810384022	C:/Users/Lenovo/Documents/GitHub/Monopoly/Dev/ClientServerImpl/Client/Client/Client/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Client_autogen/timestamp	a9aedf4561cb58b5
+9	995	7908638810384022	C:/Users/Lenovo/Documents/GitHub/Monopoly/Dev/ClientServerImpl/Client/Client/Client/build/Desktop_Qt_6_10_1_MinGW_64_bit-Debug/Client_autogen/mocs_compilation.cpp	a9aedf4561cb58b5
+1022	4635	7908638811813883	CMakeFiles/Client.dir/networkclient.cpp.obj	f85904d12d87a3f5
+1007	4877	7908638811649055	CMakeFiles/Client.dir/main.cpp.obj	c88a996747aa3a6c
+1002	5036	7908638811607730	CMakeFiles/Client.dir/Client_autogen/mocs_compilation.cpp.obj	47f82372c3045359
+1015	5369	7908638811733586	CMakeFiles/Client.dir/mainwindow.cpp.obj	6d064613e2865244
+5369	6136	7908638855282484	Client.exe	a089cf25c34593b5

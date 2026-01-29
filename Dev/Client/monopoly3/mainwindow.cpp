@@ -27,7 +27,10 @@ MainWindow::MainWindow(QWidget *parent)
          "background-color:#252850;"
          "border-radius:10px;"
          "color:white;"
+         "border-width:2px;"
+         "border-color:black;"
          "}"
+
          "QPushButton:hover {"
          "  background-color: #191970;"
          "}"
@@ -95,7 +98,7 @@ void MainWindow::on_addPlayer_clicked()
 
     if (name.isEmpty())
     {
-        ui->player1->setText("player 1");
+        ui->player1->setText("Spieler 1");
     }
     else
     {
