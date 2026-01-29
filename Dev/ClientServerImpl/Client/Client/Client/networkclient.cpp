@@ -90,7 +90,11 @@ void NetworkClient::sendBuyDecision(bool decision, int playerId, int pendingBuyF
              << "pid=" << playerId
              << "field=" << pendingBuyFieldIndex
              << "buy=" << decision;
-
-    pendingBuyFieldIndex = -1;
 }
 
+void NetworkClient::sendEndTurn()
+{
+    QJsonObject msg;
+    msg["type"] = "endTurn";
+    sendJson(msg);
+}
