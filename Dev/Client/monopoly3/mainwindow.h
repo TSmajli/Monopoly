@@ -33,6 +33,8 @@ private slots:
      on_sellButton_clicked();
     void
     on_addPlayer_clicked();
+    void
+    on_rollDiceButton_clicked();
 };
 #endif // MAINWINDOW_H
 
