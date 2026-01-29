@@ -118,6 +118,11 @@ void GameServer::processMessage(Player &player, const QJsonObject &msg)
         return;
     }
 
+    if (type == "endTurn") {
+        handleEndTurn(player);
+        return;
+    }
+
     if (type == "buyDecision") {
         const int pid = msg.value("playerId").toInt();
         const int fieldIndex = msg.value("fieldIndex").toInt();
@@ -156,8 +161,11 @@ void GameServer::processMessage(Player &player, const QJsonObject &msg)
         pendingBuyPlayerId = -1;
         pendingBuyFieldIndex = -1;
 
+        awaitingEndTurn = true;
+        pendingEndTurnPlayerId = pid;
+
         broadcastGameState("buyResolved");
-        finishTurnAndBroadcast();
+        broadcastGameState("awaitingEndTurn");
         return;
     }
 
@@ -211,6 +219,15 @@ void GameServer::handleRollDice(Player &player)
         return;
     }
 
+    if (awaitingEndTurn) {
+        qDebug() << "[TURN] rollDice blocked - awaiting endTurn";
+        QJsonObject err;
+        err["type"] = "error";
+        err["message"] = "Bitte zuerst den Zug beenden.";
+        sendToPlayer(player, err);
+        return;
+    }
+
     if (awaitingBuyDecision) {
         qDebug() << "[TURN] rollDice blocked - waiting for buyDecision";
         QJsonObject err;
@@ -247,7 +264,9 @@ void GameServer::handleRollDice(Player &player)
         }
 
         broadcastGameState("jailWait");
-        finishTurnAndBroadcast();
+        awaitingEndTurn = true;
+        pendingEndTurnPlayerId = current->id;
+        broadcastGameState("awaitingEndTurn");
         return;
     }
 
@@ -311,6 +330,42 @@ void GameServer::handleRollDice(Player &player)
     }
 
     broadcastGameState("turnResolved");
+    awaitingEndTurn = true;
+    pendingEndTurnPlayerId = current->id;
+    broadcastGameState("awaitingEndTurn");
+}
+
+void GameServer::handleEndTurn(Player &player)
+{
+    if (!gameStarted) {
+        QJsonObject err;
+        err["type"] = "error";
+        err["message"] = "Spiel ist noch nicht gestartet.";
+        sendToPlayer(player, err);
+        return;
+    }
+
+    if (awaitingBuyDecision) {
+        QJsonObject err;
+        err["type"] = "error";
+        err["message"] = "Erst Kaufentscheidung treffen.";
+        sendToPlayer(player, err);
+        return;
+    }
+
+    Player *current = game.getCurrentPlayer();
+    if (!current) return;
+
+    if (!awaitingEndTurn || pendingEndTurnPlayerId != player.id || current->id != player.id) {
+        QJsonObject err;
+        err["type"] = "error";
+        err["message"] = "Du kannst den Zug gerade nicht beenden.";
+        sendToPlayer(player, err);
+        return;
+    }
+
+    awaitingEndTurn = false;
+    pendingEndTurnPlayerId = -1;
     finishTurnAndBroadcast();
 }
 
@@ -418,6 +473,8 @@ void GameServer::askToBuy(Player &player, int fieldIndex, int price, const QStri
 
 void GameServer::finishTurnAndBroadcast()
 {
+    awaitingEndTurn = false;
+    pendingEndTurnPlayerId = -1;
     game.nextTurn();
     qDebug() << "[TURN] nextTurn -> currentPlayerId="
              << (game.getCurrentPlayer() ? game.getCurrentPlayer()->id : -1);
@@ -509,6 +566,8 @@ QJsonObject GameServer::buildGameState(const QString &reason) const
     state["awaitingBuyDecision"] = awaitingBuyDecision;
     state["pendingBuyPlayerId"] = pendingBuyPlayerId;
     state["pendingBuyFieldIndex"] = pendingBuyFieldIndex;
+    state["awaitingEndTurn"] = awaitingEndTurn;
+    state["pendingEndTurnPlayerId"] = pendingEndTurnPlayerId;
 
     return state;
 }
@@ -551,6 +610,11 @@ void GameServer::onClientDisconnected()
             awaitingBuyDecision = false;
             pendingBuyPlayerId = -1;
             pendingBuyFieldIndex = -1;
+        }
+        if (awaitingEndTurn && pendingEndTurnPlayerId == it->id) {
+            qWarning() << "[TURN] pending endTurn canceled due disconnect";
+            awaitingEndTurn = false;
+            pendingEndTurnPlayerId = -1;
         }
 
         game.removePlayer(&(*it));
