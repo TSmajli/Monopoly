@@ -42,8 +42,8 @@ void GameServer::onNewConnection()
         player->socket = client;
         player->name = QString("Player%1").arg(player->id);
 
-        players.append(std::move(player));
-        game.addPlayer(players.last().get());
+        players.push_back(std::move(player));
+        game.addPlayer(players.back().get());
 
         recvBuffers.insert(client, QByteArray());
 
@@ -57,11 +57,11 @@ void GameServer::onNewConnection()
         // Assign ID
         QJsonObject msg;
         msg["type"] = "assignPlayerId";
-        msg["playerId"] = players.last()->id;
-        msg["name"] = players.last()->name;
+        msg["playerId"] = players.back()->id;
+        msg["name"] = players.back()->name;
         sendToSocket(client, msg);
 
-        qDebug() << "[NET] Neuer Client:" << players.last()->name
+        qDebug() << "[NET] Neuer Client:" << players.back()->name
                  << "| players=" << players.size();
 
         // State an alle
@@ -513,8 +513,8 @@ QJsonObject GameServer::buildGameState(const QString &reason) const
     state["gameStarted"] = gameStarted;
 
     Player *cur = const_cast<Game&>(game).getCurrentPlayer();
-    if (gameStarted && !cur && !players.isEmpty()) {
-        cur = players.first().get();
+    if (gameStarted && !cur && !players.empty()) {
+        cur = players.front().get();
     }
     state["currentPlayerId"] = (gameStarted && cur) ? cur->id : -1;
 
