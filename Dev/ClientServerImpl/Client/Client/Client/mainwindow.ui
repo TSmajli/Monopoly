@@ -6,96 +6,267 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>1200</width>
+    <height>720</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Monopoly Client</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="rollDiceButton">
-    <property name="geometry">
-     <rect>
-      <x>390</x>
-      <y>80</y>
-      <width>141</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>rollDiceButton</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="StartGame_Button">
-    <property name="geometry">
-     <rect>
-      <x>390</x>
-      <y>40</y>
-      <width>141</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Start Game</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="BuyDecisonYes_Button">
-    <property name="geometry">
-     <rect>
-      <x>60</x>
-      <y>50</y>
-      <width>151</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>BuyDecsionYes</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="BuyDecsionNo_Button">
-    <property name="geometry">
-     <rect>
-      <x>60</x>
-      <y>100</y>
-      <width>151</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>BuyDecisonNo</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="EndTurn_Button">
-    <property name="geometry">
-     <rect>
-      <x>60</x>
-      <y>150</y>
-      <width>151</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>EndTurn</string>
-    </property>
-   </widget>
-   <widget class="QTextEdit" name="textEdit">
-    <property name="geometry">
-     <rect>
-      <x>570</x>
-      <y>20</y>
-      <width>104</width>
-      <height>70</height>
-     </rect>
-    </property>
-   </widget>
+   <layout class="QVBoxLayout" name="mainLayout">
+    <item>
+     <layout class="QHBoxLayout" name="headerLayout">
+      <item>
+       <widget class="QLabel" name="titleLabel">
+        <property name="text">
+         <string>Monopoly</string>
+        </property>
+        <property name="styleSheet">
+         <string>font-size: 24px; font-weight: 600;</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="headerSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QLabel" name="connectionStatusLabel">
+        <property name="text">
+         <string>Offline</string>
+        </property>
+        <property name="styleSheet">
+         <string>color: #b00020; font-weight: 600;</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="infoLayout">
+      <item>
+       <widget class="QGroupBox" name="playerGroup">
+        <property name="title">
+         <string>Spieler</string>
+        </property>
+        <layout class="QFormLayout" name="playerForm">
+         <item row="0" column="0">
+          <widget class="QLabel" name="playerIdLabel">
+           <property name="text">
+            <string>Player ID</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLabel" name="playerIdValue">
+           <property name="text">
+            <string>-</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="positionLabel">
+           <property name="text">
+            <string>Position</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLabel" name="positionValue">
+           <property name="text">
+            <string>-</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="moneyLabel">
+           <property name="text">
+            <string>Geld</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QLabel" name="moneyValue">
+           <property name="text">
+            <string>-</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QGroupBox" name="gameGroup">
+        <property name="title">
+         <string>Spielstatus</string>
+        </property>
+        <layout class="QFormLayout" name="gameForm">
+         <item row="0" column="0">
+          <widget class="QLabel" name="currentPlayerLabel">
+           <property name="text">
+            <string>Am Zug</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLabel" name="currentPlayerValue">
+           <property name="text">
+            <string>-</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="fieldLabel">
+           <property name="text">
+            <string>Feld</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QLabel" name="fieldValue">
+           <property name="text">
+            <string>-</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="diceLabel">
+           <property name="text">
+            <string>Würfel</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QLabel" name="diceValue">
+           <property name="text">
+            <string>-</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="turnStatusLabel">
+           <property name="text">
+            <string>Zugstatus</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <widget class="QLabel" name="turnStatusValue">
+           <property name="text">
+            <string>-</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="actionLayout">
+      <item>
+       <widget class="QGroupBox" name="actionsGroup">
+        <property name="title">
+         <string>Aktionen</string>
+        </property>
+        <layout class="QVBoxLayout" name="actionsLayout">
+         <item>
+          <widget class="QPushButton" name="StartGame_Button">
+           <property name="text">
+            <string>Spiel starten</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="rollDiceButton">
+           <property name="text">
+            <string>Würfeln</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="EndTurn_Button">
+           <property name="text">
+            <string>Zug beenden</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QGroupBox" name="buyGroup">
+        <property name="title">
+         <string>Kaufentscheidung</string>
+        </property>
+        <layout class="QVBoxLayout" name="buyLayout">
+         <item>
+          <widget class="QLabel" name="buyPromptLabel">
+           <property name="text">
+            <string>Kein Kauf offen.</string>
+           </property>
+           <property name="wordWrap">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="buyButtonsLayout">
+           <item>
+            <widget class="QPushButton" name="BuyDecisonYes_Button">
+             <property name="text">
+              <string>Kaufen</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="BuyDecsionNo_Button">
+             <property name="text">
+              <string>Nein danke</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QGroupBox" name="logGroup">
+        <property name="title">
+         <string>Spiel-Log</string>
+        </property>
+        <layout class="QVBoxLayout" name="logLayout">
+         <item>
+          <widget class="QTextEdit" name="logTextEdit">
+           <property name="readOnly">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>1200</width>
      <height>22</height>
     </rect>
    </property>

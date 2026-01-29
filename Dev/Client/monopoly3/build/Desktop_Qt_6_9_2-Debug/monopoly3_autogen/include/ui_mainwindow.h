@@ -105,6 +105,7 @@ public:
     QWidget *Feld9_3;
     QWidget *widget_64;
     QWidget *Feld35_3;
+    QLabel *label_3;
     QWidget *Feld14_3;
     QWidget *widget_65;
     QWidget *Feld3_3;
@@ -694,6 +695,11 @@ public:
         Feld35_3->setMinimumSize(QSize(126, 63));
         Feld35_3->setMaximumSize(QSize(126, 63));
         Feld35_3->setStyleSheet(QString::fromUtf8("background-color: lightblue;"));
+        label_3 = new QLabel(Feld35_3);
+        label_3->setObjectName("label_3");
+        label_3->setGeometry(QRect(10, 10, 101, 41));
+        label_3->setStyleSheet(QString::fromUtf8("font-size:8px;\n"
+"border: 0px solid black;"));
         Feld14_3 = new QWidget(Brettspiel_2);
         Feld14_3->setObjectName("Feld14_3");
         Feld14_3->setGeometry(QRect(674, 308, 126, 63));
@@ -1170,6 +1176,13 @@ public:
 #if QT_CONFIG(tooltip)
         widget_64->setToolTip(QCoreApplication::translate("MainWindow", "<html><head/><body><p>background-color: #f0f0f0:</p></body></html>", nullptr));
 #endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(tooltip)
+        label_3->setToolTip(QCoreApplication::translate("MainWindow", "<html><head/><body><p><br/></p></body></html>", nullptr));
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(whatsthis)
+        label_3->setWhatsThis(QCoreApplication::translate("MainWindow", "<html><head/><body><p><br/></p></body></html>", nullptr));
+#endif // QT_CONFIG(whatsthis)
+        label_3->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:8pt;\">Bayersdorfer </span></p><p><span style=\" font-size:8pt;\">Bahnhof</span></p><p><br/></p></body></html>", nullptr));
 #if QT_CONFIG(tooltip)
         widget_65->setToolTip(QCoreApplication::translate("MainWindow", "<html><head/><body><p>background-color: #f0f0f0:</p></body></html>", nullptr));
 #endif // QT_CONFIG(tooltip)
