@@ -37,13 +37,13 @@ void GameServer::onNewConnection()
         QTcpSocket* client = server.nextPendingConnection();
         if (!client) continue;
 
-        Player player;
-        player.id = nextPlayerId++;
-        player.socket = client;
-        player.name = QString("Player%1").arg(player.id);
+        auto player = std::make_unique<Player>();
+        player->id = nextPlayerId++;
+        player->socket = client;
+        player->name = QString("Player%1").arg(player->id);
 
-        players.append(player);
-        game.addPlayer(&players.last());
+        players.append(std::move(player));
+        game.addPlayer(players.last().get());
 
         recvBuffers.insert(client, QByteArray());
 
@@ -57,11 +57,11 @@ void GameServer::onNewConnection()
         // Assign ID
         QJsonObject msg;
         msg["type"] = "assignPlayerId";
-        msg["playerId"] = player.id;
-        msg["name"] = player.name;
+        msg["playerId"] = players.last()->id;
+        msg["name"] = players.last()->name;
         sendToSocket(client, msg);
 
-        qDebug() << "[NET] Neuer Client:" << player.name
+        qDebug() << "[NET] Neuer Client:" << players.last()->name
                  << "| players=" << players.size();
 
         // State an alle
@@ -498,8 +498,11 @@ void GameServer::sendToPlayer(Player &player, const QJsonObject &obj)
 
 void GameServer::broadcast(const QJsonObject &obj)
 {
-    for (auto &p : players)
-        if (p.socket) sendToPlayer(p, obj);
+    for (auto &p : players) {
+        if (p && p->socket) {
+            sendToPlayer(*p, obj);
+        }
+    }
 }
 
 QJsonObject GameServer::buildGameState(const QString &reason) const
@@ -511,20 +514,23 @@ QJsonObject GameServer::buildGameState(const QString &reason) const
 
     Player *cur = const_cast<Game&>(game).getCurrentPlayer();
     if (gameStarted && !cur && !players.isEmpty()) {
-        cur = const_cast<Player*>(&players.first());
+        cur = players.first().get();
     }
     state["currentPlayerId"] = (gameStarted && cur) ? cur->id : -1;
 
     QJsonArray parr;
     for (const auto &p : players) {
         QJsonObject po;
-        po["id"] = p.id;
-        po["name"] = p.name;
-        po["position"] = p.position;
-        po["money"] = p.money;
-        po["inJail"] = p.inJail;
-        po["jailTurns"] = p.jailTurns;
-        po["bankrupt"] = p.isBankrupt;
+        if (!p) {
+            continue;
+        }
+        po["id"] = p->id;
+        po["name"] = p->name;
+        po["position"] = p->position;
+        po["money"] = p->money;
+        po["inJail"] = p->inJail;
+        po["jailTurns"] = p->jailTurns;
+        po["bankrupt"] = p->isBankrupt;
         parr.append(po);
     }
     state["players"] = parr;
@@ -582,17 +588,21 @@ void GameServer::broadcastGameState(const QString &reason)
 Player* GameServer::findPlayerBySocket(QTcpSocket *socket)
 {
     auto it = std::find_if(players.begin(), players.end(),
-                           [&](const Player& p){ return p.socket == socket; });
+                           [&](const std::unique_ptr<Player>& p){
+                               return p && p->socket == socket;
+                           });
     if (it == players.end()) return nullptr;
-    return &(*it);
+    return it->get();
 }
 
 Player* GameServer::findPlayerById(int id)
 {
     auto it = std::find_if(players.begin(), players.end(),
-                           [&](const Player& p){ return p.id == id; });
+                           [&](const std::unique_ptr<Player>& p){
+                               return p && p->id == id;
+                           });
     if (it == players.end()) return nullptr;
-    return &(*it);
+    return it->get();
 }
 
 void GameServer::onClientDisconnected()
@@ -601,25 +611,27 @@ void GameServer::onClientDisconnected()
     if (!socket) return;
 
     auto it = std::find_if(players.begin(), players.end(),
-                           [&](const Player& p){ return p.socket == socket; });
+                           [&](const std::unique_ptr<Player>& p){
+                               return p && p->socket == socket;
+                           });
 
     if (it != players.end()) {
-        qDebug() << "[NET] client disconnected:" << it->name;
+        qDebug() << "[NET] client disconnected:" << (*it)->name;
 
         // pending buy abbrechen, falls nötig
-        if (awaitingBuyDecision && pendingBuyPlayerId == it->id) {
+        if (awaitingBuyDecision && pendingBuyPlayerId == (*it)->id) {
             qWarning() << "[BUY] pending buy canceled due disconnect";
             awaitingBuyDecision = false;
             pendingBuyPlayerId = -1;
             pendingBuyFieldIndex = -1;
         }
-        if (awaitingEndTurn && pendingEndTurnPlayerId == it->id) {
+        if (awaitingEndTurn && pendingEndTurnPlayerId == (*it)->id) {
             qWarning() << "[TURN] pending endTurn canceled due disconnect";
             awaitingEndTurn = false;
             pendingEndTurnPlayerId = -1;
         }
 
-        game.removePlayer(&(*it));
+        game.removePlayer(it->get());
         players.erase(it);
         broadcastGameState("playerLeft");
     }
