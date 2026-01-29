@@ -98,3 +98,10 @@ void NetworkClient::sendEndTurn()
     msg["type"] = "endTurn";
     sendJson(msg);
 }
+
+void NetworkClient::sendGetState()
+{
+    QJsonObject msg;
+    msg["type"] = "getState";
+    sendJson(msg);
+}

@@ -59,6 +59,7 @@ MainWindow::MainWindow(QWidget *parent)
             qDebug() << "✅ Meine Spieler-ID ist jetzt:" << myPlayerId;
             ui->playerIdValue->setText(QString::number(myPlayerId));
             appendLog(QString("🎲 Spieler-ID erhalten: %1").arg(myPlayerId));
+            network->sendGetState();
             return;
         }
 
@@ -182,6 +183,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(ui->StartGame_Button, &QPushButton::clicked, this, [=]() {
         network->sendStartGame();
+        network->sendGetState();
     });
 
     connect(ui->EndTurn_Button, &QPushButton::clicked, this, [=]() {
