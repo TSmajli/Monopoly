@@ -1,4 +1,4 @@
-# Install script for directory: /home/user/Projekte_Qt/monopoly3
+# Install script for directory: /home/user/Dokumente/GitHub/Monopoly/Dev/Client/monopoly3
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -49,7 +49,7 @@ if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT
          FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/monopoly3"
          RPATH "\$ORIGIN:\$ORIGIN/../lib")
   endif()
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE EXECUTABLE FILES "/home/user/Projekte_Qt/monopoly3/build/Desktop_Qt_6_9_2-Debug/monopoly3")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE EXECUTABLE FILES "/home/user/Dokumente/GitHub/Monopoly/Dev/Client/monopoly3/build/Desktop_Qt_6_9_2-Debug/monopoly3")
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/monopoly3" AND
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/monopoly3")
     file(RPATH_CHANGE
@@ -63,7 +63,7 @@ if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  include("/home/user/Projekte_Qt/monopoly3/build/Desktop_Qt_6_9_2-Debug/.qt/deploy_monopoly3_f28e7e3757.cmake")
+  include("/home/user/Dokumente/GitHub/Monopoly/Dev/Client/monopoly3/build/Desktop_Qt_6_9_2-Debug/.qt/deploy_monopoly3_f28e7e3757.cmake")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT)
@@ -81,6 +81,6 @@ endif()
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-  file(WRITE "/home/user/Projekte_Qt/monopoly3/build/Desktop_Qt_6_9_2-Debug/${CMAKE_INSTALL_MANIFEST}"
+  file(WRITE "/home/user/Dokumente/GitHub/Monopoly/Dev/Client/monopoly3/build/Desktop_Qt_6_9_2-Debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
 endif()

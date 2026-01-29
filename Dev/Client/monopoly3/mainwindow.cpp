@@ -8,7 +8,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     // ui->startButton->setText("Spiel Starten");
 
-     ui->label_3->setAttribute(Qt::WA_TransparentForMouseEvents);
+     ui->startLabel->setAttribute(Qt::WA_TransparentForMouseEvents);
 
 
      ui->ServerButton->setStyleSheet(
@@ -58,12 +58,17 @@ MainWindow::MainWindow(QWidget *parent)
         "QPushButton {"
         "border-radius: 20px;"
         "background-color:#469536;"
-
         "}"
+        );
 
-
-
-
+        ui->rollDiceButton->setStyleSheet(
+            "QPushButton:hover {"
+            "  background-color: #38772B;"
+            "}"
+            "QPushButton {"
+            "border-radius: 20px;"
+            "background-color:#469536;"
+            "}"
         );
 
 
@@ -104,5 +109,9 @@ void MainWindow::on_addPlayer_clicked()
     {
         ui->player1->setText(name);
     }
+}
+void MainWindow::on_rollDiceButton_clicked()
+{
+    ui->diceResult->setText("420");
 }
 
