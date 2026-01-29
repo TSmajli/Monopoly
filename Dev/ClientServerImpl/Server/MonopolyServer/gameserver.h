@@ -42,6 +42,8 @@ private:
     bool awaitingBuyDecision = false;
     int pendingBuyPlayerId = -1;
     int pendingBuyFieldIndex = -1;
+    bool awaitingEndTurn = false;
+    int pendingEndTurnPlayerId = -1;
 
 private slots:
     void onNewConnection();
@@ -55,6 +57,7 @@ private:
     void initBoardIfNeeded();
     void handleStartGame(Player &player);
     void handleRollDice(Player &player);
+    void handleEndTurn(Player &player);
     void askToBuy(Player &player, int fieldIndex, int price, const QString &fieldName);
     void finishTurnAndBroadcast();
 
