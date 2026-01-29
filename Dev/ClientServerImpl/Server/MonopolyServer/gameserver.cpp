@@ -257,7 +257,7 @@ void GameServer::handleRollDice(Player &player)
     const int oldPos = current->position;
     const int oldMoney = current->money;
 
-    current->move(steps, board.size());
+    current->move(steps);
 
     Field *f = board.getField(current->position);
 

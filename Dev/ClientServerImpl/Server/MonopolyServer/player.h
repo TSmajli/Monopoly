@@ -26,7 +26,7 @@ public:
     QVector<PropertyField*> properties;
 
     // Spielaktionen
-    void move(int steps, int boardSize);
+    void move(int steps);
     void pay(int amount);
     void receive(int amount);
     void goToJail(int jailPos);
