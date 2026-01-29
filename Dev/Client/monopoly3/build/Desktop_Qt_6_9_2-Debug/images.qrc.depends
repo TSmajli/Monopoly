@@ -1,0 +1,17 @@
+<RCC>
+    <qresource prefix="/new/images">
+        <file>images/rechter-pfeil.png</file>
+        <file>images/lehren(2).png</file>
+        <file>images/lehren(1).png</file>
+        <file>images/lehren.png</file>
+        <file>images/Unterricht</file>
+        <file>images/BUS-Logo.svg.png</file>
+        <file>images/Monopoly (11).png</file>
+        <file>images/Monopoly.png</file>
+        <file>images/schule.jpg</file>
+        <file>images/toilet.png</file>
+        <file>images/train.png</file>
+        <file>images/water-dispenser.png</file>
+        <file>images/casino.png</file>
+    </qresource>
+</RCC>

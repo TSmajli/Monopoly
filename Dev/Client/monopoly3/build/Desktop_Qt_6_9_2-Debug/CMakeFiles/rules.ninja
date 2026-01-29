@@ -42,7 +42,7 @@ rule CUSTOM_COMMAND
 # Rule for re-running cmake.
 
 rule RERUN_CMAKE
-  command = /home/user/Qt/Tools/CMake/bin/cmake --regenerate-during-build -S/home/user/Projekte_Qt/monopoly3 -B/home/user/Projekte_Qt/monopoly3/build/Desktop_Qt_6_9_2-Debug
+  command = /home/user/Qt/Tools/CMake/bin/cmake --regenerate-during-build -S/home/user/Dokumente/GitHub/Monopoly/Dev/Client/monopoly3 -B/home/user/Dokumente/GitHub/Monopoly/Dev/Client/monopoly3/build/Desktop_Qt_6_9_2-Debug
   description = Re-running CMake...
   generator = 1
 

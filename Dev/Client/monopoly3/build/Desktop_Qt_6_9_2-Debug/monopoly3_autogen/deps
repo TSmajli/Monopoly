@@ -1,13 +1,14 @@
 monopoly3_autogen/timestamp: \
-	/home/user/Projekte_Qt/monopoly3/CMakeLists.txt \
-	/home/user/Projekte_Qt/monopoly3/build/Desktop_Qt_6_9_2-Debug/.qtc/package-manager/auto-setup.cmake \
-	/home/user/Projekte_Qt/monopoly3/build/Desktop_Qt_6_9_2-Debug/.qtc/package-manager/maintenance_tool_provider.cmake \
-	/home/user/Projekte_Qt/monopoly3/build/Desktop_Qt_6_9_2-Debug/CMakeFiles/3.30.5/CMakeCXXCompiler.cmake \
-	/home/user/Projekte_Qt/monopoly3/build/Desktop_Qt_6_9_2-Debug/CMakeFiles/3.30.5/CMakeSystem.cmake \
-	/home/user/Projekte_Qt/monopoly3/build/Desktop_Qt_6_9_2-Debug/monopoly3_autogen/moc_predefs.h \
-	/home/user/Projekte_Qt/monopoly3/main.cpp \
-	/home/user/Projekte_Qt/monopoly3/mainwindow.cpp \
-	/home/user/Projekte_Qt/monopoly3/mainwindow.h \
+	/home/user/Dokumente/GitHub/Monopoly/Dev/Client/monopoly3/CMakeLists.txt \
+	/home/user/Dokumente/GitHub/Monopoly/Dev/Client/monopoly3/build/Desktop_Qt_6_9_2-Debug/.qtc/package-manager/auto-setup.cmake \
+	/home/user/Dokumente/GitHub/Monopoly/Dev/Client/monopoly3/build/Desktop_Qt_6_9_2-Debug/.qtc/package-manager/maintenance_tool_provider.cmake \
+	/home/user/Dokumente/GitHub/Monopoly/Dev/Client/monopoly3/build/Desktop_Qt_6_9_2-Debug/CMakeFiles/3.30.5/CMakeCXXCompiler.cmake \
+	/home/user/Dokumente/GitHub/Monopoly/Dev/Client/monopoly3/build/Desktop_Qt_6_9_2-Debug/CMakeFiles/3.30.5/CMakeSystem.cmake \
+	/home/user/Dokumente/GitHub/Monopoly/Dev/Client/monopoly3/build/Desktop_Qt_6_9_2-Debug/monopoly3_autogen/moc_predefs.h \
+	/home/user/Dokumente/GitHub/Monopoly/Dev/Client/monopoly3/images.qrc \
+	/home/user/Dokumente/GitHub/Monopoly/Dev/Client/monopoly3/main.cpp \
+	/home/user/Dokumente/GitHub/Monopoly/Dev/Client/monopoly3/mainwindow.cpp \
+	/home/user/Dokumente/GitHub/Monopoly/Dev/Client/monopoly3/mainwindow.h \
 	/home/user/Qt/6.9.2/gcc_64/include/QtCore/q17memory.h \
 	/home/user/Qt/6.9.2/gcc_64/include/QtCore/q20functional.h \
 	/home/user/Qt/6.9.2/gcc_64/include/QtCore/q20iterator.h \
@@ -723,5 +724,5 @@ monopoly3_autogen/timestamp: \
 	/usr/lib/gcc/x86_64-linux-gnu/13/include/stdarg.h \
 	/usr/lib/gcc/x86_64-linux-gnu/13/include/stdbool.h \
 	/usr/lib/gcc/x86_64-linux-gnu/13/include/stddef.h \
-	/home/user/Projekte_Qt/monopoly3/mainwindow.ui \
+	/home/user/Dokumente/GitHub/Monopoly/Dev/Client/monopoly3/mainwindow.ui \
 	/home/user/Qt/Tools/CMake/bin/cmake

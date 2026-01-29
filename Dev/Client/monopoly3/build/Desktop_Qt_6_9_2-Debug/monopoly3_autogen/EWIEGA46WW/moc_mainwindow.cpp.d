@@ -1,5 +1,5 @@
-/home/user/Projekte_Qt/monopoly3/build/Desktop_Qt_6_9_2-Debug/monopoly3_autogen/EWIEGA46WW/moc_mainwindow.cpp: /home/user/Projekte_Qt/monopoly3/mainwindow.h \
-  /home/user/Projekte_Qt/monopoly3/build/Desktop_Qt_6_9_2-Debug/monopoly3_autogen/moc_predefs.h \
+/home/user/Dokumente/GitHub/Monopoly/Dev/Client/monopoly3/build/Desktop_Qt_6_9_2-Debug/monopoly3_autogen/EWIEGA46WW/moc_mainwindow.cpp: /home/user/Dokumente/GitHub/Monopoly/Dev/Client/monopoly3/mainwindow.h \
+  /home/user/Dokumente/GitHub/Monopoly/Dev/Client/monopoly3/build/Desktop_Qt_6_9_2-Debug/monopoly3_autogen/moc_predefs.h \
   /home/user/Qt/6.9.2/gcc_64/include/QtCore/q17memory.h \
   /home/user/Qt/6.9.2/gcc_64/include/QtCore/q20functional.h \
   /home/user/Qt/6.9.2/gcc_64/include/QtCore/q20iterator.h \

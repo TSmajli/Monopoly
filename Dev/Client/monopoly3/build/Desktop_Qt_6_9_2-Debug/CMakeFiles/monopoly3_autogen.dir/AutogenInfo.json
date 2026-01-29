@@ -1,18 +1,18 @@
 {
-	"BUILD_DIR" : "/home/user/Projekte_Qt/monopoly3/build/Desktop_Qt_6_9_2-Debug/monopoly3_autogen",
-	"CMAKE_BINARY_DIR" : "/home/user/Projekte_Qt/monopoly3/build/Desktop_Qt_6_9_2-Debug",
-	"CMAKE_CURRENT_BINARY_DIR" : "/home/user/Projekte_Qt/monopoly3/build/Desktop_Qt_6_9_2-Debug",
-	"CMAKE_CURRENT_SOURCE_DIR" : "/home/user/Projekte_Qt/monopoly3",
+	"BUILD_DIR" : "/home/user/Dokumente/GitHub/Monopoly/Dev/Client/monopoly3/build/Desktop_Qt_6_9_2-Debug/monopoly3_autogen",
+	"CMAKE_BINARY_DIR" : "/home/user/Dokumente/GitHub/Monopoly/Dev/Client/monopoly3/build/Desktop_Qt_6_9_2-Debug",
+	"CMAKE_CURRENT_BINARY_DIR" : "/home/user/Dokumente/GitHub/Monopoly/Dev/Client/monopoly3/build/Desktop_Qt_6_9_2-Debug",
+	"CMAKE_CURRENT_SOURCE_DIR" : "/home/user/Dokumente/GitHub/Monopoly/Dev/Client/monopoly3",
 	"CMAKE_EXECUTABLE" : "/home/user/Qt/Tools/CMake/bin/cmake",
 	"CMAKE_LIST_FILES" : 
 	[
-		"/home/user/Projekte_Qt/monopoly3/CMakeLists.txt",
-		"/home/user/Projekte_Qt/monopoly3/build/Desktop_Qt_6_9_2-Debug/.qtc/package-manager/auto-setup.cmake",
-		"/home/user/Projekte_Qt/monopoly3/build/Desktop_Qt_6_9_2-Debug/CMakeFiles/3.30.5/CMakeSystem.cmake",
-		"/home/user/Projekte_Qt/monopoly3/build/Desktop_Qt_6_9_2-Debug/.qtc/package-manager/maintenance_tool_provider.cmake",
+		"/home/user/Dokumente/GitHub/Monopoly/Dev/Client/monopoly3/CMakeLists.txt",
+		"/home/user/Dokumente/GitHub/Monopoly/Dev/Client/monopoly3/build/Desktop_Qt_6_9_2-Debug/.qtc/package-manager/auto-setup.cmake",
+		"/home/user/Dokumente/GitHub/Monopoly/Dev/Client/monopoly3/build/Desktop_Qt_6_9_2-Debug/CMakeFiles/3.30.5/CMakeSystem.cmake",
+		"/home/user/Dokumente/GitHub/Monopoly/Dev/Client/monopoly3/build/Desktop_Qt_6_9_2-Debug/.qtc/package-manager/maintenance_tool_provider.cmake",
 		"/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeSystemSpecificInitialize.cmake",
 		"/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Platform/Linux-Initialize.cmake",
-		"/home/user/Projekte_Qt/monopoly3/build/Desktop_Qt_6_9_2-Debug/CMakeFiles/3.30.5/CMakeCXXCompiler.cmake",
+		"/home/user/Dokumente/GitHub/Monopoly/Dev/Client/monopoly3/build/Desktop_Qt_6_9_2-Debug/CMakeFiles/3.30.5/CMakeCXXCompiler.cmake",
 		"/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeSystemSpecificInformation.cmake",
 		"/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeGenericSystem.cmake",
 		"/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeInitializeConfigs.cmake",
@@ -551,24 +551,25 @@
 		"/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeFindDependencyMacro.cmake",
 		"/home/user/Qt/6.9.2/gcc_64/lib/cmake/Qt6/Qt6Dependencies.cmake",
 		"/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/GNUInstallDirs.cmake",
+		"/home/user/Dokumente/GitHub/Monopoly/Dev/Client/monopoly3/images.qrc",
 		"/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/GNUInstallDirs.cmake"
 	],
-	"CMAKE_SOURCE_DIR" : "/home/user/Projekte_Qt/monopoly3",
+	"CMAKE_SOURCE_DIR" : "/home/user/Dokumente/GitHub/Monopoly/Dev/Client/monopoly3",
 	"CROSS_CONFIG" : false,
-	"DEP_FILE" : "/home/user/Projekte_Qt/monopoly3/build/Desktop_Qt_6_9_2-Debug/monopoly3_autogen/deps",
+	"DEP_FILE" : "/home/user/Dokumente/GitHub/Monopoly/Dev/Client/monopoly3/build/Desktop_Qt_6_9_2-Debug/monopoly3_autogen/deps",
 	"DEP_FILE_RULE_NAME" : "monopoly3_autogen/timestamp",
 	"HEADERS" : 
 	[
 		[
-			"/home/user/Projekte_Qt/monopoly3/mainwindow.h",
+			"/home/user/Dokumente/GitHub/Monopoly/Dev/Client/monopoly3/mainwindow.h",
 			"MU",
 			"EWIEGA46WW/moc_mainwindow.cpp",
 			null
 		]
 	],
 	"HEADER_EXTENSIONS" : [ "h", "hh", "h++", "hm", "hpp", "hxx", "in", "txx" ],
-	"INCLUDE_DIR" : "/home/user/Projekte_Qt/monopoly3/build/Desktop_Qt_6_9_2-Debug/monopoly3_autogen/include",
-	"MOC_COMPILATION_FILE" : "/home/user/Projekte_Qt/monopoly3/build/Desktop_Qt_6_9_2-Debug/monopoly3_autogen/mocs_compilation.cpp",
+	"INCLUDE_DIR" : "/home/user/Dokumente/GitHub/Monopoly/Dev/Client/monopoly3/build/Desktop_Qt_6_9_2-Debug/monopoly3_autogen/include",
+	"MOC_COMPILATION_FILE" : "/home/user/Dokumente/GitHub/Monopoly/Dev/Client/monopoly3/build/Desktop_Qt_6_9_2-Debug/monopoly3_autogen/mocs_compilation.cpp",
 	"MOC_DEFINITIONS" : [ "QT_CORE_LIB", "QT_GUI_LIB", "QT_WIDGETS_LIB" ],
 	"MOC_DEPEND_FILTERS" : 
 	[
@@ -611,25 +612,39 @@
 		"-c",
 		"/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeCXXCompilerABI.cpp"
 	],
-	"MOC_PREDEFS_FILE" : "/home/user/Projekte_Qt/monopoly3/build/Desktop_Qt_6_9_2-Debug/monopoly3_autogen/moc_predefs.h",
+	"MOC_PREDEFS_FILE" : "/home/user/Dokumente/GitHub/Monopoly/Dev/Client/monopoly3/build/Desktop_Qt_6_9_2-Debug/monopoly3_autogen/moc_predefs.h",
 	"MOC_RELAXED_MODE" : false,
-	"MOC_SKIP" : [],
+	"MOC_SKIP" : 
+	[
+		"/home/user/Dokumente/GitHub/Monopoly/Dev/Client/monopoly3/build/Desktop_Qt_6_9_2-Debug/qrc_images.cpp"
+	],
 	"MULTI_CONFIG" : false,
 	"PARALLEL" : 1,
-	"PARSE_CACHE_FILE" : "/home/user/Projekte_Qt/monopoly3/build/Desktop_Qt_6_9_2-Debug/CMakeFiles/monopoly3_autogen.dir/ParseCache.txt",
+	"PARSE_CACHE_FILE" : "/home/user/Dokumente/GitHub/Monopoly/Dev/Client/monopoly3/build/Desktop_Qt_6_9_2-Debug/CMakeFiles/monopoly3_autogen.dir/ParseCache.txt",
 	"QT_MOC_EXECUTABLE" : "/home/user/Qt/6.9.2/gcc_64/libexec/moc",
 	"QT_UIC_EXECUTABLE" : "/home/user/Qt/6.9.2/gcc_64/libexec/uic",
 	"QT_VERSION_MAJOR" : 6,
 	"QT_VERSION_MINOR" : 9,
-	"SETTINGS_FILE" : "/home/user/Projekte_Qt/monopoly3/build/Desktop_Qt_6_9_2-Debug/CMakeFiles/monopoly3_autogen.dir/AutogenUsed.txt",
+	"SETTINGS_FILE" : "/home/user/Dokumente/GitHub/Monopoly/Dev/Client/monopoly3/build/Desktop_Qt_6_9_2-Debug/CMakeFiles/monopoly3_autogen.dir/AutogenUsed.txt",
 	"SOURCES" : 
 	[
-		[ "/home/user/Projekte_Qt/monopoly3/main.cpp", "MU", null ],
-		[ "/home/user/Projekte_Qt/monopoly3/mainwindow.cpp", "MU", null ]
+		[
+			"/home/user/Dokumente/GitHub/Monopoly/Dev/Client/monopoly3/main.cpp",
+			"MU",
+			null
+		],
+		[
+			"/home/user/Dokumente/GitHub/Monopoly/Dev/Client/monopoly3/mainwindow.cpp",
+			"MU",
+			null
+		]
 	],
 	"UIC_OPTIONS" : [],
 	"UIC_SEARCH_PATHS" : [],
-	"UIC_SKIP" : [],
+	"UIC_SKIP" : 
+	[
+		"/home/user/Dokumente/GitHub/Monopoly/Dev/Client/monopoly3/build/Desktop_Qt_6_9_2-Debug/qrc_images.cpp"
+	],
 	"UIC_UI_FILES" : [],
 	"USE_BETTER_GRAPH" : true,
 	"VERBOSITY" : 0
