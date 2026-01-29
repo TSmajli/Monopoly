@@ -12,6 +12,8 @@ public:
 
     Player* getCurrentPlayer();
     void nextTurn();
+    void setCurrentPlayerIndex(int index);
+    void setRandomStart();
 
     int boardSize() const;
 
