@@ -510,6 +510,9 @@ QJsonObject GameServer::buildGameState(const QString &reason) const
     state["gameStarted"] = gameStarted;
 
     Player *cur = const_cast<Game&>(game).getCurrentPlayer();
+    if (gameStarted && !cur && !players.isEmpty()) {
+        cur = const_cast<Player*>(&players.first());
+    }
     state["currentPlayerId"] = (gameStarted && cur) ? cur->id : -1;
 
     QJsonArray parr;
