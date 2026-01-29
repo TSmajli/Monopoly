@@ -59,19 +59,20 @@ MainWindow::MainWindow(QWidget *parent)
                      << obj.value("reason").toString();
 
 
+            const int current = obj.value("currentPlayerId").toInt(-1);
             QJsonArray players = obj.value("players").toArray();
             for (const QJsonValue &v : players) {
                 QJsonObject p = v.toObject();
 
                 int id = p.value("id").toInt();
-                int pos = p.value("newPosition").toInt();
+                int pos = p.value("position").toInt();
                 int money = p.value("money").toInt();
 
                 if (id == myPlayerId) {
                     qDebug() << "🧍 ICH:"
                              << "Position =" << pos
-                             << "Geld =" << money;
-                             //<< "am Zug?" << (id == current);
+                             << "Geld =" << money
+                             << "am Zug?" << (id == current);
                 }
             }
         }
@@ -85,11 +86,21 @@ MainWindow::MainWindow(QWidget *parent)
 
 
     connect(ui->BuyDecisonYes_Button, &QPushButton::clicked, this, [=]() {
-        network->sendBuyDecision(true,myPlayerId,pendingBuyFieldIndex);
+        if (pendingBuyFieldIndex < 0) {
+            qDebug() << "Kein Kauf ausstehend.";
+            return;
+        }
+        network->sendBuyDecision(true, myPlayerId, pendingBuyFieldIndex);
+        pendingBuyFieldIndex = -1;
     });
 
     connect(ui->BuyDecsionNo_Button, &QPushButton::clicked, this, [=]() {
-        network->sendBuyDecision(false,myPlayerId,pendingBuyFieldIndex);
+        if (pendingBuyFieldIndex < 0) {
+            qDebug() << "Kein Kauf ausstehend.";
+            return;
+        }
+        network->sendBuyDecision(false, myPlayerId, pendingBuyFieldIndex);
+        pendingBuyFieldIndex = -1;
     });
 
     connect(ui->StartGame_Button, &QPushButton::clicked, this, [=]() {
