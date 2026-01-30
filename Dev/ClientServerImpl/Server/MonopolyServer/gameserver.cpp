@@ -199,6 +199,7 @@ void GameServer::handleStartGame(Player &player)
     }
 
     gameStarted = true;
+    game.setRandomStart();
     qDebug() << "[GAME] STARTED by" << player.name
              << "| currentPlayerId=" << (game.getCurrentPlayer() ? game.getCurrentPlayer()->id : -1);
 
