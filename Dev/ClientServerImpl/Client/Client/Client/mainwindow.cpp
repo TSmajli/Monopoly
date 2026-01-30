@@ -142,7 +142,16 @@ MainWindow::MainWindow(QWidget *parent)
                              << "Position =" << pos
                              << "Geld =" << money;
                              //<< "am Zug?" << (id == current);
+                    ui->positionValue->setText(QString::number(pos));
+                    ui->moneyValue->setText(QString("%1$").arg(money));
+
                 }
+            }
+
+            if (!awaitingBuyDecision) {
+                ui->buyPromptLabel->setText("Kein Kauf offen.");
+                ui->BuyDecisonYes_Button->setEnabled(false);
+                ui->BuyDecsionNo_Button->setEnabled(false);
             }
         }
     });
@@ -155,11 +164,20 @@ MainWindow::MainWindow(QWidget *parent)
 
 
     connect(ui->BuyDecisonYes_Button, &QPushButton::clicked, this, [=]() {
+
         network->sendBuyDecision(true,myPlayerId,pendingBuyFieldIndex);
+        pendingBuyFieldIndex = -1;
+        ui->buyPromptLabel->setText("Kauf gesendet...");
+        ui->BuyDecisonYes_Button->setEnabled(false);
+        ui->BuyDecsionNo_Button->setEnabled(false);
     });
 
     connect(ui->BuyDecsionNo_Button, &QPushButton::clicked, this, [=]() {
         network->sendBuyDecision(false,myPlayerId,pendingBuyFieldIndex);
+        pendingBuyFieldIndex = -1;
+        ui->buyPromptLabel->setText("Ablehnung gesendet...");
+        ui->BuyDecisonYes_Button->setEnabled(false);
+        ui->BuyDecsionNo_Button->setEnabled(false);
     });
 
     connect(ui->StartGame_Button, &QPushButton::clicked, this, [=]() {
