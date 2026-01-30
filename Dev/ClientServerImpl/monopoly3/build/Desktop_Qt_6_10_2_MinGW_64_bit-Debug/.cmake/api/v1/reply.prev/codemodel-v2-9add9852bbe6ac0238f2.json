@@ -1,0 +1,79 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-f2813d9ed1aecc6ea6b3.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "monopoly3",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "monopoly3::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-monopoly3-Debug-b3d91d10c200277addbf.json",
+					"name" : "monopoly3",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "monopoly3_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-monopoly3_autogen-Debug-612eaa75ec0a891ac5bf.json",
+					"name" : "monopoly3_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "monopoly3_autogen_timestamp_deps::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-monopoly3_autogen_timestamp_deps-Debug-4c701c4fa580890a4e2f.json",
+					"name" : "monopoly3_autogen_timestamp_deps",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/.Programing/Projects/MP/monopoly3/build/Desktop_Qt_6_10_2_MinGW_64_bit-Debug",
+		"source" : "C:/.Programing/Projects/MP/monopoly3"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 7
+	}
+}

@@ -27,6 +27,11 @@ void Game::nextTurn()
     currentPlayerIndex = (currentPlayerIndex + 1) % players.size();
 }
 
+void Game::resetTurnOrder()
+{
+    currentPlayerIndex = 0;
+}
+
 int Game::boardSize() const
 {
     return 40; // Monopoly Standard

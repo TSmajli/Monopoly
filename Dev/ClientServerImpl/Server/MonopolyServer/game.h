@@ -12,6 +12,7 @@ public:
 
     Player* getCurrentPlayer();
     void nextTurn();
+    void resetTurnOrder();
 
     int boardSize() const;
 

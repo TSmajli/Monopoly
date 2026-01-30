@@ -123,6 +123,33 @@ void GameServer::processMessage(Player &player, const QJsonObject &msg)
         return;
     }
 
+    if (type == "surrender") {
+        handleSurrender(player);
+        return;
+    }
+
+    if (type == "setReady") {
+        const bool ready = msg.value("ready").toBool(true);
+        handleSetReady(player, ready);
+        return;
+    }
+
+    if (type == "setName") {
+        const QString name = msg.value("name").toString().trimmed();
+        handleSetName(player, name);
+        return;
+    }
+
+    if (type == "restartGame") {
+        handleRestartGame(player);
+        return;
+    }
+
+    if (type == "buyHouse") {
+        handleBuyHouse(player);
+        return;
+    }
+
     if (type == "buyDecision") {
         const int pid = msg.value("playerId").toInt();
         const int fieldIndex = msg.value("fieldIndex").toInt();
@@ -150,8 +177,13 @@ void GameServer::processMessage(Player &player, const QJsonObject &msg)
                          << "for" << pf->price << "(money before=" << p->money << ")";
                 pf->buy(*p);
                 qDebug() << "[BUY] money after=" << p->money;
+                broadcastLog(p->id, QString("kauft %1 für %2$")
+                                       .arg(pf->name)
+                                       .arg(pf->price));
             } else {
                 qDebug() << "[BUY] Player" << p->id << "declined" << pf->name;
+                broadcastLog(p->id, QString("lehnt den Kauf von %1 ab")
+                                       .arg(pf->name));
             }
         } else {
             qWarning() << "[BUY] Invalid buy target or player not found.";
@@ -198,16 +230,149 @@ void GameServer::handleStartGame(Player &player)
         return;
     }
 
+    if (!areAllPlayersReady()) {
+        QJsonObject err;
+        err["type"] = "error";
+        err["message"] = "Alle Spieler müssen bereit sein, bevor das Spiel startet.";
+        sendToPlayer(player, err);
+        return;
+    }
+
     gameStarted = true;
+    gameFinished = false;
+    winnerId = -1;
     qDebug() << "[GAME] STARTED by" << player.name
              << "| currentPlayerId=" << (game.getCurrentPlayer() ? game.getCurrentPlayer()->id : -1);
 
+    broadcastLog(player.id, "startet das Spiel");
     broadcastGameState("gameStarted");
+}
+
+void GameServer::handleSetReady(Player &player, bool ready)
+{
+    player.isReady = ready;
+    broadcastLog(player.id, ready ? "ist bereit" : "ist nicht mehr bereit");
+    broadcastGameState("playerReady");
+
+    if (!gameStarted && areAllPlayersReady()) {
+        handleStartGame(player);
+    }
+}
+
+void GameServer::handleSetName(Player &player, const QString &name)
+{
+    if (name.isEmpty()) {
+        return;
+    }
+    player.name = name.left(20);
+    broadcastLog(player.id, QString("heißt jetzt %1").arg(player.name));
+    broadcastGameState("playerName");
+}
+
+void GameServer::handleRestartGame(Player &player)
+{
+    gameStarted = false;
+    gameFinished = false;
+    winnerId = -1;
+    awaitingBuyDecision = false;
+    pendingBuyPlayerId = -1;
+    pendingBuyFieldIndex = -1;
+    awaitingEndTurn = false;
+    pendingEndTurnPlayerId = -1;
+
+    boardInitialized = false;
+    initBoardIfNeeded();
+
+    for (const auto &p : players) {
+        if (!p) {
+            continue;
+        }
+        p->position = 0;
+        p->money = 1500;
+        p->isBankrupt = false;
+        p->inJail = false;
+        p->jailTurns = 0;
+        p->properties.clear();
+        p->isReady = false;
+    }
+
+    game.resetTurnOrder();
+
+    broadcastLog(player.id, "startet einen Neustart");
+    broadcastGameState("gameRestarted");
+}
+
+void GameServer::handleBuyHouse(Player &player)
+{
+    if (!gameStarted || gameFinished) {
+        QJsonObject err;
+        err["type"] = "error";
+        err["message"] = "Hauskauf ist nur während eines laufenden Spiels möglich.";
+        sendToPlayer(player, err);
+        return;
+    }
+
+    if (awaitingBuyDecision) {
+        QJsonObject err;
+        err["type"] = "error";
+        err["message"] = "Warte auf Kaufentscheidung. Hauskauf derzeit gesperrt.";
+        sendToPlayer(player, err);
+        return;
+    }
+
+    Player *current = game.getCurrentPlayer();
+    if (!current || current->id != player.id) {
+        QJsonObject err;
+        err["type"] = "error";
+        err["message"] = "Du bist nicht dran.";
+        sendToPlayer(player, err);
+        return;
+    }
+
+    Field *f = board.getField(player.position);
+    auto *sf = dynamic_cast<StreetField*>(f);
+    if (!sf || sf->owner != &player) {
+        QJsonObject err;
+        err["type"] = "error";
+        err["message"] = "Hauskauf nur auf eigener Straße möglich.";
+        sendToPlayer(player, err);
+        return;
+    }
+
+    if (sf->hasHotel) {
+        QJsonObject err;
+        err["type"] = "error";
+        err["message"] = "Es steht bereits ein Haus.";
+        sendToPlayer(player, err);
+        return;
+    }
+
+    if (player.money < sf->hotelPrice) {
+        QJsonObject err;
+        err["type"] = "error";
+        err["message"] = "Nicht genug Geld für ein Haus.";
+        sendToPlayer(player, err);
+        return;
+    }
+
+    sf->buyHotel(player);
+    broadcastLog(player.id, QString("kauft ein Haus auf %1 für %2$")
+                               .arg(sf->name)
+                               .arg(sf->hotelPrice));
+    broadcastGameState("houseBought");
 }
 
 void GameServer::handleRollDice(Player &player)
 {
     initBoardIfNeeded();
+
+    if (gameFinished) {
+        QJsonObject err;
+        err["type"] = "error";
+        err["message"] = "Spiel ist bereits beendet.";
+        sendToPlayer(player, err);
+        return;
+    }
 
     if (!gameStarted) {
         qDebug() << "[TURN] rollDice blocked - game not started";
@@ -336,6 +501,14 @@ void GameServer::handleRollDice(Player &player)
 
 void GameServer::handleEndTurn(Player &player)
 {
+    if (gameFinished) {
+        QJsonObject err;
+        err["type"] = "error";
+        err["message"] = "Spiel ist bereits beendet.";
+        sendToPlayer(player, err);
+        return;
+    }
+
     if (!gameStarted) {
         QJsonObject err;
         err["type"] = "error";
@@ -365,7 +538,35 @@ void GameServer::handleEndTurn(Player &player)
 
     awaitingEndTurn = false;
     pendingEndTurnPlayerId = -1;
+    broadcastLog(player.id, "beendet den Zug");
     finishTurnAndBroadcast();
+}
+
+void GameServer::handleSurrender(Player &player)
+{
+    if (!gameStarted || gameFinished) {
+        QJsonObject err;
+        err["type"] = "error";
+        err["message"] = "Aufgeben ist nur während eines laufenden Spiels möglich.";
+        sendToPlayer(player, err);
+        return;
+    }
+
+    if (awaitingBuyDecision && pendingBuyPlayerId == player.id) {
+        awaitingBuyDecision = false;
+        pendingBuyPlayerId = -1;
+        pendingBuyFieldIndex = -1;
+    }
+
+    if (awaitingEndTurn && pendingEndTurnPlayerId == player.id) {
+        awaitingEndTurn = false;
+        pendingEndTurnPlayerId = -1;
+    }
+
+    player.isBankrupt = true;
+    broadcastLog(player.id, "gibt auf");
+    updateWinnerIfNeeded("playerSurrendered");
+    broadcastGameState("playerSurrendered");
 }
 
 void GameServer::initBoardIfNeeded()
@@ -375,14 +576,21 @@ void GameServer::initBoardIfNeeded()
 
     qDebug() << "[BOARD] initializing...";
 
+    for (Field *f : board.fields) {
+        delete f;
+    }
     board.fields.clear();
     board.fields.reserve(40);
+
+    auto fast = [](int value) {
+        return std::max(1, value / 2);
+    };
 
     auto mkStart = [&](int idx, const QString &nm, int bonus){
         auto *f = new StartField();
         f->index = idx;
         f->name = nm;
-        f->startBonus = bonus;
+        f->startBonus = fast(bonus);
         board.fields.append(f);
     };
 
@@ -392,10 +600,10 @@ void GameServer::initBoardIfNeeded()
         f->index = idx;
         f->name = nm;
         f->color = color;
-        f->price = price;
-        f->baseRent = baseRent;
-        f->hotelPrice = hotelPrice;
-        f->hotelRent = hotelRent;
+        f->price = fast(price);
+        f->baseRent = fast(baseRent);
+        f->hotelPrice = fast(hotelPrice);
+        f->hotelRent = fast(hotelRent);
         board.fields.append(f);
     };
 
@@ -403,8 +611,8 @@ void GameServer::initBoardIfNeeded()
         auto *f = new RailroadField();
         f->index = idx;
         f->name = nm;
-        f->price = price;
-        f->baseRent = rent;
+        f->price = fast(price);
+        f->baseRent = fast(rent);
         board.fields.append(f);
     };
 
@@ -412,7 +620,7 @@ void GameServer::initBoardIfNeeded()
         auto *f = new UtilityField();
         f->index = idx;
         f->name = nm;
-        f->price = price;
+        f->price = fast(price);
         f->baseRent = 0;
         board.fields.append(f);
     };
@@ -421,7 +629,7 @@ void GameServer::initBoardIfNeeded()
         auto *f = new TaxField();
         f->index = idx;
         f->name = nm;
-        f->taxAmount = tax;
+        f->taxAmount = fast(tax);
         board.fields.append(f);
     };
 
@@ -432,24 +640,46 @@ void GameServer::initBoardIfNeeded()
         board.fields.append(f);
     };
 
-    // Minimal-Board (spielbar, kein komplettes Monopoly-Original)
-    mkStart(0, "START", 200);
-    mkStreet(1, "Braun 1", "brown", 60, 2, 50, 10);
-    mkTax(2, "Steuer", 100);
-    mkStreet(3, "Braun 2", "brown", 60, 4, 50, 20);
-    mkRail(4, "Bahnhof 1", 200, 25);
-    mkStreet(5, "Hellblau 1", "lightblue", 100, 6, 50, 30);
-    mkUtil(6, "Wasserwerk", 150);
-    mkStreet(7, "Hellblau 2", "lightblue", 100, 6, 50, 30);
-    mkStreet(8, "Hellblau 3", "lightblue", 120, 8, 50, 40);
-    mkTax(9, "Steuer", 100);
-    mkJail(10, "GEFÄNGNIS (Besuch)");
-
-    // Rest auffüllen
-    while (board.fields.size() < 40) {
-        int idx = board.fields.size();
-        mkTax(idx, QString("Feld %1").arg(idx), 0);
-    }
+    mkStart(0, "GO", 200);
+    mkStreet(1, "Mediterranean Avenue", "brown", 60, 2, 50, 10);
+    mkTax(2, "Community Chest", 0);
+    mkStreet(3, "Baltic Avenue", "brown", 60, 4, 50, 20);
+    mkTax(4, "Income Tax", 200);
+    mkRail(5, "Reading Railroad", 200, 25);
+    mkStreet(6, "Oriental Avenue", "lightblue", 100, 6, 50, 30);
+    mkTax(7, "Chance", 0);
+    mkStreet(8, "Vermont Avenue", "lightblue", 100, 6, 50, 30);
+    mkStreet(9, "Connecticut Avenue", "lightblue", 120, 8, 50, 40);
+    mkJail(10, "Jail / Just Visiting");
+    mkStreet(11, "St. Charles Place", "pink", 140, 10, 100, 50);
+    mkUtil(12, "Electric Company", 150);
+    mkStreet(13, "States Avenue", "pink", 140, 10, 100, 50);
+    mkStreet(14, "Virginia Avenue", "pink", 160, 12, 100, 60);
+    mkRail(15, "Pennsylvania Railroad", 200, 25);
+    mkStreet(16, "St. James Place", "orange", 180, 14, 100, 70);
+    mkTax(17, "Community Chest", 0);
+    mkStreet(18, "Tennessee Avenue", "orange", 180, 14, 100, 70);
+    mkStreet(19, "New York Avenue", "orange", 200, 16, 100, 80);
+    mkTax(20, "Free Parking", 0);
+    mkStreet(21, "Kentucky Avenue", "red", 220, 18, 150, 90);
+    mkTax(22, "Chance", 0);
+    mkStreet(23, "Indiana Avenue", "red", 220, 18, 150, 90);
+    mkStreet(24, "Illinois Avenue", "red", 240, 20, 150, 100);
+    mkRail(25, "B. & O. Railroad", 200, 25);
+    mkStreet(26, "Atlantic Avenue", "yellow", 260, 22, 150, 110);
+    mkStreet(27, "Ventnor Avenue", "yellow", 260, 22, 150, 110);
+    mkUtil(28, "Water Works", 150);
+    mkStreet(29, "Marvin Gardens", "yellow", 280, 24, 150, 120);
+    mkTax(30, "Go To Jail", 0);
+    mkStreet(31, "Pacific Avenue", "green", 300, 26, 200, 130);
+    mkStreet(32, "North Carolina Avenue", "green", 300, 26, 200, 130);
+    mkTax(33, "Community Chest", 0);
+    mkStreet(34, "Pennsylvania Avenue", "green", 320, 28, 200, 150);
+    mkRail(35, "Short Line", 200, 25);
+    mkTax(36, "Chance", 0);
+    mkStreet(37, "Park Place", "darkblue", 350, 35, 200, 175);
+    mkTax(38, "Luxury Tax", 100);
+    mkStreet(39, "Boardwalk", "darkblue", 400, 50, 200, 200);
 
     qDebug() << "[BOARD] ready with fields=" << board.fields.size();
 }
@@ -505,12 +735,23 @@ void GameServer::broadcast(const QJsonObject &obj)
     }
 }
 
+void GameServer::broadcastLog(int playerId, const QString &message)
+{
+    QJsonObject log;
+    log["type"] = "log";
+    log["playerId"] = playerId;
+    log["message"] = message;
+    broadcast(log);
+}
+
 QJsonObject GameServer::buildGameState(const QString &reason) const
 {
     QJsonObject state;
     state["type"] = "state";
     state["reason"] = reason;
     state["gameStarted"] = gameStarted;
+    state["gameFinished"] = gameFinished;
+    state["winnerId"] = winnerId;
 
     Player *cur = const_cast<Game&>(game).getCurrentPlayer();
     if (gameStarted && !cur && !players.empty()) {
@@ -531,6 +772,7 @@ QJsonObject GameServer::buildGameState(const QString &reason) const
         po["inJail"] = p->inJail;
         po["jailTurns"] = p->jailTurns;
         po["bankrupt"] = p->isBankrupt;
+        po["ready"] = p->isReady;
         parr.append(po);
     }
     state["players"] = parr;
@@ -552,6 +794,8 @@ QJsonObject GameServer::buildGameState(const QString &reason) const
                 fo["subtype"] = "street";
                 fo["color"] = sf->color;
                 fo["hasHotel"] = sf->hasHotel;
+                fo["hotelPrice"] = sf->hotelPrice;
+                fo["hotelRent"] = sf->hotelRent;
             } else if (dynamic_cast<RailroadField*>(f)) {
                 fo["subtype"] = "railroad";
             } else if (dynamic_cast<UtilityField*>(f)) {
@@ -580,9 +824,45 @@ QJsonObject GameServer::buildGameState(const QString &reason) const
     return state;
 }
 
+bool GameServer::areAllPlayersReady() const
+{
+    if (players.empty()) {
+        return false;
+    }
+    for (const auto &p : players) {
+        if (!p || !p->isReady) {
+            return false;
+        }
+    }
+    return true;
+}
+
 void GameServer::broadcastGameState(const QString &reason)
 {
     broadcast(buildGameState(reason));
+}
+
+void GameServer::updateWinnerIfNeeded(const QString &reason)
+{
+    if (gameFinished) {
+        return;
+    }
+
+    int activePlayers = 0;
+    Player *lastActive = nullptr;
+    for (const auto &p : players) {
+        if (p && !p->isBankrupt) {
+            activePlayers++;
+            lastActive = p.get();
+        }
+    }
+
+    if (activePlayers == 1 && lastActive) {
+        gameFinished = true;
+        winnerId = lastActive->id;
+        broadcastLog(winnerId, "gewinnt das Spiel");
+        broadcastGameState(reason);
+    }
 }
 
 Player* GameServer::findPlayerBySocket(QTcpSocket *socket)
@@ -633,6 +913,7 @@ void GameServer::onClientDisconnected()
 
         game.removePlayer(it->get());
         players.erase(it);
+        updateWinnerIfNeeded("playerLeft");
         broadcastGameState("playerLeft");
     }
 

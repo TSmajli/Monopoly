@@ -45,6 +45,8 @@ private:
     int pendingBuyFieldIndex = -1;
     bool awaitingEndTurn = false;
     int pendingEndTurnPlayerId = -1;
+    bool gameFinished = false;
+    int winnerId = -1;
 
 private slots:
     void onNewConnection();
@@ -59,13 +61,21 @@ private:
     void handleStartGame(Player &player);
     void handleRollDice(Player &player);
     void handleEndTurn(Player &player);
+    void handleSurrender(Player &player);
+    void handleSetReady(Player &player, bool ready);
+    void handleSetName(Player &player, const QString &name);
+    void handleRestartGame(Player &player);
+    void handleBuyHouse(Player &player);
     void askToBuy(Player &player, int fieldIndex, int price, const QString &fieldName);
     void finishTurnAndBroadcast();
+    void updateWinnerIfNeeded(const QString &reason);
+    bool areAllPlayersReady() const;
 
     // JSON helpers
     void sendToSocket(QTcpSocket *socket, const QJsonObject &obj);
     void sendToPlayer(Player &player, const QJsonObject &obj);
     void broadcast(const QJsonObject &obj);
+    void broadcastLog(int playerId, const QString &message);
 
     // State
     void broadcastGameState(const QString &reason = QString());

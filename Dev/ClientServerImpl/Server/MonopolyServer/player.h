@@ -22,6 +22,7 @@ public:
     bool isBankrupt = false;
     bool inJail = false;
     int jailTurns = 0;
+    bool isReady = false;
 
     QVector<PropertyField*> properties;
 
