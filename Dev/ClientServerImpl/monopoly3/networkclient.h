@@ -19,7 +19,8 @@ public:
     void sendBuyDecision(bool decision, int playerId, int pendingBuyFieldIndex);
     void sendEndTurn();
     void sendGetState();
-
+    void sendSetName(const QString name);
+    void sendSurrender();
 
 
 

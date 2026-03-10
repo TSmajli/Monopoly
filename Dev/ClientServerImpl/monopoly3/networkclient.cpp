@@ -75,6 +75,20 @@ void NetworkClient::sendStartGame()
     sendJson(msg);
 
 }
+void NetworkClient::sendSetName(const QString name)
+{
+    QJsonObject msg;
+    msg["type"] = "setName";
+    msg["name"] = name;
+    sendJson(msg);
+}
+void NetworkClient::sendSurrender()
+{
+    QJsonObject msg;
+    msg["type"] = "surrender";
+    // Sende die Nachricht
+    sendJson(msg);
+}
 
 void NetworkClient::sendBuyDecision(bool decision, int playerId, int pendingBuyFieldIndex)
 {

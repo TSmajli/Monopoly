@@ -447,7 +447,7 @@ MainWindow::MainWindow(QWidget *parent)
     });
 
     connect(ui->surrenderButton, &QPushButton::clicked, this, [this]() {
-
+        network->sendSurrender();
         appendLog("🏳️ Du hast aufgegeben.", resolvePlayerName(myPlayerId));
     });
 
@@ -531,7 +531,7 @@ void MainWindow::on_addPlayer_clicked()
 {
     const QString name = ui->playerNameInput->text().trimmed();
     if (!name.isEmpty()) {
-        //network->sendSetName(name);
+        network->sendSetName(name);
     }
 }
 
