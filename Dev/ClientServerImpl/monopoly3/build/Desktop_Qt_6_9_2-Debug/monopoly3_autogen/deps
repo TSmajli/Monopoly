@@ -1,14 +1,21 @@
 monopoly3_autogen/timestamp: \
-	/home/user/Dokumente/GitHub/Monopoly/Dev/Client/monopoly3/CMakeLists.txt \
-	/home/user/Dokumente/GitHub/Monopoly/Dev/Client/monopoly3/build/Desktop_Qt_6_9_2-Debug/.qtc/package-manager/auto-setup.cmake \
-	/home/user/Dokumente/GitHub/Monopoly/Dev/Client/monopoly3/build/Desktop_Qt_6_9_2-Debug/.qtc/package-manager/maintenance_tool_provider.cmake \
-	/home/user/Dokumente/GitHub/Monopoly/Dev/Client/monopoly3/build/Desktop_Qt_6_9_2-Debug/CMakeFiles/3.30.5/CMakeCXXCompiler.cmake \
-	/home/user/Dokumente/GitHub/Monopoly/Dev/Client/monopoly3/build/Desktop_Qt_6_9_2-Debug/CMakeFiles/3.30.5/CMakeSystem.cmake \
-	/home/user/Dokumente/GitHub/Monopoly/Dev/Client/monopoly3/build/Desktop_Qt_6_9_2-Debug/monopoly3_autogen/moc_predefs.h \
-	/home/user/Dokumente/GitHub/Monopoly/Dev/Client/monopoly3/images.qrc \
-	/home/user/Dokumente/GitHub/Monopoly/Dev/Client/monopoly3/main.cpp \
-	/home/user/Dokumente/GitHub/Monopoly/Dev/Client/monopoly3/mainwindow.cpp \
-	/home/user/Dokumente/GitHub/Monopoly/Dev/Client/monopoly3/mainwindow.h \
+	/home/user/Dokumente/GitHub/Monopoly/Dev/ClientServerImpl/monopoly3/CMakeLists.txt \
+	/home/user/Dokumente/GitHub/Monopoly/Dev/ClientServerImpl/monopoly3/build/Desktop_Qt_6_9_2-Debug/.qtc/package-manager/auto-setup.cmake \
+	/home/user/Dokumente/GitHub/Monopoly/Dev/ClientServerImpl/monopoly3/build/Desktop_Qt_6_9_2-Debug/.qtc/package-manager/maintenance_tool_provider.cmake \
+	/home/user/Dokumente/GitHub/Monopoly/Dev/ClientServerImpl/monopoly3/build/Desktop_Qt_6_9_2-Debug/CMakeFiles/3.30.5/CMakeCXXCompiler.cmake \
+	/home/user/Dokumente/GitHub/Monopoly/Dev/ClientServerImpl/monopoly3/build/Desktop_Qt_6_9_2-Debug/CMakeFiles/3.30.5/CMakeSystem.cmake \
+	/home/user/Dokumente/GitHub/Monopoly/Dev/ClientServerImpl/monopoly3/build/Desktop_Qt_6_9_2-Debug/monopoly3_autogen/moc_predefs.h \
+	/home/user/Dokumente/GitHub/Monopoly/Dev/ClientServerImpl/monopoly3/images.qrc \
+	/home/user/Dokumente/GitHub/Monopoly/Dev/ClientServerImpl/monopoly3/main.cpp \
+	/home/user/Dokumente/GitHub/Monopoly/Dev/ClientServerImpl/monopoly3/mainwindow.cpp \
+	/home/user/Dokumente/GitHub/Monopoly/Dev/ClientServerImpl/monopoly3/mainwindow.h \
+	/home/user/Dokumente/GitHub/Monopoly/Dev/ClientServerImpl/monopoly3/networkclient.cpp \
+	/home/user/Dokumente/GitHub/Monopoly/Dev/ClientServerImpl/monopoly3/networkclient.h \
+	/home/user/Qt/6.9.2/gcc_64/include/QtCore/QDateTime \
+	/home/user/Qt/6.9.2/gcc_64/include/QtCore/QJsonObject \
+	/home/user/Qt/6.9.2/gcc_64/include/QtCore/QMap \
+	/home/user/Qt/6.9.2/gcc_64/include/QtCore/QObject \
+	/home/user/Qt/6.9.2/gcc_64/include/QtCore/QVector \
 	/home/user/Qt/6.9.2/gcc_64/include/QtCore/q17memory.h \
 	/home/user/Qt/6.9.2/gcc_64/include/QtCore/q20functional.h \
 	/home/user/Qt/6.9.2/gcc_64/include/QtCore/q20iterator.h \
@@ -30,6 +37,9 @@ monopoly3_autogen/timestamp: \
 	/home/user/Qt/6.9.2/gcc_64/include/QtCore/qbytearrayalgorithms.h \
 	/home/user/Qt/6.9.2/gcc_64/include/QtCore/qbytearraylist.h \
 	/home/user/Qt/6.9.2/gcc_64/include/QtCore/qbytearrayview.h \
+	/home/user/Qt/6.9.2/gcc_64/include/QtCore/qcalendar.h \
+	/home/user/Qt/6.9.2/gcc_64/include/QtCore/qcborcommon.h \
+	/home/user/Qt/6.9.2/gcc_64/include/QtCore/qcborvalue.h \
 	/home/user/Qt/6.9.2/gcc_64/include/QtCore/qchar.h \
 	/home/user/Qt/6.9.2/gcc_64/include/QtCore/qcompare.h \
 	/home/user/Qt/6.9.2/gcc_64/include/QtCore/qcompare_impl.h \
@@ -43,6 +53,7 @@ monopoly3_autogen/timestamp: \
 	/home/user/Qt/6.9.2/gcc_64/include/QtCore/qcontiguouscache.h \
 	/home/user/Qt/6.9.2/gcc_64/include/QtCore/qdarwinhelpers.h \
 	/home/user/Qt/6.9.2/gcc_64/include/QtCore/qdatastream.h \
+	/home/user/Qt/6.9.2/gcc_64/include/QtCore/qdatetime.h \
 	/home/user/Qt/6.9.2/gcc_64/include/QtCore/qdebug.h \
 	/home/user/Qt/6.9.2/gcc_64/include/QtCore/qendian.h \
 	/home/user/Qt/6.9.2/gcc_64/include/QtCore/qexceptionhandling.h \
@@ -56,12 +67,18 @@ monopoly3_autogen/timestamp: \
 	/home/user/Qt/6.9.2/gcc_64/include/QtCore/qglobalstatic.h \
 	/home/user/Qt/6.9.2/gcc_64/include/QtCore/qhash.h \
 	/home/user/Qt/6.9.2/gcc_64/include/QtCore/qhashfunctions.h \
+	/home/user/Qt/6.9.2/gcc_64/include/QtCore/qiodevice.h \
 	/home/user/Qt/6.9.2/gcc_64/include/QtCore/qiodevicebase.h \
 	/home/user/Qt/6.9.2/gcc_64/include/QtCore/qiterable.h \
 	/home/user/Qt/6.9.2/gcc_64/include/QtCore/qiterator.h \
+	/home/user/Qt/6.9.2/gcc_64/include/QtCore/qjsondocument.h \
+	/home/user/Qt/6.9.2/gcc_64/include/QtCore/qjsonobject.h \
+	/home/user/Qt/6.9.2/gcc_64/include/QtCore/qjsonparseerror.h \
+	/home/user/Qt/6.9.2/gcc_64/include/QtCore/qjsonvalue.h \
 	/home/user/Qt/6.9.2/gcc_64/include/QtCore/qlatin1stringview.h \
 	/home/user/Qt/6.9.2/gcc_64/include/QtCore/qline.h \
 	/home/user/Qt/6.9.2/gcc_64/include/QtCore/qlist.h \
+	/home/user/Qt/6.9.2/gcc_64/include/QtCore/qlocale.h \
 	/home/user/Qt/6.9.2/gcc_64/include/QtCore/qlogging.h \
 	/home/user/Qt/6.9.2/gcc_64/include/QtCore/qmalloc.h \
 	/home/user/Qt/6.9.2/gcc_64/include/QtCore/qmap.h \
@@ -82,6 +99,7 @@ monopoly3_autogen/timestamp: \
 	/home/user/Qt/6.9.2/gcc_64/include/QtCore/qprocessordetection.h \
 	/home/user/Qt/6.9.2/gcc_64/include/QtCore/qrect.h \
 	/home/user/Qt/6.9.2/gcc_64/include/QtCore/qrefcount.h \
+	/home/user/Qt/6.9.2/gcc_64/include/QtCore/qregularexpression.h \
 	/home/user/Qt/6.9.2/gcc_64/include/QtCore/qscopedpointer.h \
 	/home/user/Qt/6.9.2/gcc_64/include/QtCore/qscopeguard.h \
 	/home/user/Qt/6.9.2/gcc_64/include/QtCore/qset.h \
@@ -128,12 +146,16 @@ monopoly3_autogen/timestamp: \
 	/home/user/Qt/6.9.2/gcc_64/include/QtCore/qtversionchecks.h \
 	/home/user/Qt/6.9.2/gcc_64/include/QtCore/qtypeinfo.h \
 	/home/user/Qt/6.9.2/gcc_64/include/QtCore/qtypes.h \
+	/home/user/Qt/6.9.2/gcc_64/include/QtCore/qurl.h \
 	/home/user/Qt/6.9.2/gcc_64/include/QtCore/qutf8stringview.h \
+	/home/user/Qt/6.9.2/gcc_64/include/QtCore/quuid.h \
 	/home/user/Qt/6.9.2/gcc_64/include/QtCore/qvariant.h \
 	/home/user/Qt/6.9.2/gcc_64/include/QtCore/qvarlengtharray.h \
+	/home/user/Qt/6.9.2/gcc_64/include/QtCore/qvector.h \
 	/home/user/Qt/6.9.2/gcc_64/include/QtCore/qversiontagging.h \
 	/home/user/Qt/6.9.2/gcc_64/include/QtCore/qxptype_traits.h \
 	/home/user/Qt/6.9.2/gcc_64/include/QtCore/qyieldcpu.h \
+	/home/user/Qt/6.9.2/gcc_64/include/QtGui/QColor \
 	/home/user/Qt/6.9.2/gcc_64/include/QtGui/qaction.h \
 	/home/user/Qt/6.9.2/gcc_64/include/QtGui/qbitmap.h \
 	/home/user/Qt/6.9.2/gcc_64/include/QtGui/qbrush.h \
@@ -148,18 +170,30 @@ monopoly3_autogen/timestamp: \
 	/home/user/Qt/6.9.2/gcc_64/include/QtGui/qkeysequence.h \
 	/home/user/Qt/6.9.2/gcc_64/include/QtGui/qpaintdevice.h \
 	/home/user/Qt/6.9.2/gcc_64/include/QtGui/qpalette.h \
+	/home/user/Qt/6.9.2/gcc_64/include/QtGui/qpicture.h \
 	/home/user/Qt/6.9.2/gcc_64/include/QtGui/qpixelformat.h \
 	/home/user/Qt/6.9.2/gcc_64/include/QtGui/qpixmap.h \
 	/home/user/Qt/6.9.2/gcc_64/include/QtGui/qpolygon.h \
 	/home/user/Qt/6.9.2/gcc_64/include/QtGui/qregion.h \
 	/home/user/Qt/6.9.2/gcc_64/include/QtGui/qrgb.h \
 	/home/user/Qt/6.9.2/gcc_64/include/QtGui/qrgba64.h \
+	/home/user/Qt/6.9.2/gcc_64/include/QtGui/qtextdocument.h \
 	/home/user/Qt/6.9.2/gcc_64/include/QtGui/qtgui-config.h \
 	/home/user/Qt/6.9.2/gcc_64/include/QtGui/qtguiexports.h \
 	/home/user/Qt/6.9.2/gcc_64/include/QtGui/qtguiglobal.h \
 	/home/user/Qt/6.9.2/gcc_64/include/QtGui/qtransform.h \
 	/home/user/Qt/6.9.2/gcc_64/include/QtGui/qwindowdefs.h \
+	/home/user/Qt/6.9.2/gcc_64/include/QtNetwork/QTcpSocket \
+	/home/user/Qt/6.9.2/gcc_64/include/QtNetwork/qabstractsocket.h \
+	/home/user/Qt/6.9.2/gcc_64/include/QtNetwork/qhostaddress.h \
+	/home/user/Qt/6.9.2/gcc_64/include/QtNetwork/qtcpsocket.h \
+	/home/user/Qt/6.9.2/gcc_64/include/QtNetwork/qtnetwork-config.h \
+	/home/user/Qt/6.9.2/gcc_64/include/QtNetwork/qtnetworkexports.h \
+	/home/user/Qt/6.9.2/gcc_64/include/QtNetwork/qtnetworkglobal.h \
+	/home/user/Qt/6.9.2/gcc_64/include/QtWidgets/QLabel \
 	/home/user/Qt/6.9.2/gcc_64/include/QtWidgets/QMainWindow \
+	/home/user/Qt/6.9.2/gcc_64/include/QtWidgets/qframe.h \
+	/home/user/Qt/6.9.2/gcc_64/include/QtWidgets/qlabel.h \
 	/home/user/Qt/6.9.2/gcc_64/include/QtWidgets/qmainwindow.h \
 	/home/user/Qt/6.9.2/gcc_64/include/QtWidgets/qsizepolicy.h \
 	/home/user/Qt/6.9.2/gcc_64/include/QtWidgets/qtabwidget.h \
@@ -400,6 +434,38 @@ monopoly3_autogen/timestamp: \
 	/home/user/Qt/6.9.2/gcc_64/lib/cmake/Qt6GuiTools/Qt6GuiToolsTargets-relwithdebinfo.cmake \
 	/home/user/Qt/6.9.2/gcc_64/lib/cmake/Qt6GuiTools/Qt6GuiToolsTargets.cmake \
 	/home/user/Qt/6.9.2/gcc_64/lib/cmake/Qt6GuiTools/Qt6GuiToolsVersionlessTargets.cmake \
+	/home/user/Qt/6.9.2/gcc_64/lib/cmake/Qt6Network/Qt6NetworkAdditionalTargetInfo.cmake \
+	/home/user/Qt/6.9.2/gcc_64/lib/cmake/Qt6Network/Qt6NetworkConfig.cmake \
+	/home/user/Qt/6.9.2/gcc_64/lib/cmake/Qt6Network/Qt6NetworkConfigVersion.cmake \
+	/home/user/Qt/6.9.2/gcc_64/lib/cmake/Qt6Network/Qt6NetworkConfigVersionImpl.cmake \
+	/home/user/Qt/6.9.2/gcc_64/lib/cmake/Qt6Network/Qt6NetworkDependencies.cmake \
+	/home/user/Qt/6.9.2/gcc_64/lib/cmake/Qt6Network/Qt6NetworkPlugins.cmake \
+	/home/user/Qt/6.9.2/gcc_64/lib/cmake/Qt6Network/Qt6NetworkTargets-relwithdebinfo.cmake \
+	/home/user/Qt/6.9.2/gcc_64/lib/cmake/Qt6Network/Qt6NetworkTargets.cmake \
+	/home/user/Qt/6.9.2/gcc_64/lib/cmake/Qt6Network/Qt6NetworkVersionlessAliasTargets.cmake \
+	/home/user/Qt/6.9.2/gcc_64/lib/cmake/Qt6Network/Qt6QGlibNetworkInformationPluginAdditionalTargetInfo.cmake \
+	/home/user/Qt/6.9.2/gcc_64/lib/cmake/Qt6Network/Qt6QGlibNetworkInformationPluginConfig.cmake \
+	/home/user/Qt/6.9.2/gcc_64/lib/cmake/Qt6Network/Qt6QGlibNetworkInformationPluginTargets-relwithdebinfo.cmake \
+	/home/user/Qt/6.9.2/gcc_64/lib/cmake/Qt6Network/Qt6QGlibNetworkInformationPluginTargets.cmake \
+	/home/user/Qt/6.9.2/gcc_64/lib/cmake/Qt6Network/Qt6QNetworkManagerNetworkInformationPluginAdditionalTargetInfo.cmake \
+	/home/user/Qt/6.9.2/gcc_64/lib/cmake/Qt6Network/Qt6QNetworkManagerNetworkInformationPluginConfig.cmake \
+	/home/user/Qt/6.9.2/gcc_64/lib/cmake/Qt6Network/Qt6QNetworkManagerNetworkInformationPluginTargets-relwithdebinfo.cmake \
+	/home/user/Qt/6.9.2/gcc_64/lib/cmake/Qt6Network/Qt6QNetworkManagerNetworkInformationPluginTargets.cmake \
+	/home/user/Qt/6.9.2/gcc_64/lib/cmake/Qt6Network/Qt6QTlsBackendCertOnlyPluginAdditionalTargetInfo.cmake \
+	/home/user/Qt/6.9.2/gcc_64/lib/cmake/Qt6Network/Qt6QTlsBackendCertOnlyPluginConfig.cmake \
+	/home/user/Qt/6.9.2/gcc_64/lib/cmake/Qt6Network/Qt6QTlsBackendCertOnlyPluginTargets-relwithdebinfo.cmake \
+	/home/user/Qt/6.9.2/gcc_64/lib/cmake/Qt6Network/Qt6QTlsBackendCertOnlyPluginTargets.cmake \
+	/home/user/Qt/6.9.2/gcc_64/lib/cmake/Qt6Network/Qt6QTlsBackendOpenSSLPluginAdditionalTargetInfo.cmake \
+	/home/user/Qt/6.9.2/gcc_64/lib/cmake/Qt6Network/Qt6QTlsBackendOpenSSLPluginConfig.cmake \
+	/home/user/Qt/6.9.2/gcc_64/lib/cmake/Qt6Network/Qt6QTlsBackendOpenSSLPluginTargets-relwithdebinfo.cmake \
+	/home/user/Qt/6.9.2/gcc_64/lib/cmake/Qt6Network/Qt6QTlsBackendOpenSSLPluginTargets.cmake \
+	/home/user/Qt/6.9.2/gcc_64/lib/cmake/Qt6NetworkPrivate/Qt6NetworkPrivateAdditionalTargetInfo.cmake \
+	/home/user/Qt/6.9.2/gcc_64/lib/cmake/Qt6NetworkPrivate/Qt6NetworkPrivateConfig.cmake \
+	/home/user/Qt/6.9.2/gcc_64/lib/cmake/Qt6NetworkPrivate/Qt6NetworkPrivateConfigVersion.cmake \
+	/home/user/Qt/6.9.2/gcc_64/lib/cmake/Qt6NetworkPrivate/Qt6NetworkPrivateConfigVersionImpl.cmake \
+	/home/user/Qt/6.9.2/gcc_64/lib/cmake/Qt6NetworkPrivate/Qt6NetworkPrivateDependencies.cmake \
+	/home/user/Qt/6.9.2/gcc_64/lib/cmake/Qt6NetworkPrivate/Qt6NetworkPrivateTargets.cmake \
+	/home/user/Qt/6.9.2/gcc_64/lib/cmake/Qt6NetworkPrivate/Qt6NetworkPrivateVersionlessAliasTargets.cmake \
 	/home/user/Qt/6.9.2/gcc_64/lib/cmake/Qt6Widgets/Qt6WidgetsAdditionalTargetInfo.cmake \
 	/home/user/Qt/6.9.2/gcc_64/lib/cmake/Qt6Widgets/Qt6WidgetsConfig.cmake \
 	/home/user/Qt/6.9.2/gcc_64/lib/cmake/Qt6Widgets/Qt6WidgetsConfigVersion.cmake \
@@ -422,22 +488,79 @@ monopoly3_autogen/timestamp: \
 	/home/user/Qt/6.9.2/gcc_64/lib/cmake/Qt6WidgetsTools/Qt6WidgetsToolsTargets-relwithdebinfo.cmake \
 	/home/user/Qt/6.9.2/gcc_64/lib/cmake/Qt6WidgetsTools/Qt6WidgetsToolsTargets.cmake \
 	/home/user/Qt/6.9.2/gcc_64/lib/cmake/Qt6WidgetsTools/Qt6WidgetsToolsVersionlessTargets.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeCXXCompiler.cmake.in \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeCXXCompilerABI.cpp \
 	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeCXXInformation.cmake \
 	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeCheckCompilerFlagCommonPatterns.cmake \
 	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeCommonLanguageInclude.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeCompilerIdDetection.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeDetermineCXXCompiler.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeDetermineCompiler.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeDetermineCompilerABI.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeDetermineCompilerSupport.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeDetermineSystem.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeFindBinUtils.cmake \
 	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeFindDependencyMacro.cmake \
 	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeGenericSystem.cmake \
 	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeInitializeConfigs.cmake \
 	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeLanguageInformation.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeNinjaFindMake.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeParseImplicitIncludeInfo.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeParseImplicitLinkInfo.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeParseLibraryArchitecture.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeSystem.cmake.in \
 	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeSystemSpecificInformation.cmake \
 	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeSystemSpecificInitialize.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeTestCXXCompiler.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeTestCompilerCommon.cmake \
 	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/CheckCXXCompilerFlag.cmake \
 	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/CheckCXXSourceCompiles.cmake \
 	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/CheckIncludeFileCXX.cmake \
 	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/CheckLibraryExists.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/ADSP-DetermineCompiler.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/ARMCC-DetermineCompiler.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/ARMClang-DetermineCompiler.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/AppleClang-DetermineCompiler.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/Borland-DetermineCompiler.cmake \
 	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/CMakeCommonCompilerMacros.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/Clang-DetermineCompiler.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/Clang-DetermineCompilerInternal.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/Compaq-CXX-DetermineCompiler.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/Cray-DetermineCompiler.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/CrayClang-DetermineCompiler.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/Embarcadero-DetermineCompiler.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/Fujitsu-DetermineCompiler.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/FujitsuClang-DetermineCompiler.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/GHS-DetermineCompiler.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/GNU-CXX-DetermineCompiler.cmake \
 	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/GNU-CXX.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/GNU-FindBinUtils.cmake \
 	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/GNU.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/HP-CXX-DetermineCompiler.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/IAR-DetermineCompiler.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/IBMCPP-CXX-DetermineVersionInternal.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/IBMClang-CXX-DetermineCompiler.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/Intel-DetermineCompiler.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/IntelLLVM-DetermineCompiler.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/LCC-CXX-DetermineCompiler.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/MSVC-DetermineCompiler.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/NVHPC-DetermineCompiler.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/NVIDIA-DetermineCompiler.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/OpenWatcom-DetermineCompiler.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/OrangeC-DetermineCompiler.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/PGI-DetermineCompiler.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/PathScale-DetermineCompiler.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/SCO-DetermineCompiler.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/SunPro-CXX-DetermineCompiler.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/TI-DetermineCompiler.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/TIClang-DetermineCompiler.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/Tasking-DetermineCompiler.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/VisualAge-CXX-DetermineCompiler.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/Watcom-DetermineCompiler.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/XL-CXX-DetermineCompiler.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/XLClang-CXX-DetermineCompiler.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/zOS-CXX-DetermineCompiler.cmake \
 	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/FeatureSummary.cmake \
 	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/FindOpenGL.cmake \
 	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/FindPackageHandleStandardArgs.cmake \
@@ -446,10 +569,13 @@ monopoly3_autogen/timestamp: \
 	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/FindThreads.cmake \
 	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/FindVulkan.cmake \
 	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/GNUInstallDirs.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Internal/CMakeDetermineLinkerId.cmake \
 	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Internal/CheckCompilerFlag.cmake \
 	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Internal/CheckFlagCommonConfig.cmake \
 	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Internal/CheckSourceCompiles.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Internal/FeatureTesting.cmake \
 	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/MacroAddFileDependencies.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Platform/Linux-Determine-CXX.cmake \
 	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Platform/Linux-GNU-CXX.cmake \
 	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Platform/Linux-GNU.cmake \
 	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Platform/Linux-Initialize.cmake \
@@ -724,5 +850,5 @@ monopoly3_autogen/timestamp: \
 	/usr/lib/gcc/x86_64-linux-gnu/13/include/stdarg.h \
 	/usr/lib/gcc/x86_64-linux-gnu/13/include/stdbool.h \
 	/usr/lib/gcc/x86_64-linux-gnu/13/include/stddef.h \
-	/home/user/Dokumente/GitHub/Monopoly/Dev/Client/monopoly3/mainwindow.ui \
+	/home/user/Dokumente/GitHub/Monopoly/Dev/ClientServerImpl/monopoly3/mainwindow.ui \
 	/home/user/Qt/Tools/CMake/bin/cmake

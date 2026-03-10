@@ -1,0 +1,24 @@
+# ninja log v6
+1	483	1773039747991969723	Client_autogen/timestamp	c6ac4b393244e76d
+1	483	1773039747991969723	Client_autogen/mocs_compilation.cpp	c6ac4b393244e76d
+1	483	1773039747991969723	/home/user/Dokumente/GitHub/Monopoly/Dev/ClientServerImpl/Client/Client/Client/build/Desktop_Qt_6_9_2-Debug/Client_autogen/timestamp	c6ac4b393244e76d
+1	483	1773039747991969723	/home/user/Dokumente/GitHub/Monopoly/Dev/ClientServerImpl/Client/Client/Client/build/Desktop_Qt_6_9_2-Debug/Client_autogen/mocs_compilation.cpp	c6ac4b393244e76d
+485	3656	1773039747998969722	CMakeFiles/Client.dir/main.cpp.o	9abf6dba666fee46
+484	3659	1773039747998570643	CMakeFiles/Client.dir/Client_autogen/mocs_compilation.cpp.o	e3634415a60d82a1
+3659	5982	1773039751172969528	CMakeFiles/Client.dir/networkclient.cpp.o	964dd925c29f7141
+5	70	1773039875465961917	Client_autogen/timestamp	c6ac4b393244e76d
+5	70	1773039875465961917	Client_autogen/mocs_compilation.cpp	c6ac4b393244e76d
+5	70	1773039875465961917	/home/user/Dokumente/GitHub/Monopoly/Dev/ClientServerImpl/Client/Client/Client/build/Desktop_Qt_6_9_2-Debug/Client_autogen/timestamp	c6ac4b393244e76d
+5	70	1773039875465961917	/home/user/Dokumente/GitHub/Monopoly/Dev/ClientServerImpl/Client/Client/Client/build/Desktop_Qt_6_9_2-Debug/Client_autogen/mocs_compilation.cpp	c6ac4b393244e76d
+1	63	1773039918219959299	Client_autogen/timestamp	c6ac4b393244e76d
+1	63	1773039918219959299	Client_autogen/mocs_compilation.cpp	c6ac4b393244e76d
+1	63	1773039918219959299	/home/user/Dokumente/GitHub/Monopoly/Dev/ClientServerImpl/Client/Client/Client/build/Desktop_Qt_6_9_2-Debug/Client_autogen/timestamp	c6ac4b393244e76d
+1	63	1773039918219959299	/home/user/Dokumente/GitHub/Monopoly/Dev/ClientServerImpl/Client/Client/Client/build/Desktop_Qt_6_9_2-Debug/Client_autogen/mocs_compilation.cpp	c6ac4b393244e76d
+63	3212	1773039918284426665	CMakeFiles/Client.dir/mainwindow.cpp.o	5edca7360ed34a30
+3212	3788	1773039921423959103	Client	3e9ba5b93724cf5d
+11	79	1773133307140817931	Client_autogen/timestamp	c6ac4b393244e76d
+11	79	1773133307140817931	Client_autogen/mocs_compilation.cpp	c6ac4b393244e76d
+11	79	1773133307140817931	/home/user/Dokumente/GitHub/Monopoly/Dev/ClientServerImpl/Client/Client/Client/build/Desktop_Qt_6_9_2-Debug/Client_autogen/timestamp	c6ac4b393244e76d
+11	79	1773133307140817931	/home/user/Dokumente/GitHub/Monopoly/Dev/ClientServerImpl/Client/Client/Client/build/Desktop_Qt_6_9_2-Debug/Client_autogen/mocs_compilation.cpp	c6ac4b393244e76d
+79	3520	1773133307210782927	CMakeFiles/Client.dir/mainwindow.cpp.o	5edca7360ed34a30
+3520	4232	1773133310650062216	Client	3e9ba5b93724cf5d

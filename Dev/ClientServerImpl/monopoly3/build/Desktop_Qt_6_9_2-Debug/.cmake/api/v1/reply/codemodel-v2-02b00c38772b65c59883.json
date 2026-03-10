@@ -7,7 +7,7 @@
 				{
 					"build" : ".",
 					"hasInstallRule" : true,
-					"jsonFile" : "directory-.-Debug-aebc13cbd055ce897366.json",
+					"jsonFile" : "directory-.-Debug-52bd990adeda94c2eadd.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.16"
@@ -44,7 +44,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "monopoly3::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-monopoly3-Debug-9739f6d7dbed084c5138.json",
+					"jsonFile" : "target-monopoly3-Debug-cd199aeea7dd9e4a8be8.json",
 					"name" : "monopoly3",
 					"projectIndex" : 0
 				},
@@ -68,8 +68,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "/home/user/Dokumente/GitHub/Monopoly/Dev/Client/monopoly3/build/Desktop_Qt_6_9_2-Debug",
-		"source" : "/home/user/Dokumente/GitHub/Monopoly/Dev/Client/monopoly3"
+		"build" : "/home/user/Dokumente/GitHub/Monopoly/Dev/ClientServerImpl/monopoly3/build/Desktop_Qt_6_9_2-Debug",
+		"source" : "/home/user/Dokumente/GitHub/Monopoly/Dev/ClientServerImpl/monopoly3"
 	},
 	"version" : 
 	{

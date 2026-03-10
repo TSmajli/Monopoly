@@ -31,6 +31,7 @@ public:
     QWidget *gameView;
     QWidget *Spieleraktivitaet_3;
     QWidget *Spielerfarbe_3;
+    QLabel *logHeaderLabel;
     QTextEdit *textEdit_3;
     QWidget *Brettspiel_2;
     QWidget *Feld29_3;
@@ -124,16 +125,29 @@ public:
     QWidget *Spielerfarbe_7;
     QLabel *Geld_5;
     QLabel *Geld_6;
+    QLabel *playersHeaderLabel;
+    QTextEdit *playersText;
+    QPushButton *logExitButton;
+    QWidget *fieldInfoBox;
+    QLabel *fieldInfoTitle;
+    QLabel *fieldInfoValue;
+    QLabel *winnerLabel;
     QPushButton *backButton;
     QPushButton *buyButton;
     QPushButton *readyButton;
     QPushButton *buyProperty;
+    QPushButton *surrenderButton;
     QPushButton *sellButton;
     QWidget *widget_3;
     QLabel *label_6;
     QLabel *label_7;
     QLabel *label_48;
-    QWidget *csvView;
+    QWidget *winView;
+    QWidget *winPanel;
+    QLabel *winTitleLabel;
+    QLabel *winWinnerLabel;
+    QPushButton *saveCsvButton;
+    QPushButton *playAgainButton;
     QWidget *startView;
     QWidget *widget;
     QPushButton *player1;
@@ -145,6 +159,7 @@ public:
     QLabel *label_2;
     QLineEdit *playerNameInput;
     QPushButton *startButton;
+    QPushButton *readyStartButton;
     QLabel *startLabel;
     QPushButton *importCSVbutton;
     QPushButton *ServerButton;
@@ -184,9 +199,15 @@ public:
         Spielerfarbe_3->setGeometry(QRect(20, 20, 30, 30));
         Spielerfarbe_3->setStyleSheet(QString::fromUtf8("background-color: white;\n"
 ""));
+        logHeaderLabel = new QLabel(Spieleraktivitaet_3);
+        logHeaderLabel->setObjectName("logHeaderLabel");
+        logHeaderLabel->setGeometry(QRect(20, 20, 460, 30));
+        logHeaderLabel->setStyleSheet(QString::fromUtf8("border: 0px solid black;\n"
+"font-weight: 800;\n"
+"font-size : 18px;"));
         textEdit_3 = new QTextEdit(Spieleraktivitaet_3);
         textEdit_3->setObjectName("textEdit_3");
-        textEdit_3->setGeometry(QRect(70, 20, 401, 31));
+        textEdit_3->setGeometry(QRect(20, 60, 460, 720));
         textEdit_3->setStyleSheet(QString::fromUtf8("border: 0px solid black;\n"
 "font-weight: 800;\n"
 "font-size : 15px;"));
@@ -861,6 +882,55 @@ public:
         Geld_6->setStyleSheet(QString::fromUtf8("border: 0px solid black;\n"
 "font-weight: 800;\n"
 "font-size : 20px;"));
+        playersHeaderLabel = new QLabel(Spieleranzeige_3);
+        playersHeaderLabel->setObjectName("playersHeaderLabel");
+        playersHeaderLabel->setGeometry(QRect(30, 90, 441, 21));
+        playersHeaderLabel->setStyleSheet(QString::fromUtf8("border: 0px solid black;\n"
+"font-weight: 800;\n"
+"font-size : 14px;"));
+        playersText = new QTextEdit(Spieleranzeige_3);
+        playersText->setObjectName("playersText");
+        playersText->setGeometry(QRect(30, 120, 441, 110));
+        playersText->setStyleSheet(QString::fromUtf8("border: 1px solid #84b6e6;\n"
+"background-color: #1d1f3d;\n"
+"color: white;\n"
+"font-size: 14px;\n"
+"padding: 6px;"));
+        playersText->setReadOnly(true);
+        logExitButton = new QPushButton(Spieleranzeige_3);
+        logExitButton->setObjectName("logExitButton");
+        logExitButton->setGeometry(QRect(20, 790, 200, 40));
+        fieldInfoBox = new QWidget(gameView);
+        fieldInfoBox->setObjectName("fieldInfoBox");
+        fieldInfoBox->setGeometry(QRect(1360, 720, 500, 160));
+        fieldInfoBox->setStyleSheet(QString::fromUtf8("background-color:#252850;\n"
+"border-radius:10px;\n"
+"color:white;"));
+        fieldInfoTitle = new QLabel(fieldInfoBox);
+        fieldInfoTitle->setObjectName("fieldInfoTitle");
+        fieldInfoTitle->setGeometry(QRect(20, 10, 461, 24));
+        fieldInfoTitle->setStyleSheet(QString::fromUtf8("border: 0px solid black;\n"
+"font-weight: 800;\n"
+"font-size : 16px;"));
+        fieldInfoValue = new QLabel(fieldInfoBox);
+        fieldInfoValue->setObjectName("fieldInfoValue");
+        fieldInfoValue->setGeometry(QRect(20, 40, 461, 110));
+        fieldInfoValue->setStyleSheet(QString::fromUtf8("border: 1px solid #84b6e6;\n"
+"background-color: #1d1f3d;\n"
+"color: white;\n"
+"font-size: 14px;\n"
+"padding: 8px;"));
+        fieldInfoValue->setWordWrap(true);
+        winnerLabel = new QLabel(gameView);
+        winnerLabel->setObjectName("winnerLabel");
+        winnerLabel->setGeometry(QRect(1360, 900, 500, 40));
+        winnerLabel->setStyleSheet(QString::fromUtf8("background-color:#275EA8;\n"
+"color:white;\n"
+"border-radius:10px;\n"
+"font-size:16px;\n"
+"font-weight:700;\n"
+"padding-left:12px;"));
+        winnerLabel->setVisible(false);
         backButton = new QPushButton(gameView);
         backButton->setObjectName("backButton");
         backButton->setGeometry(QRect(1690, 320, 161, 31));
@@ -883,6 +953,12 @@ public:
         buyProperty->setObjectName("buyProperty");
         buyProperty->setGeometry(QRect(1690, 590, 161, 51));
         buyProperty->setStyleSheet(QString::fromUtf8("background-color:#252850;\n"
+"border-radius:10px;\n"
+"color:white;"));
+        surrenderButton = new QPushButton(gameView);
+        surrenderButton->setObjectName("surrenderButton");
+        surrenderButton->setGeometry(QRect(1690, 660, 161, 51));
+        surrenderButton->setStyleSheet(QString::fromUtf8("background-color:#842d2d;\n"
 "border-radius:10px;\n"
 "color:white;"));
         sellButton = new QPushButton(gameView);
@@ -932,9 +1008,37 @@ public:
         buyProperty->raise();
         sellButton->raise();
         Spieleraktivitaet_3->raise();
-        csvView = new QWidget();
-        csvView->setObjectName("csvView");
-        stackedWidget->addWidget(csvView);
+        winView = new QWidget();
+        winView->setObjectName("winView");
+        winPanel = new QWidget(winView);
+        winPanel->setObjectName("winPanel");
+        winPanel->setGeometry(QRect(690, 280, 540, 360));
+        winPanel->setStyleSheet(QString::fromUtf8("background-color:#252850;\n"
+"border-radius:16px;\n"
+"border:2px solid #84b6e6;\n"
+"color:white;"));
+        winTitleLabel = new QLabel(winPanel);
+        winTitleLabel->setObjectName("winTitleLabel");
+        winTitleLabel->setGeometry(QRect(30, 20, 480, 40));
+        winTitleLabel->setStyleSheet(QString::fromUtf8("font-size:24px;\n"
+"font-weight:700;"));
+        winTitleLabel->setAlignment(Qt::AlignCenter);
+        winWinnerLabel = new QLabel(winPanel);
+        winWinnerLabel->setObjectName("winWinnerLabel");
+        winWinnerLabel->setGeometry(QRect(30, 80, 480, 60));
+        winWinnerLabel->setStyleSheet(QString::fromUtf8("background-color:#1d1f3d;\n"
+"border-radius:10px;\n"
+"padding:8px;\n"
+"font-size:18px;\n"
+"font-weight:600;"));
+        winWinnerLabel->setAlignment(Qt::AlignCenter);
+        saveCsvButton = new QPushButton(winPanel);
+        saveCsvButton->setObjectName("saveCsvButton");
+        saveCsvButton->setGeometry(QRect(30, 180, 480, 50));
+        playAgainButton = new QPushButton(winPanel);
+        playAgainButton->setObjectName("playAgainButton");
+        playAgainButton->setGeometry(QRect(30, 250, 480, 50));
+        stackedWidget->addWidget(winView);
         startView = new QWidget();
         startView->setObjectName("startView");
         widget = new QWidget(startView);
@@ -1030,6 +1134,12 @@ public:
 "background-color:#469536;\n"
 "\n"
 ""));
+        readyStartButton = new QPushButton(widget);
+        readyStartButton->setObjectName("readyStartButton");
+        readyStartButton->setGeometry(QRect(30, 480, 341, 41));
+        readyStartButton->setStyleSheet(QString::fromUtf8("border-radius: 16px;\n"
+"background-color:#252850;\n"
+"color:white;"));
         startLabel = new QLabel(startView);
         startLabel->setObjectName("startLabel");
         startLabel->setEnabled(true);
@@ -1081,6 +1191,7 @@ public:
 #if QT_CONFIG(tooltip)
         stackedWidget->setToolTip(QCoreApplication::translate("MainWindow", "<html><head/><body><p align=\"center\">Monopoly</p></body></html>", nullptr));
 #endif // QT_CONFIG(tooltip)
+        logHeaderLabel->setText(QCoreApplication::translate("MainWindow", "Spiel-Log", nullptr));
         textEdit_3->setHtml(QCoreApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
@@ -1200,14 +1311,24 @@ public:
         diceResult->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
         Geld_5->setText(QCoreApplication::translate("MainWindow", "2000DNT", nullptr));
         Geld_6->setText(QCoreApplication::translate("MainWindow", "Turner", nullptr));
+        playersHeaderLabel->setText(QCoreApplication::translate("MainWindow", "Spieler\303\274bersicht", nullptr));
+        logExitButton->setText(QCoreApplication::translate("MainWindow", "Log verlassen", nullptr));
+        fieldInfoTitle->setText(QCoreApplication::translate("MainWindow", "Feld-Info", nullptr));
+        fieldInfoValue->setText(QCoreApplication::translate("MainWindow", "-", nullptr));
+        winnerLabel->setText(QString());
         backButton->setText(QCoreApplication::translate("MainWindow", "Einstellungen", nullptr));
         buyButton->setText(QCoreApplication::translate("MainWindow", "Kaufen", nullptr));
         readyButton->setText(QCoreApplication::translate("MainWindow", "Fertig", nullptr));
         buyProperty->setText(QCoreApplication::translate("MainWindow", "Haus kaufen", nullptr));
+        surrenderButton->setText(QCoreApplication::translate("MainWindow", "Aufgeben", nullptr));
         sellButton->setText(QCoreApplication::translate("MainWindow", "Verkaufen", nullptr));
         label_6->setText(QString());
         label_7->setText(QString());
         label_48->setText(QString());
+        winTitleLabel->setText(QCoreApplication::translate("MainWindow", "Spiel beendet", nullptr));
+        winWinnerLabel->setText(QCoreApplication::translate("MainWindow", "\360\237\217\206 Gewinner: -", nullptr));
+        saveCsvButton->setText(QCoreApplication::translate("MainWindow", "CSV speichern", nullptr));
+        playAgainButton->setText(QCoreApplication::translate("MainWindow", "Erneut spielen", nullptr));
 #if QT_CONFIG(tooltip)
         player1->setToolTip(QCoreApplication::translate("MainWindow", "<html><head/><body><p><br/></p></body></html>", nullptr));
 #endif // QT_CONFIG(tooltip)
@@ -1219,7 +1340,8 @@ public:
         addPlayer->setText(QCoreApplication::translate("MainWindow", "+", nullptr));
         label_2->setText(QCoreApplication::translate("MainWindow", "Name:", nullptr));
         playerNameInput->setText(QCoreApplication::translate("MainWindow", "PeterPan", nullptr));
-        startButton->setText(QString());
+        startButton->setText(QCoreApplication::translate("MainWindow", "Starten", nullptr));
+        readyStartButton->setText(QCoreApplication::translate("MainWindow", "Bereit", nullptr));
 #if QT_CONFIG(tooltip)
         startLabel->setToolTip(QCoreApplication::translate("MainWindow", "label->setAttribute(Qt::WA_TransparentForMouseEvents);", nullptr));
 #endif // QT_CONFIG(tooltip)

@@ -14,6 +14,8 @@ qt_add_executable(monopoly3
     networkclient.h
     mainwindow.ui
     images.qrc
+    networkclient.h networkclient.cpp
+    networkclient.h networkclient.cpp
 )
 qt_add_resources(app_resources
 images.qrc

@@ -1,5 +1,5 @@
-/home/user/Projekte_Qt/Client/build/Desktop_Qt_6_9_2-Debug/Client_autogen/EWIEGA46WW/moc_networkclient.cpp: /home/user/Projekte_Qt/Client/networkclient.h \
-  /home/user/Projekte_Qt/Client/build/Desktop_Qt_6_9_2-Debug/Client_autogen/moc_predefs.h \
+/home/user/Dokumente/GitHub/Monopoly/Dev/ClientServerImpl/Client/Client/Client/build/Desktop_Qt_6_9_2-Debug/Client_autogen/EWIEGA46WW/moc_networkclient.cpp: /home/user/Dokumente/GitHub/Monopoly/Dev/ClientServerImpl/Client/Client/Client/networkclient.h \
+  /home/user/Dokumente/GitHub/Monopoly/Dev/ClientServerImpl/Client/Client/Client/build/Desktop_Qt_6_9_2-Debug/Client_autogen/moc_predefs.h \
   /home/user/Qt/6.9.2/gcc_64/include/QtCore/QJsonObject \
   /home/user/Qt/6.9.2/gcc_64/include/QtCore/QObject \
   /home/user/Qt/6.9.2/gcc_64/include/QtCore/q17memory.h \

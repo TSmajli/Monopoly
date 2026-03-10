@@ -1,15 +1,15 @@
 Client_autogen/timestamp: \
-	/home/user/Projekte_Qt/Client/CMakeLists.txt \
-	/home/user/Projekte_Qt/Client/build/Desktop_Qt_6_9_2-Debug/.qtc/package-manager/auto-setup.cmake \
-	/home/user/Projekte_Qt/Client/build/Desktop_Qt_6_9_2-Debug/.qtc/package-manager/maintenance_tool_provider.cmake \
-	/home/user/Projekte_Qt/Client/build/Desktop_Qt_6_9_2-Debug/CMakeFiles/3.30.5/CMakeCXXCompiler.cmake \
-	/home/user/Projekte_Qt/Client/build/Desktop_Qt_6_9_2-Debug/CMakeFiles/3.30.5/CMakeSystem.cmake \
-	/home/user/Projekte_Qt/Client/build/Desktop_Qt_6_9_2-Debug/Client_autogen/moc_predefs.h \
-	/home/user/Projekte_Qt/Client/main.cpp \
-	/home/user/Projekte_Qt/Client/mainwindow.cpp \
-	/home/user/Projekte_Qt/Client/mainwindow.h \
-	/home/user/Projekte_Qt/Client/networkclient.cpp \
-	/home/user/Projekte_Qt/Client/networkclient.h \
+	/home/user/Dokumente/GitHub/Monopoly/Dev/ClientServerImpl/Client/Client/Client/CMakeLists.txt \
+	/home/user/Dokumente/GitHub/Monopoly/Dev/ClientServerImpl/Client/Client/Client/build/Desktop_Qt_6_9_2-Debug/.qtc/package-manager/auto-setup.cmake \
+	/home/user/Dokumente/GitHub/Monopoly/Dev/ClientServerImpl/Client/Client/Client/build/Desktop_Qt_6_9_2-Debug/.qtc/package-manager/maintenance_tool_provider.cmake \
+	/home/user/Dokumente/GitHub/Monopoly/Dev/ClientServerImpl/Client/Client/Client/build/Desktop_Qt_6_9_2-Debug/CMakeFiles/3.30.5/CMakeCXXCompiler.cmake \
+	/home/user/Dokumente/GitHub/Monopoly/Dev/ClientServerImpl/Client/Client/Client/build/Desktop_Qt_6_9_2-Debug/CMakeFiles/3.30.5/CMakeSystem.cmake \
+	/home/user/Dokumente/GitHub/Monopoly/Dev/ClientServerImpl/Client/Client/Client/build/Desktop_Qt_6_9_2-Debug/Client_autogen/moc_predefs.h \
+	/home/user/Dokumente/GitHub/Monopoly/Dev/ClientServerImpl/Client/Client/Client/main.cpp \
+	/home/user/Dokumente/GitHub/Monopoly/Dev/ClientServerImpl/Client/Client/Client/mainwindow.cpp \
+	/home/user/Dokumente/GitHub/Monopoly/Dev/ClientServerImpl/Client/Client/Client/mainwindow.h \
+	/home/user/Dokumente/GitHub/Monopoly/Dev/ClientServerImpl/Client/Client/Client/networkclient.cpp \
+	/home/user/Dokumente/GitHub/Monopoly/Dev/ClientServerImpl/Client/Client/Client/networkclient.h \
 	/home/user/Qt/6.9.2/gcc_64/include/QtCore/QJsonObject \
 	/home/user/Qt/6.9.2/gcc_64/include/QtCore/QObject \
 	/home/user/Qt/6.9.2/gcc_64/include/QtCore/q17memory.h \
@@ -477,22 +477,79 @@ Client_autogen/timestamp: \
 	/home/user/Qt/6.9.2/gcc_64/lib/cmake/Qt6WidgetsTools/Qt6WidgetsToolsTargets-relwithdebinfo.cmake \
 	/home/user/Qt/6.9.2/gcc_64/lib/cmake/Qt6WidgetsTools/Qt6WidgetsToolsTargets.cmake \
 	/home/user/Qt/6.9.2/gcc_64/lib/cmake/Qt6WidgetsTools/Qt6WidgetsToolsVersionlessTargets.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeCXXCompiler.cmake.in \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeCXXCompilerABI.cpp \
 	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeCXXInformation.cmake \
 	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeCheckCompilerFlagCommonPatterns.cmake \
 	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeCommonLanguageInclude.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeCompilerIdDetection.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeDetermineCXXCompiler.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeDetermineCompiler.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeDetermineCompilerABI.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeDetermineCompilerSupport.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeDetermineSystem.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeFindBinUtils.cmake \
 	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeFindDependencyMacro.cmake \
 	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeGenericSystem.cmake \
 	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeInitializeConfigs.cmake \
 	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeLanguageInformation.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeNinjaFindMake.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeParseImplicitIncludeInfo.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeParseImplicitLinkInfo.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeParseLibraryArchitecture.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeSystem.cmake.in \
 	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeSystemSpecificInformation.cmake \
 	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeSystemSpecificInitialize.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeTestCXXCompiler.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/CMakeTestCompilerCommon.cmake \
 	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/CheckCXXCompilerFlag.cmake \
 	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/CheckCXXSourceCompiles.cmake \
 	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/CheckIncludeFileCXX.cmake \
 	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/CheckLibraryExists.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/ADSP-DetermineCompiler.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/ARMCC-DetermineCompiler.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/ARMClang-DetermineCompiler.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/AppleClang-DetermineCompiler.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/Borland-DetermineCompiler.cmake \
 	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/CMakeCommonCompilerMacros.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/Clang-DetermineCompiler.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/Clang-DetermineCompilerInternal.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/Compaq-CXX-DetermineCompiler.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/Cray-DetermineCompiler.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/CrayClang-DetermineCompiler.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/Embarcadero-DetermineCompiler.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/Fujitsu-DetermineCompiler.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/FujitsuClang-DetermineCompiler.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/GHS-DetermineCompiler.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/GNU-CXX-DetermineCompiler.cmake \
 	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/GNU-CXX.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/GNU-FindBinUtils.cmake \
 	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/GNU.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/HP-CXX-DetermineCompiler.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/IAR-DetermineCompiler.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/IBMCPP-CXX-DetermineVersionInternal.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/IBMClang-CXX-DetermineCompiler.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/Intel-DetermineCompiler.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/IntelLLVM-DetermineCompiler.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/LCC-CXX-DetermineCompiler.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/MSVC-DetermineCompiler.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/NVHPC-DetermineCompiler.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/NVIDIA-DetermineCompiler.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/OpenWatcom-DetermineCompiler.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/OrangeC-DetermineCompiler.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/PGI-DetermineCompiler.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/PathScale-DetermineCompiler.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/SCO-DetermineCompiler.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/SunPro-CXX-DetermineCompiler.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/TI-DetermineCompiler.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/TIClang-DetermineCompiler.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/Tasking-DetermineCompiler.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/VisualAge-CXX-DetermineCompiler.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/Watcom-DetermineCompiler.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/XL-CXX-DetermineCompiler.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/XLClang-CXX-DetermineCompiler.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Compiler/zOS-CXX-DetermineCompiler.cmake \
 	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/FeatureSummary.cmake \
 	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/FindOpenGL.cmake \
 	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/FindPackageHandleStandardArgs.cmake \
@@ -501,10 +558,13 @@ Client_autogen/timestamp: \
 	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/FindThreads.cmake \
 	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/FindVulkan.cmake \
 	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/GNUInstallDirs.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Internal/CMakeDetermineLinkerId.cmake \
 	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Internal/CheckCompilerFlag.cmake \
 	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Internal/CheckFlagCommonConfig.cmake \
 	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Internal/CheckSourceCompiles.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Internal/FeatureTesting.cmake \
 	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/MacroAddFileDependencies.cmake \
+	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Platform/Linux-Determine-CXX.cmake \
 	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Platform/Linux-GNU-CXX.cmake \
 	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Platform/Linux-GNU.cmake \
 	/home/user/Qt/Tools/CMake/share/cmake-3.30/Modules/Platform/Linux-Initialize.cmake \
@@ -779,5 +839,5 @@ Client_autogen/timestamp: \
 	/usr/lib/gcc/x86_64-linux-gnu/13/include/stdarg.h \
 	/usr/lib/gcc/x86_64-linux-gnu/13/include/stdbool.h \
 	/usr/lib/gcc/x86_64-linux-gnu/13/include/stddef.h \
-	/home/user/Projekte_Qt/Client/mainwindow.ui \
+	/home/user/Dokumente/GitHub/Monopoly/Dev/ClientServerImpl/Client/Client/Client/mainwindow.ui \
 	/home/user/Qt/Tools/CMake/bin/cmake

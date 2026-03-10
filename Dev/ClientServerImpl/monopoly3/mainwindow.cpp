@@ -436,18 +436,18 @@ MainWindow::MainWindow(QWidget *parent)
         if (!ui->buyProperty->isEnabled()) {
             return;
         }
-        network->sendBuyHouse();
+        network->sendBuyDecision(true,myPlayerId,pendingBuyFieldIndex);
         appendLog("🏠 Hauskauf angefragt.", resolvePlayerName(myPlayerId));
     });
 
     connect(ui->readyStartButton, &QPushButton::clicked, this, [this]() {
         localReady = !localReady;
-        network->sendSetReady(localReady);
+        network->sendStartGame();
         ui->readyStartButton->setText(localReady ? "Bereit ✔" : "Bereit");
     });
 
     connect(ui->surrenderButton, &QPushButton::clicked, this, [this]() {
-        network->sendSurrender();
+
         appendLog("🏳️ Du hast aufgegeben.", resolvePlayerName(myPlayerId));
     });
 
@@ -464,7 +464,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->playAgainButton, &QPushButton::clicked, this, [this]() {
         localReady = false;
         ui->readyStartButton->setText("Bereit");
-        network->sendRestartGame();
+        //network->sendRestartGame();
         ui->stackedWidget->setCurrentWidget(ui->startView);
         ui->winnerLabel->setVisible(false);
         ui->logExitButton->setVisible(false);
@@ -531,7 +531,7 @@ void MainWindow::on_addPlayer_clicked()
 {
     const QString name = ui->playerNameInput->text().trimmed();
     if (!name.isEmpty()) {
-        network->sendSetName(name);
+        //network->sendSetName(name);
     }
 }
 

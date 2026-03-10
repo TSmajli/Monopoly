@@ -127,9 +127,9 @@ MainWindow::MainWindow(QWidget *parent)
                         ? "Warte auf Kauf"
                         : (awaitingEndTurn ? "Ende des Zuges" : "In Aktion")));
 
-            const bool isMyTurn = (currentPlayerId == myPlayerId);
-            ui->rollDiceButton->setEnabled(isMyTurn && !awaitingBuyDecision && !awaitingEndTurn);
-            ui->EndTurn_Button->setEnabled(isMyTurn && awaitingEndTurn && !awaitingBuyDecision);
+            const bool isMyTurn2 = (currentPlayerId == myPlayerId);
+            ui->rollDiceButton->setEnabled(isMyTurn2 && !awaitingBuyDecision && !awaitingEndTurn);
+            ui->EndTurn_Button->setEnabled(isMyTurn2 && awaitingEndTurn && !awaitingBuyDecision);
 
 
             ui->currentPlayerValue->setText(

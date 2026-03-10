@@ -230,13 +230,13 @@ void GameServer::handleStartGame(Player &player)
         return;
     }
 
-    if (!areAllPlayersReady()) {
-        QJsonObject err;
-        err["type"] = "error";
-        err["message"] = "Alle Spieler müssen bereit sein, bevor das Spiel startet.";
-        sendToPlayer(player, err);
-        return;
-    }
+    //if (!areAllPlayersReady()) {
+      //  QJsonObject err;
+        //err["type"] = "error";
+       // err["message"] = "Alle Spieler müssen bereit sein, bevor das Spiel startet.";
+        //sendToPlayer(player, err);
+        //return;
+    //}
 
     gameStarted = true;
     gameFinished = false;

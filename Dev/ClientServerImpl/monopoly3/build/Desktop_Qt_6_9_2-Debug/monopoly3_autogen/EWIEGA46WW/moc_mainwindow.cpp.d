@@ -1,5 +1,9 @@
-/home/user/Dokumente/GitHub/Monopoly/Dev/Client/monopoly3/build/Desktop_Qt_6_9_2-Debug/monopoly3_autogen/EWIEGA46WW/moc_mainwindow.cpp: /home/user/Dokumente/GitHub/Monopoly/Dev/Client/monopoly3/mainwindow.h \
-  /home/user/Dokumente/GitHub/Monopoly/Dev/Client/monopoly3/build/Desktop_Qt_6_9_2-Debug/monopoly3_autogen/moc_predefs.h \
+/home/user/Dokumente/GitHub/Monopoly/Dev/ClientServerImpl/monopoly3/build/Desktop_Qt_6_9_2-Debug/monopoly3_autogen/EWIEGA46WW/moc_mainwindow.cpp: /home/user/Dokumente/GitHub/Monopoly/Dev/ClientServerImpl/monopoly3/mainwindow.h \
+  /home/user/Dokumente/GitHub/Monopoly/Dev/ClientServerImpl/monopoly3/build/Desktop_Qt_6_9_2-Debug/monopoly3_autogen/moc_predefs.h \
+  /home/user/Qt/6.9.2/gcc_64/include/QtCore/QDateTime \
+  /home/user/Qt/6.9.2/gcc_64/include/QtCore/QJsonObject \
+  /home/user/Qt/6.9.2/gcc_64/include/QtCore/QMap \
+  /home/user/Qt/6.9.2/gcc_64/include/QtCore/QVector \
   /home/user/Qt/6.9.2/gcc_64/include/QtCore/q17memory.h \
   /home/user/Qt/6.9.2/gcc_64/include/QtCore/q20functional.h \
   /home/user/Qt/6.9.2/gcc_64/include/QtCore/q20iterator.h \
@@ -21,6 +25,9 @@
   /home/user/Qt/6.9.2/gcc_64/include/QtCore/qbytearrayalgorithms.h \
   /home/user/Qt/6.9.2/gcc_64/include/QtCore/qbytearraylist.h \
   /home/user/Qt/6.9.2/gcc_64/include/QtCore/qbytearrayview.h \
+  /home/user/Qt/6.9.2/gcc_64/include/QtCore/qcalendar.h \
+  /home/user/Qt/6.9.2/gcc_64/include/QtCore/qcborcommon.h \
+  /home/user/Qt/6.9.2/gcc_64/include/QtCore/qcborvalue.h \
   /home/user/Qt/6.9.2/gcc_64/include/QtCore/qchar.h \
   /home/user/Qt/6.9.2/gcc_64/include/QtCore/qcompare.h \
   /home/user/Qt/6.9.2/gcc_64/include/QtCore/qcompare_impl.h \
@@ -34,6 +41,7 @@
   /home/user/Qt/6.9.2/gcc_64/include/QtCore/qcontiguouscache.h \
   /home/user/Qt/6.9.2/gcc_64/include/QtCore/qdarwinhelpers.h \
   /home/user/Qt/6.9.2/gcc_64/include/QtCore/qdatastream.h \
+  /home/user/Qt/6.9.2/gcc_64/include/QtCore/qdatetime.h \
   /home/user/Qt/6.9.2/gcc_64/include/QtCore/qdebug.h \
   /home/user/Qt/6.9.2/gcc_64/include/QtCore/qendian.h \
   /home/user/Qt/6.9.2/gcc_64/include/QtCore/qexceptionhandling.h \
@@ -47,12 +55,18 @@
   /home/user/Qt/6.9.2/gcc_64/include/QtCore/qglobalstatic.h \
   /home/user/Qt/6.9.2/gcc_64/include/QtCore/qhash.h \
   /home/user/Qt/6.9.2/gcc_64/include/QtCore/qhashfunctions.h \
+  /home/user/Qt/6.9.2/gcc_64/include/QtCore/qiodevice.h \
   /home/user/Qt/6.9.2/gcc_64/include/QtCore/qiodevicebase.h \
   /home/user/Qt/6.9.2/gcc_64/include/QtCore/qiterable.h \
   /home/user/Qt/6.9.2/gcc_64/include/QtCore/qiterator.h \
+  /home/user/Qt/6.9.2/gcc_64/include/QtCore/qjsondocument.h \
+  /home/user/Qt/6.9.2/gcc_64/include/QtCore/qjsonobject.h \
+  /home/user/Qt/6.9.2/gcc_64/include/QtCore/qjsonparseerror.h \
+  /home/user/Qt/6.9.2/gcc_64/include/QtCore/qjsonvalue.h \
   /home/user/Qt/6.9.2/gcc_64/include/QtCore/qlatin1stringview.h \
   /home/user/Qt/6.9.2/gcc_64/include/QtCore/qline.h \
   /home/user/Qt/6.9.2/gcc_64/include/QtCore/qlist.h \
+  /home/user/Qt/6.9.2/gcc_64/include/QtCore/qlocale.h \
   /home/user/Qt/6.9.2/gcc_64/include/QtCore/qlogging.h \
   /home/user/Qt/6.9.2/gcc_64/include/QtCore/qmalloc.h \
   /home/user/Qt/6.9.2/gcc_64/include/QtCore/qmap.h \
@@ -73,6 +87,7 @@
   /home/user/Qt/6.9.2/gcc_64/include/QtCore/qprocessordetection.h \
   /home/user/Qt/6.9.2/gcc_64/include/QtCore/qrect.h \
   /home/user/Qt/6.9.2/gcc_64/include/QtCore/qrefcount.h \
+  /home/user/Qt/6.9.2/gcc_64/include/QtCore/qregularexpression.h \
   /home/user/Qt/6.9.2/gcc_64/include/QtCore/qscopedpointer.h \
   /home/user/Qt/6.9.2/gcc_64/include/QtCore/qscopeguard.h \
   /home/user/Qt/6.9.2/gcc_64/include/QtCore/qset.h \
@@ -119,12 +134,16 @@
   /home/user/Qt/6.9.2/gcc_64/include/QtCore/qtversionchecks.h \
   /home/user/Qt/6.9.2/gcc_64/include/QtCore/qtypeinfo.h \
   /home/user/Qt/6.9.2/gcc_64/include/QtCore/qtypes.h \
+  /home/user/Qt/6.9.2/gcc_64/include/QtCore/qurl.h \
   /home/user/Qt/6.9.2/gcc_64/include/QtCore/qutf8stringview.h \
+  /home/user/Qt/6.9.2/gcc_64/include/QtCore/quuid.h \
   /home/user/Qt/6.9.2/gcc_64/include/QtCore/qvariant.h \
   /home/user/Qt/6.9.2/gcc_64/include/QtCore/qvarlengtharray.h \
+  /home/user/Qt/6.9.2/gcc_64/include/QtCore/qvector.h \
   /home/user/Qt/6.9.2/gcc_64/include/QtCore/qversiontagging.h \
   /home/user/Qt/6.9.2/gcc_64/include/QtCore/qxptype_traits.h \
   /home/user/Qt/6.9.2/gcc_64/include/QtCore/qyieldcpu.h \
+  /home/user/Qt/6.9.2/gcc_64/include/QtGui/QColor \
   /home/user/Qt/6.9.2/gcc_64/include/QtGui/qaction.h \
   /home/user/Qt/6.9.2/gcc_64/include/QtGui/qbitmap.h \
   /home/user/Qt/6.9.2/gcc_64/include/QtGui/qbrush.h \
@@ -139,18 +158,23 @@
   /home/user/Qt/6.9.2/gcc_64/include/QtGui/qkeysequence.h \
   /home/user/Qt/6.9.2/gcc_64/include/QtGui/qpaintdevice.h \
   /home/user/Qt/6.9.2/gcc_64/include/QtGui/qpalette.h \
+  /home/user/Qt/6.9.2/gcc_64/include/QtGui/qpicture.h \
   /home/user/Qt/6.9.2/gcc_64/include/QtGui/qpixelformat.h \
   /home/user/Qt/6.9.2/gcc_64/include/QtGui/qpixmap.h \
   /home/user/Qt/6.9.2/gcc_64/include/QtGui/qpolygon.h \
   /home/user/Qt/6.9.2/gcc_64/include/QtGui/qregion.h \
   /home/user/Qt/6.9.2/gcc_64/include/QtGui/qrgb.h \
   /home/user/Qt/6.9.2/gcc_64/include/QtGui/qrgba64.h \
+  /home/user/Qt/6.9.2/gcc_64/include/QtGui/qtextdocument.h \
   /home/user/Qt/6.9.2/gcc_64/include/QtGui/qtgui-config.h \
   /home/user/Qt/6.9.2/gcc_64/include/QtGui/qtguiexports.h \
   /home/user/Qt/6.9.2/gcc_64/include/QtGui/qtguiglobal.h \
   /home/user/Qt/6.9.2/gcc_64/include/QtGui/qtransform.h \
   /home/user/Qt/6.9.2/gcc_64/include/QtGui/qwindowdefs.h \
+  /home/user/Qt/6.9.2/gcc_64/include/QtWidgets/QLabel \
   /home/user/Qt/6.9.2/gcc_64/include/QtWidgets/QMainWindow \
+  /home/user/Qt/6.9.2/gcc_64/include/QtWidgets/qframe.h \
+  /home/user/Qt/6.9.2/gcc_64/include/QtWidgets/qlabel.h \
   /home/user/Qt/6.9.2/gcc_64/include/QtWidgets/qmainwindow.h \
   /home/user/Qt/6.9.2/gcc_64/include/QtWidgets/qsizepolicy.h \
   /home/user/Qt/6.9.2/gcc_64/include/QtWidgets/qtabwidget.h \

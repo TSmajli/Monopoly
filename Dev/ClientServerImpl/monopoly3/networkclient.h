@@ -2,8 +2,8 @@
 #define NETWORKCLIENT_H
 
 #include <QObject>
-#include <QJsonObject>
 #include <QTcpSocket>
+#include <QJsonObject>
 
 class NetworkClient : public QObject
 {
@@ -19,11 +19,9 @@ public:
     void sendBuyDecision(bool decision, int playerId, int pendingBuyFieldIndex);
     void sendEndTurn();
     void sendGetState();
-    void sendSurrender();
-    void sendSetReady(bool ready);
-    void sendSetName(const QString &name);
-    void sendRestartGame();
-    void sendBuyHouse();
+
+
+
 
 signals:
     void connected();
@@ -38,5 +36,7 @@ private:
 private slots:
     void onReadyRead();
 };
+
+
 
 #endif // NETWORKCLIENT_H
