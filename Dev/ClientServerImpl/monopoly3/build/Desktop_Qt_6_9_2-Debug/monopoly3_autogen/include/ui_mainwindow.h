@@ -804,7 +804,9 @@ public:
 "color:white;"));
         diceResult = new QLabel(Brettspiel_2);
         diceResult->setObjectName("diceResult");
-        diceResult->setGeometry(QRect(380, 340, 54, 17));
+        diceResult->setGeometry(QRect(370, 330, 71, 31));
+        diceResult->setAutoFillBackground(true);
+        diceResult->setAlignment(Qt::AlignmentFlag::AlignCenter);
         Feld29_3->raise();
         Feld4_3->raise();
         Feld27_3->raise();
@@ -924,13 +926,13 @@ public:
         winnerLabel = new QLabel(gameView);
         winnerLabel->setObjectName("winnerLabel");
         winnerLabel->setGeometry(QRect(1360, 900, 500, 40));
+        winnerLabel->setVisible(false);
         winnerLabel->setStyleSheet(QString::fromUtf8("background-color:#275EA8;\n"
 "color:white;\n"
 "border-radius:10px;\n"
 "font-size:16px;\n"
 "font-weight:700;\n"
 "padding-left:12px;"));
-        winnerLabel->setVisible(false);
         backButton = new QPushButton(gameView);
         backButton->setObjectName("backButton");
         backButton->setGeometry(QRect(1690, 320, 161, 31));
@@ -999,6 +1001,9 @@ public:
         label_48->setPixmap(QPixmap(QString::fromUtf8(":/new/images/images/lehren.png")));
         label_48->setScaledContents(true);
         stackedWidget->addWidget(gameView);
+        fieldInfoBox->raise();
+        winnerLabel->raise();
+        surrenderButton->raise();
         widget_3->raise();
         Brettspiel_2->raise();
         Spieleranzeige_3->raise();
@@ -1022,7 +1027,7 @@ public:
         winTitleLabel->setGeometry(QRect(30, 20, 480, 40));
         winTitleLabel->setStyleSheet(QString::fromUtf8("font-size:24px;\n"
 "font-weight:700;"));
-        winTitleLabel->setAlignment(Qt::AlignCenter);
+        winTitleLabel->setAlignment(Qt::AlignmentFlag::AlignCenter);
         winWinnerLabel = new QLabel(winPanel);
         winWinnerLabel->setObjectName("winWinnerLabel");
         winWinnerLabel->setGeometry(QRect(30, 80, 480, 60));
@@ -1031,7 +1036,7 @@ public:
 "padding:8px;\n"
 "font-size:18px;\n"
 "font-weight:600;"));
-        winWinnerLabel->setAlignment(Qt::AlignCenter);
+        winWinnerLabel->setAlignment(Qt::AlignmentFlag::AlignCenter);
         saveCsvButton = new QPushButton(winPanel);
         saveCsvButton->setObjectName("saveCsvButton");
         saveCsvButton->setGeometry(QRect(30, 180, 480, 50));

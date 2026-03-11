@@ -49,7 +49,7 @@ QString buttonStyle(const QString &bg, const QString &hover)
         "color:#bbb;"
         "}").arg(bg, hover);
 }
-} // namespace
+}
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
