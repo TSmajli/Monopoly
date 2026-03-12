@@ -71,6 +71,7 @@ public:
     QLabel *label_21;
     QWidget *Feld12_3;
     QLabel *label_12;
+    QLabel *label_62;
     QWidget *Feld7_3;
     QLabel *label_23;
     QLabel *label_24;
@@ -94,6 +95,7 @@ public:
     QWidget *widget_56;
     QLabel *label_59;
     QWidget *Feld30_3;
+    QLabel *label_61;
     QWidget *Feld32_3;
     QWidget *widget_57;
     QLabel *label_55;
@@ -188,9 +190,7 @@ public:
     QPushButton *addPlayer;
     QLabel *label_2;
     QLineEdit *playerNameInput;
-    QPushButton *startButton;
     QPushButton *readyStartButton;
-    QLabel *startLabel;
     QPushButton *importCSVbutton;
     QPushButton *ServerButton;
     QWidget *widget_2;
@@ -275,7 +275,7 @@ public:
         Feld4_3->setStyleSheet(QString::fromUtf8("background-color: #275EA8;"));
         label_35 = new QLabel(Feld4_3);
         label_35->setObjectName("label_35");
-        label_35->setGeometry(QRect(7, 40, 51, 21));
+        label_35->setGeometry(QRect(7, 43, 51, 21));
         label_35->setLayoutDirection(Qt::LayoutDirection::LeftToRight);
         label_35->setStyleSheet(QString::fromUtf8("font-size:8px;\n"
 "border: 0px solid black;"));
@@ -380,7 +380,7 @@ public:
         widget_51->setStyleSheet(QString::fromUtf8("background-color: #F7941D;"));
         label_43 = new QLabel(Feld18_3);
         label_43->setObjectName("label_43");
-        label_43->setGeometry(QRect(45, 7, 51, 21));
+        label_43->setGeometry(QRect(45, 7, 61, 21));
         label_43->setLayoutDirection(Qt::LayoutDirection::LeftToRight);
         label_43->setStyleSheet(QString::fromUtf8("font-size:8px;\n"
 "border: 0px solid black;"));
@@ -490,7 +490,7 @@ public:
         label_20->setAlignment(Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignTop);
         label_21 = new QLabel(Feld11_3);
         label_21->setObjectName("label_21");
-        label_21->setGeometry(QRect(60, 27, 50, 10));
+        label_21->setGeometry(QRect(60, 26, 50, 10));
         label_21->setLayoutDirection(Qt::LayoutDirection::LeftToRight);
         label_21->setStyleSheet(QString::fromUtf8("font-size:8px;\n"
 "border: 0px solid black;\n"
@@ -505,11 +505,19 @@ public:
         Feld12_3->setStyleSheet(QString::fromUtf8("background-color: #275EA8;"));
         label_12 = new QLabel(Feld12_3);
         label_12->setObjectName("label_12");
-        label_12->setGeometry(QRect(40, 0, 51, 61));
+        label_12->setGeometry(QRect(4, 0, 51, 61));
         label_12->setStyleSheet(QString::fromUtf8("border-color:transparent;\n"
 "background-color:transparent;"));
         label_12->setPixmap(QPixmap(QString::fromUtf8(":/new/images/images/water-dispenser.png")));
         label_12->setScaledContents(true);
+        label_62 = new QLabel(Feld12_3);
+        label_62->setObjectName("label_62");
+        label_62->setGeometry(QRect(59, 20, 61, 21));
+        label_62->setLayoutDirection(Qt::LayoutDirection::LeftToRight);
+        label_62->setStyleSheet(QString::fromUtf8("font-size:8px;\n"
+"border: 0px solid black;"));
+        label_62->setTextFormat(Qt::TextFormat::AutoText);
+        label_62->setAlignment(Qt::AlignmentFlag::AlignJustify|Qt::AlignmentFlag::AlignVCenter);
         Feld7_3 = new QWidget(Brettspiel_2);
         Feld7_3->setObjectName("Feld7_3");
         Feld7_3->setGeometry(QRect(490, 0, 64, 126));
@@ -546,7 +554,7 @@ public:
         Feld5_3->setStyleSheet(QString::fromUtf8("background-color: lightblue;"));
         label_25 = new QLabel(Feld5_3);
         label_25->setObjectName("label_25");
-        label_25->setGeometry(QRect(8, 70, 51, 31));
+        label_25->setGeometry(QRect(12, 50, 41, 51));
         label_25->setLayoutDirection(Qt::LayoutDirection::LeftToRight);
         label_25->setStyleSheet(QString::fromUtf8("font-size:8px;\n"
 "border: 0px solid black;"));
@@ -602,7 +610,7 @@ public:
         Feld15_3->setStyleSheet(QString::fromUtf8("background-color: lightblue;"));
         label_26 = new QLabel(Feld15_3);
         label_26->setObjectName("label_26");
-        label_26->setGeometry(QRect(10, 10, 61, 41));
+        label_26->setGeometry(QRect(38, 10, 61, 41));
         label_26->setLayoutDirection(Qt::LayoutDirection::LeftToRight);
         label_26->setStyleSheet(QString::fromUtf8("font-size:8px;\n"
 "border: 0px solid black;"));
@@ -624,7 +632,7 @@ public:
         widget_55->setStyleSheet(QString::fromUtf8("background-color: #F7941D;"));
         label_44 = new QLabel(Feld19_3);
         label_44->setObjectName("label_44");
-        label_44->setGeometry(QRect(49, 5, 51, 21));
+        label_44->setGeometry(QRect(48, 5, 51, 21));
         label_44->setLayoutDirection(Qt::LayoutDirection::LeftToRight);
         label_44->setStyleSheet(QString::fromUtf8("font-size:8px;\n"
 "border: 0px solid black;"));
@@ -682,6 +690,14 @@ public:
         Feld30_3->setMinimumSize(QSize(126, 126));
         Feld30_3->setMaximumSize(QSize(126, 126));
         Feld30_3->setStyleSheet(QString::fromUtf8("background-color: lightgray;"));
+        label_61 = new QLabel(Feld30_3);
+        label_61->setObjectName("label_61");
+        label_61->setGeometry(QRect(20, 10, 91, 91));
+        label_61->setLayoutDirection(Qt::LayoutDirection::LeftToRight);
+        label_61->setStyleSheet(QString::fromUtf8("font-size:8px;\n"
+"border: 0px solid black;"));
+        label_61->setTextFormat(Qt::TextFormat::AutoText);
+        label_61->setAlignment(Qt::AlignmentFlag::AlignJustify|Qt::AlignmentFlag::AlignVCenter);
         Feld32_3 = new QWidget(Brettspiel_2);
         Feld32_3->setObjectName("Feld32_3");
         Feld32_3->setGeometry(QRect(0, 552, 126, 63));
@@ -760,7 +776,7 @@ public:
         widget_60->setStyleSheet(QString::fromUtf8("background-color: #1fb25a;"));
         label_54 = new QLabel(Feld31_3);
         label_54->setObjectName("label_54");
-        label_54->setGeometry(QRect(10, 6, 91, 10));
+        label_54->setGeometry(QRect(10, 6, 91, 16));
         label_54->setLayoutDirection(Qt::LayoutDirection::LeftToRight);
         label_54->setStyleSheet(QString::fromUtf8("font-size:8px;\n"
 "border: 0px solid black;"));
@@ -819,7 +835,7 @@ public:
         widget_61->setStyleSheet(QString::fromUtf8("background-color: #0064a8;"));
         label_58 = new QLabel(Feld37_3);
         label_58->setObjectName("label_58");
-        label_58->setGeometry(QRect(10, 10, 91, 10));
+        label_58->setGeometry(QRect(10, 10, 91, 16));
         label_58->setLayoutDirection(Qt::LayoutDirection::LeftToRight);
         label_58->setStyleSheet(QString::fromUtf8("font-size:8px;\n"
 "border: 0px solid black;"));
@@ -897,7 +913,7 @@ public:
         Feld28_3->setStyleSheet(QString::fromUtf8("background-color: #275EA8;"));
         label_34 = new QLabel(Feld28_3);
         label_34->setObjectName("label_34");
-        label_34->setGeometry(QRect(12, 5, 41, 16));
+        label_34->setGeometry(QRect(15, 7, 41, 16));
         label_34->setLayoutDirection(Qt::LayoutDirection::LeftToRight);
         label_34->setStyleSheet(QString::fromUtf8("font-size:8px;\n"
 "border: 0px solid black;"));
@@ -941,7 +957,7 @@ public:
         widget_64->setStyleSheet(QString::fromUtf8("background-color: #9AD9F5;"));
         label_38 = new QLabel(Feld9_3);
         label_38->setObjectName("label_38");
-        label_38->setGeometry(QRect(8, 85, 51, 10));
+        label_38->setGeometry(QRect(7, 85, 51, 10));
         label_38->setLayoutDirection(Qt::LayoutDirection::LeftToRight);
         label_38->setStyleSheet(QString::fromUtf8("font-size:8px;\n"
 "border: 0px solid black;"));
@@ -955,7 +971,7 @@ public:
         Feld35_3->setStyleSheet(QString::fromUtf8("background-color: lightblue;"));
         label_3 = new QLabel(Feld35_3);
         label_3->setObjectName("label_3");
-        label_3->setGeometry(QRect(10, 6, 81, 40));
+        label_3->setGeometry(QRect(11, 7, 81, 40));
         label_3->setStyleSheet(QString::fromUtf8("font-size:8px;\n"
 "border: 0px solid black;"));
         Feld14_3 = new QWidget(Brettspiel_2);
@@ -1008,7 +1024,7 @@ public:
         Feld20_3->setStyleSheet(QString::fromUtf8("background-color: lightgray;"));
         label_45 = new QLabel(Feld20_3);
         label_45->setObjectName("label_45");
-        label_45->setGeometry(QRect(40, 30, 61, 61));
+        label_45->setGeometry(QRect(40, 50, 61, 61));
         label_45->setLayoutDirection(Qt::LayoutDirection::LeftToRight);
         label_45->setStyleSheet(QString::fromUtf8("font-size:8px;\n"
 "border: 0px solid black;"));
@@ -1317,7 +1333,7 @@ public:
         startView->setObjectName("startView");
         widget = new QWidget(startView);
         widget->setObjectName("widget");
-        widget->setGeometry(QRect(740, 60, 391, 531));
+        widget->setGeometry(QRect(740, 60, 391, 481));
         widget->setStyleSheet(QString::fromUtf8("border-radius: 20px;\n"
 "background-color:#252850;\n"
 "border: 1px solid gray; \n"
@@ -1401,30 +1417,12 @@ public:
 "background-color:transparent;\n"
 "\n"
 "border-color:transparent;"));
-        startButton = new QPushButton(widget);
-        startButton->setObjectName("startButton");
-        startButton->setGeometry(QRect(30, 420, 341, 51));
-        startButton->setStyleSheet(QString::fromUtf8("border-radius: 20px;\n"
-"background-color:#469536;\n"
-"\n"
-""));
         readyStartButton = new QPushButton(widget);
         readyStartButton->setObjectName("readyStartButton");
-        readyStartButton->setGeometry(QRect(30, 480, 341, 41));
+        readyStartButton->setGeometry(QRect(30, 410, 341, 41));
         readyStartButton->setStyleSheet(QString::fromUtf8("border-radius: 16px;\n"
-"background-color:#252850;\n"
+"background-color:green;\n"
 "color:white;"));
-        startLabel = new QLabel(startView);
-        startLabel->setObjectName("startLabel");
-        startLabel->setEnabled(true);
-        startLabel->setGeometry(QRect(890, 490, 111, 31));
-        startLabel->setAcceptDrops(false);
-        startLabel->setStyleSheet(QString::fromUtf8("Background-color:transparent;\n"
-"color:white;\n"
-"text-size:18px;\n"
-"font: 24pt \"Sans Serif\";\n"
-"font-weight: bold;\n"
-""));
         importCSVbutton = new QPushButton(startView);
         importCSVbutton->setObjectName("importCSVbutton");
         importCSVbutton->setGeometry(QRect(10, 780, 161, 51));
@@ -1443,7 +1441,6 @@ public:
         stackedWidget->addWidget(startView);
         widget_2->raise();
         widget->raise();
-        startLabel->raise();
         importCSVbutton->raise();
         ServerButton->raise();
 
@@ -1473,13 +1470,12 @@ public:
 "li.unchecked::marker { content: \"\\2610\"; }\n"
 "li.checked::marker { content: \"\\2612\"; }\n"
 "</style></head><body style=\" font-family:'Sans Serif'; font-size:15px; font-weight:800; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:20px;\">Turner hat eine 5 gew\303\274rfelt.</span></p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", nullptr));
 #if QT_CONFIG(tooltip)
         widget_46->setToolTip(QCoreApplication::translate("MainWindow", "<html><head/><body><p>background-color: #f0f0f0:</p></body></html>", nullptr));
 #endif // QT_CONFIG(tooltip)
         label_53->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p align=\"center\">Klassenraum</p><p align=\"center\"><br/></p></body></html>", nullptr));
-        label_35->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:7pt;\">Papiergeld</span></p></body></html>", nullptr));
+        label_35->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:7pt; font-weight:700;\">Papiergeld</span></p></body></html>", nullptr));
 #if QT_CONFIG(tooltip)
         widget_47->setToolTip(QCoreApplication::translate("MainWindow", "<html><head/><body><p>background-color: #f0f0f0:</p></body></html>", nullptr));
 #endif // QT_CONFIG(tooltip)
@@ -1515,19 +1511,10 @@ public:
         label_20->setText(QString());
         label_21->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:7pt; font-weight:700;\">Unterricht</span></p></body></html>", nullptr));
         label_12->setText(QString());
+        label_62->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-weight:700;\">Wasserspender</span></p></body></html>", nullptr));
         label_23->setText(QString());
         label_24->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:7pt; font-weight:700;\">Unterricht</span></p></body></html>", nullptr));
-        label_25->setText(QCoreApplication::translate("MainWindow", "<html>\n"
-"<head/>\n"
-"<body>\n"
-"<p style=\"line-height: 0.1;\">\n"
-"    <span style=\"font-size:8pt;\">Erlanger</span>\n"
-"</p>\n"
-"<p style=\"line-height: 0.9;\">\n"
-"    <span style=\"font-size:8pt;\">Bahnhof</span>\n"
-"</p>\n"
-"</body>\n"
-"</html>", nullptr));
+        label_25->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:7pt;\">Erlanger </span></p><p align=\"center\"><span style=\" font-size:7pt;\">Bahnhof </span></p></body></html>", nullptr));
 #if QT_CONFIG(tooltip)
         widget_53->setToolTip(QCoreApplication::translate("MainWindow", "<html><head/><body><p>background-color: #f0f0f0:</p></body></html>", nullptr));
 #endif // QT_CONFIG(tooltip)
@@ -1536,7 +1523,7 @@ public:
         widget_54->setToolTip(QCoreApplication::translate("MainWindow", "<html><head/><body><p>background-color: #f0f0f0:</p></body></html>", nullptr));
 #endif // QT_CONFIG(tooltip)
         label_39->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p align=\"center\">Frankend\303\266ner</p><p align=\"center\"><br/></p></body></html>", nullptr));
-        label_26->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:8pt;\">N\303\274rnberger </span></p><p><span style=\" font-size:8pt;\">Bahnhof</span></p><p><br/></p></body></html>", nullptr));
+        label_26->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:7pt;\">N\303\274rnberger </span></p><p align=\"center\"><span style=\" font-size:7pt;\">Bahnhof</span></p><p align=\"center\"><span style=\" font-size:7pt;\"><br/></span></p></body></html>", nullptr));
 #if QT_CONFIG(tooltip)
         widget_55->setToolTip(QCoreApplication::translate("MainWindow", "<html><head/><body><p>background-color: #f0f0f0:</p></body></html>", nullptr));
 #endif // QT_CONFIG(tooltip)
@@ -1547,6 +1534,7 @@ public:
         widget_56->setToolTip(QCoreApplication::translate("MainWindow", "<html><head/><body><p>background-color: #f0f0f0:</p></body></html>", nullptr));
 #endif // QT_CONFIG(tooltip)
         label_59->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p align=\"center\">ProLeiT</p><p align=\"center\"><br/></p></body></html>", nullptr));
+        label_61->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:10pt; font-weight:700;\">Gehe in die</span></p><p align=\"center\"><span style=\" font-size:10pt; font-weight:700;\">Berufsschule</span></p></body></html>", nullptr));
 #if QT_CONFIG(tooltip)
         widget_57->setToolTip(QCoreApplication::translate("MainWindow", "<html><head/><body><p>background-color: #f0f0f0:</p></body></html>", nullptr));
 #endif // QT_CONFIG(tooltip)
@@ -1580,9 +1568,9 @@ public:
         widget_63->setToolTip(QCoreApplication::translate("MainWindow", "<html><head/><body><p>background-color: #f0f0f0:</p></body></html>", nullptr));
 #endif // QT_CONFIG(tooltip)
         label_46->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p align=\"center\">Neubau</p></body></html>", nullptr));
-        label_34->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:9pt;\">Toilette</span></p><p><span style=\" font-size:9pt;\"><br/></span></p></body></html>", nullptr));
+        label_34->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:7pt; font-weight:700;\">Toilette</span></p><p><span style=\" font-size:7pt; font-weight:700;\"><br/></span></p></body></html>", nullptr));
         label_11->setText(QString());
-        label_60->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:7pt;\">Papiergeld</span></p></body></html>", nullptr));
+        label_60->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:7pt; font-weight:700;\">Papiergeld</span></p></body></html>", nullptr));
 #if QT_CONFIG(tooltip)
         widget_64->setToolTip(QCoreApplication::translate("MainWindow", "<html><head/><body><p>background-color: #f0f0f0:</p></body></html>", nullptr));
 #endif // QT_CONFIG(tooltip)
@@ -1602,7 +1590,7 @@ public:
         widget_66->setToolTip(QCoreApplication::translate("MainWindow", "<html><head/><body><p>background-color: #f0f0f0:</p></body></html>", nullptr));
 #endif // QT_CONFIG(tooltip)
         label_33->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:7pt;\">Sporthalle</span></p></body></html>", nullptr));
-        label_45->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p align=\"center\">Ferien</p></body></html>", nullptr));
+        label_45->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:10pt; font-weight:700;\">Ferien</span></p><p><br/><span style=\" font-size:10pt; font-weight:700;\"><br/></span></p></body></html>", nullptr));
 #if QT_CONFIG(tooltip)
         widget_67->setToolTip(QCoreApplication::translate("MainWindow", "<html><head/><body><p>background-color: #f0f0f0:</p></body></html>", nullptr));
 #endif // QT_CONFIG(tooltip)
@@ -1643,13 +1631,8 @@ public:
         player4->setText(QCoreApplication::translate("MainWindow", "Spieler 2", nullptr));
         addPlayer->setText(QCoreApplication::translate("MainWindow", "+", nullptr));
         label_2->setText(QCoreApplication::translate("MainWindow", "Name:", nullptr));
-        playerNameInput->setText(QCoreApplication::translate("MainWindow", "PeterPan", nullptr));
-        startButton->setText(QCoreApplication::translate("MainWindow", "Starten", nullptr));
+        playerNameInput->setText(QCoreApplication::translate("MainWindow", "nickname", nullptr));
         readyStartButton->setText(QCoreApplication::translate("MainWindow", "Bereit", nullptr));
-#if QT_CONFIG(tooltip)
-        startLabel->setToolTip(QCoreApplication::translate("MainWindow", "label->setAttribute(Qt::WA_TransparentForMouseEvents);", nullptr));
-#endif // QT_CONFIG(tooltip)
-        startLabel->setText(QCoreApplication::translate("MainWindow", "START", nullptr));
         importCSVbutton->setText(QCoreApplication::translate("MainWindow", "CSV Importieren", nullptr));
         ServerButton->setText(QCoreApplication::translate("MainWindow", "Erneut verbinden", nullptr));
     } // retranslateUi

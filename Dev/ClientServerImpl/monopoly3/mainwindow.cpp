@@ -58,7 +58,6 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    ui->startLabel->setAttribute(Qt::WA_TransparentForMouseEvents);
     ui->textEdit_3->setReadOnly(true);
     ui->playersText->setReadOnly(true);
 
@@ -98,8 +97,6 @@ MainWindow::MainWindow(QWidget *parent)
         "  background-color: #38772B;"
         "}");
 
-    ui->startButton->setStyleSheet(
-        buttonStyle("#469536", "#38772B"));
 
     ui->readyStartButton->setStyleSheet(buttonStyle("#252850", "#191970"));
     ui->rollDiceButton->setStyleSheet(buttonStyle("#469536", "#38772B"));
@@ -117,7 +114,6 @@ MainWindow::MainWindow(QWidget *parent)
     ui->sellButton->setEnabled(false);
     ui->rollDiceButton->setEnabled(false);
     ui->surrenderButton->setEnabled(true);
-    ui->startButton->setEnabled(false);
 
     ui->diceResult->setText("-");
     ui->fieldInfoValue->setText("-");
@@ -362,7 +358,6 @@ MainWindow::MainWindow(QWidget *parent)
             }
 
             const bool allReady = !players.isEmpty() && readyCount == players.size();
-            ui->startButton->setEnabled(!gameStarted && allReady);
             ui->readyStartButton->setEnabled(!gameStarted);
             const QString readyButtonText = localReady ? "Bereit ✔" : "Bereit";
             ui->readyStartButton->setText(readyButtonText);
