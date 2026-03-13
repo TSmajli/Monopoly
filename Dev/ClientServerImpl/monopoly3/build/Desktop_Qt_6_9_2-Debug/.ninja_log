@@ -91,3 +91,13 @@
 2	73	1773307917600145799	/home/user/Dokumente/GitHub/Monopoly/Dev/ClientServerImpl/monopoly3/build/Desktop_Qt_6_9_2-Debug/monopoly3_autogen/mocs_compilation.cpp	49788480f1828db7
 73	5901	1773307917673145795	CMakeFiles/monopoly3.dir/mainwindow.cpp.o	77dc1758567a1541
 5901	6666	1773307923494145438	monopoly3	8e5bce93521901b7
+4	551	1773399051878373310	monopoly3_autogen/timestamp	49788480f1828db7
+4	551	1773399051878373310	monopoly3_autogen/mocs_compilation.cpp	49788480f1828db7
+4	551	1773399051878373310	/home/user/Dokumente/GitHub/Monopoly/Dev/ClientServerImpl/monopoly3/build/Desktop_Qt_6_9_2-Debug/monopoly3_autogen/timestamp	49788480f1828db7
+4	551	1773399051878373310	/home/user/Dokumente/GitHub/Monopoly/Dev/ClientServerImpl/monopoly3/build/Desktop_Qt_6_9_2-Debug/monopoly3_autogen/mocs_compilation.cpp	49788480f1828db7
+552	3593	1773399051884483070	CMakeFiles/monopoly3.dir/main.cpp.o	c04622061fc6256b
+551	4019	1773399051884211289	CMakeFiles/monopoly3.dir/monopoly3_autogen/mocs_compilation.cpp.o	43cdc824c9f2ae2c
+4019	6527	1773399055350373098	CMakeFiles/monopoly3.dir/networkclient.cpp.o	1311f3f415d64bcc
+3593	8665	1773399054924373124	CMakeFiles/monopoly3.dir/mainwindow.cpp.o	77dc1758567a1541
+10	1668	1773399067871372331	CMakeFiles/monopoly3.dir/monopoly3_autogen/mocs_compilation.cpp.o	43cdc824c9f2ae2c
+1668	1987	1773399069529372230	monopoly3	8e5bce93521901b7
