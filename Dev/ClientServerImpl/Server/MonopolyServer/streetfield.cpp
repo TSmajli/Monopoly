@@ -2,7 +2,7 @@
 #include "player.h"
 
 int StreetField::calculateRent() const {
-    return hasHotel ? hotelRent : baseRent;
+    return hasHotel ? static_cast<int>(baseRent * 1.5) : baseRent;
 }
 
 void StreetField::buyHotel(Player& player) {

@@ -5,15 +5,13 @@ NetworkClient::NetworkClient(QObject *parent)
     : QObject(parent)
 {
     socket = new QTcpSocket(this);
+    reconnectTimer = new QTimer(this);
+    reconnectTimer->setSingleShot(true);
 
-    connect(socket, &QTcpSocket::connected,
-            this, &NetworkClient::connected);
-
-    connect(socket, &QTcpSocket::disconnected,
-            this, &NetworkClient::disconnected);
-
-    connect(socket, &QTcpSocket::readyRead,
-            this, &NetworkClient::onReadyRead);
+    connect(socket, &QTcpSocket::connected,    this, &NetworkClient::onConnected);
+    connect(socket, &QTcpSocket::disconnected, this, &NetworkClient::onDisconnected);
+    connect(socket, &QTcpSocket::readyRead,    this, &NetworkClient::onReadyRead);
+    connect(reconnectTimer, &QTimer::timeout,  this, &NetworkClient::tryReconnect);
 
     connect(socket, &QTcpSocket::errorOccurred, this,
             [=](QAbstractSocket::SocketError) {
@@ -23,13 +21,57 @@ NetworkClient::NetworkClient(QObject *parent)
 
 void NetworkClient::connectToServer(const QString &host, quint16 port)
 {
+    lastHost = host;
+    lastPort = port;
+    reconnectEnabled = true;
+    reconnectDelay = 2000;
+    reconnectTimer->stop();
+
+    if (socket->state() != QAbstractSocket::UnconnectedState) {
+        socket->abort();
+    }
     socket->connectToHost(host, port);
+}
+
+void NetworkClient::onConnected()
+{
+    reconnectDelay = 2000; // Backoff zurücksetzen
+    reconnectTimer->stop();
+    emit connected();
+}
+
+void NetworkClient::onDisconnected()
+{
+    emit disconnected();
+    if (reconnectEnabled && !lastHost.isEmpty()) {
+        scheduleReconnect();
+    }
+}
+
+void NetworkClient::scheduleReconnect()
+{
+    reconnectTimer->start(reconnectDelay);
+    reconnectDelay = qMin(reconnectDelay * 2, maxReconnectDelay);
+}
+
+void NetworkClient::tryReconnect()
+{
+    if (lastHost.isEmpty() || !reconnectEnabled) {
+        return;
+    }
+    if (socket->state() != QAbstractSocket::UnconnectedState) {
+        socket->abort();
+    }
+    socket->connectToHost(lastHost, lastPort);
 }
 
 void NetworkClient::sendJson(const QJsonObject &obj)
 {
+    if (socket->state() != QAbstractSocket::ConnectedState) {
+        return;
+    }
     QJsonDocument doc(obj);
-    socket->write(doc.toJson(QJsonDocument::Compact)+ "\n");
+    socket->write(doc.toJson(QJsonDocument::Compact) + "\n");
 }
 
 void NetworkClient::onReadyRead()
@@ -70,11 +112,9 @@ void NetworkClient::sendStartGame()
 {
     QJsonObject msg;
     msg["type"] = "startGame";
-
-    // Sende die Nachricht
     sendJson(msg);
-
 }
+
 void NetworkClient::sendSetName(const QString name)
 {
     QJsonObject msg;
@@ -86,7 +126,6 @@ void NetworkClient::sendSurrender()
 {
     QJsonObject msg;
     msg["type"] = "surrender";
-    // Sende die Nachricht
     sendJson(msg);
 }
 
@@ -94,16 +133,31 @@ void NetworkClient::sendBuyDecision(bool decision, int playerId, int pendingBuyF
 {
     QJsonObject msg;
     msg["type"] = "buyDecision";
-    msg["playerId"] = playerId;               // vorher gespeichert
-    msg["fieldIndex"] = pendingBuyFieldIndex; // aus buyRequest
+    msg["playerId"] = playerId;
+    msg["fieldIndex"] = pendingBuyFieldIndex;
     msg["buy"] = decision;
-
     sendJson(msg);
 
     qDebug() << "[CLIENT] buyDecision sent:"
              << "pid=" << playerId
              << "field=" << pendingBuyFieldIndex
              << "buy=" << decision;
+}
+
+void NetworkClient::sendSetReady(bool ready)
+{
+    QJsonObject msg;
+    msg["type"] = "setReady";
+    msg["ready"] = ready;
+    sendJson(msg);
+}
+
+void NetworkClient::sendBuyHouse(int fieldIndex)
+{
+    QJsonObject msg;
+    msg["type"] = "buyHouse";
+    msg["fieldIndex"] = fieldIndex;
+    sendJson(msg);
 }
 
 void NetworkClient::sendEndTurn()

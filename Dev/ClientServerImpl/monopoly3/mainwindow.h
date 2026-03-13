@@ -30,6 +30,7 @@ private:
     NetworkClient *network;
     int myPlayerId = -1;
     int pendingBuyFieldIndex = -1;
+    int pendingHouseFieldIndex = -1;
     int pendingBuyPlayerId = -1;
     int pendingEndTurnPlayerId = -1;
     bool gameStarted = false;
@@ -63,6 +64,8 @@ private:
     void saveLogToCsv(const QString &filePath);
     void loadLogFromCsv(const QString &filePath);
     QString resolvePlayerName(int playerId) const;
+    QString colorForPlayerName(const QString &name) const;
+    QString logEntryToHtml(const LogEntry &entry) const;
     void updateBoardHighlights();
     void updateFieldInfo(int index);
     void updatePlayerTokens();

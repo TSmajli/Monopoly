@@ -13,6 +13,8 @@
 #include "utilityfield.h"
 #include "taxfield.h"
 #include "jailfield.h"
+#include "gotojailfield.h"
+#include "cardfield.h"
 #include "propertyfield.h"
 
 GameServer::GameServer(QObject *parent)
@@ -146,7 +148,7 @@ void GameServer::processMessage(Player &player, const QJsonObject &msg)
     }
 
     if (type == "buyHouse") {
-        handleBuyHouse(player);
+        handleBuyHouse(player, msg.value("fieldIndex").toInt(-1));
         return;
     }
 
@@ -230,13 +232,13 @@ void GameServer::handleStartGame(Player &player)
         return;
     }
 
-    //if (!areAllPlayersReady()) {
-      //  QJsonObject err;
-        //err["type"] = "error";
-       // err["message"] = "Alle Spieler müssen bereit sein, bevor das Spiel startet.";
-        //sendToPlayer(player, err);
-        //return;
-    //}
+    if (!areAllPlayersReady()) {
+        QJsonObject err;
+        err["type"] = "error";
+        err["message"] = "Alle Spieler müssen bereit sein, bevor das Spiel startet.";
+        sendToPlayer(player, err);
+        return;
+    }
 
     gameStarted = true;
     gameFinished = false;
@@ -302,7 +304,7 @@ void GameServer::handleRestartGame(Player &player)
     broadcastGameState("gameRestarted");
 }
 
-void GameServer::handleBuyHouse(Player &player)
+void GameServer::handleBuyHouse(Player &player, int fieldIndex)
 {
     if (!gameStarted || gameFinished) {
         QJsonObject err;
@@ -329,8 +331,11 @@ void GameServer::handleBuyHouse(Player &player)
         return;
     }
 
+    // Spieler muss auf der Straße stehen
+    (void)fieldIndex;
     Field *f = board.getField(player.position);
     auto *sf = dynamic_cast<StreetField*>(f);
+
     if (!sf || sf->owner != &player) {
         QJsonObject err;
         err["type"] = "error";
@@ -478,6 +483,34 @@ void GameServer::handleRollDice(Player &player)
 
         qDebug() << "[FIELD] onLand done"
                  << "| playerMoneyAfter=" << current->money;
+
+        // Ereigniskarte: Nachricht an alle senden
+        if (auto *cf = dynamic_cast<CardField*>(f)) {
+            if (!cf->lastCardMessage.isEmpty()) {
+                broadcastLog(current->id, cf->lastCardMessage);
+                cf->lastCardMessage.clear();
+            }
+        }
+
+        // Gehe zu Berufsschule: Spieler ist jetzt im Gefängnis
+        if (dynamic_cast<GoToJailField*>(f)) {
+            broadcastLog(current->id, "geht in die Berufsschule! (Gefaengnis, 3 Zuege)");
+            // Position wurde bereits in goToJail() auf 10 gesetzt
+            broadcastGameState("goToJail");
+            awaitingEndTurn = true;
+            pendingEndTurnPlayerId = current->id;
+            broadcastGameState("awaitingEndTurn");
+            return;
+        }
+
+        // Pleite-Check nach jedem Feld
+        if (current->isBankrupt) {
+            broadcastLog(current->id, "ist pleite!");
+            updateWinnerIfNeeded("playerBankrupt");
+            if (gameFinished) {
+                return;
+            }
+        }
     }
 
     // Freies Property? -> Kaufen anbieten
@@ -595,15 +628,15 @@ void GameServer::initBoardIfNeeded()
     };
 
     auto mkStreet = [&](int idx, const QString &nm, const QString &color,
-                        int price, int baseRent, int hotelPrice, int hotelRent){
+                        int price, int baseRent, int /*hotelPrice*/, int /*hotelRent*/){
         auto *f = new StreetField();
         f->index = idx;
         f->name = nm;
         f->color = color;
         f->price = fast(price);
         f->baseRent = fast(baseRent);
-        f->hotelPrice = fast(hotelPrice);
-        f->hotelRent = fast(hotelRent);
+        f->hotelPrice = 200;
+        f->hotelRent  = 0; // dynamisch berechnet: baseRent * 1.5
         board.fields.append(f);
     };
 
@@ -640,14 +673,28 @@ void GameServer::initBoardIfNeeded()
         board.fields.append(f);
     };
 
+    auto mkGoToJail = [&](int idx, const QString &nm){
+        auto *f = new GoToJailField();
+        f->index = idx;
+        f->name = nm;
+        board.fields.append(f);
+    };
+
+    auto mkCard = [&](int idx, const QString &nm){
+        auto *f = new CardField();
+        f->index = idx;
+        f->name = nm;
+        board.fields.append(f);
+    };
+
     mkStart(0, "Start", 200);
     mkStreet(1, "Altbau", "brown", 60, 2, 50, 10);
-    mkTax(2, "Unterricht", 0);
+    mkCard(2, "Unterricht");
     mkStreet(3, "Sporthalle", "brown", 60, 4, 50, 20);
     mkTax(4, "Papiergeld", 200);
     mkRail(5, "Erlanger Bahnhof", 200, 25);
     mkStreet(6, "Kaufland", "lightblue", 100, 6, 50, 30);
-    mkTax(7, "Unterricht", 0);
+    mkCard(7, "Unterricht");
     mkStreet(8, "Back21", "lightblue", 100, 6, 50, 30);
     mkStreet(9, "Brezenkolb", "lightblue", 120, 8, 50, 40);
     mkJail(10, "Berufsschule / Schulfrei");
@@ -657,12 +704,12 @@ void GameServer::initBoardIfNeeded()
     mkStreet(14, "Subway", "pink", 160, 12, 100, 60);
     mkRail(15, "Nürnberger Bahnhof", 200, 25);
     mkStreet(16, "Sekretariat", "orange", 180, 14, 100, 70);
-    mkTax(17, "Unterricht", 0);
+    mkCard(17, "Unterricht");
     mkStreet(18, "Lehrerzimmer", "orange", 180, 14, 100, 70);
     mkStreet(19, "Büro-Direktor", "orange", 200, 16, 100, 80);
     mkTax(20, "Ferien", 0);
     mkStreet(21, "Neubau", "red", 220, 18, 150, 90);
-    mkTax(22, "Unterricht", 0);
+    mkCard(22, "Unterricht");
     mkStreet(23, "FOS", "red", 220, 18, 150, 90);
     mkStreet(24, "Pausenhof", "red", 240, 20, 150, 100);
     mkRail(25, "Busbahnhof Erlangen", 200, 25);
@@ -670,13 +717,13 @@ void GameServer::initBoardIfNeeded()
     mkStreet(27, "Lager", "yellow", 260, 22, 150, 110);
     mkUtil(28, "Toilette", 150);
     mkStreet(29, "Klassenraum", "yellow", 280, 24, 150, 120);
-    mkTax(30, "Gehe zu Berufsschule", 0);
+    mkGoToJail(30, "Gehe zu Berufsschule");
     mkStreet(31, "IHK Prüfungshalle", "green", 300, 26, 200, 130);
     mkStreet(32, "Fränky", "green", 300, 26, 200, 130);
-    mkTax(33, "Unterricht", 0);
+    mkCard(33, "Unterricht");
     mkStreet(34, "DerBeck", "green", 320, 28, 200, 150);
     mkRail(35, "Baiersdorfer Bahnhof", 200, 25);
-    mkTax(36, "Unterricht", 0);
+    mkCard(36, "Unterricht");
     mkStreet(37, "Berufsagentur", "darkblue", 350, 35, 200, 175);
     mkTax(38, "Papiergeld", 100);
     mkStreet(39, "ProLeiT", "darkblue", 400, 50, 200, 200);
@@ -795,12 +842,16 @@ QJsonObject GameServer::buildGameState(const QString &reason) const
                 fo["color"] = sf->color;
                 fo["hasHotel"] = sf->hasHotel;
                 fo["hotelPrice"] = sf->hotelPrice;
-                fo["hotelRent"] = sf->hotelRent;
+                fo["hotelRent"] = static_cast<int>(sf->baseRent * 1.5);
             } else if (dynamic_cast<RailroadField*>(f)) {
                 fo["subtype"] = "railroad";
             } else if (dynamic_cast<UtilityField*>(f)) {
                 fo["subtype"] = "utility";
             }
+        } else if (dynamic_cast<GoToJailField*>(f)) {
+            fo["type"] = "gotojail";
+        } else if (dynamic_cast<CardField*>(f)) {
+            fo["type"] = "card";
         } else if (dynamic_cast<TaxField*>(f)) {
             fo["type"] = "tax";
         } else if (dynamic_cast<StartField*>(f)) {

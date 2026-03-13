@@ -65,7 +65,7 @@ private:
     void handleSetReady(Player &player, bool ready);
     void handleSetName(Player &player, const QString &name);
     void handleRestartGame(Player &player);
-    void handleBuyHouse(Player &player);
+    void handleBuyHouse(Player &player, int fieldIndex);
     void askToBuy(Player &player, int fieldIndex, int price, const QString &fieldName);
     void finishTurnAndBroadcast();
     void updateWinnerIfNeeded(const QString &reason);

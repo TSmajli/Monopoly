@@ -74,26 +74,12 @@ border: 2px #84b6e6;
 
 </string>
         </property>
-        <widget class="QWidget" name="Spielerfarbe_3" native="true">
-         <property name="geometry">
-          <rect>
-           <x>20</x>
-           <y>20</y>
-           <width>30</width>
-           <height>30</height>
-          </rect>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">background-color: white;
-</string>
-         </property>
-        </widget>
         <widget class="QLabel" name="logHeaderLabel">
          <property name="geometry">
           <rect>
-           <x>20</x>
+           <x>19</x>
            <y>20</y>
-           <width>460</width>
+           <width>461</width>
            <height>30</height>
           </rect>
          </property>
@@ -127,8 +113,8 @@ p, li { white-space: pre-wrap; }
 hr { height: 1px; border-width: 0; }
 li.unchecked::marker { content: &quot;\2610&quot;; }
 li.checked::marker { content: &quot;\2612&quot;; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:15px; font-weight:800; font-style:normal;&quot;&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:15px; font-weight:800; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:'Sans Serif';&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
        </widget>
@@ -1100,7 +1086,7 @@ background-color: transparent;
           <property name="styleSheet">
            <string notr="true">font-size:8px;
 border: 0px solid black;
-color:black;</string>
+color:white;</string>
           </property>
           <property name="text">
            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:7pt; font-weight:700;&quot;&gt;Unterricht&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -2570,7 +2556,7 @@ background-color:transparent;</string>
           <property name="styleSheet">
            <string notr="true">font-size:8px;
 border: 0px solid black;
-color:black;</string>
+color:white;</string>
           </property>
           <property name="text">
            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:7pt; font-weight:700;&quot;&gt;Unterricht&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -3437,75 +3423,11 @@ border-radius:10px;
 color:white;;
 </string>
         </property>
-        <widget class="QWidget" name="Spieler_3" native="true">
-         <property name="geometry">
-          <rect>
-           <x>30</x>
-           <y>30</y>
-           <width>441</width>
-           <height>41</height>
-          </rect>
-         </property>
-         <property name="styleSheet">
-          <string notr="true">background-color: #275EA8;
-border-radius:10px;</string>
-         </property>
-         <widget class="QWidget" name="Spielerfarbe_7" native="true">
-          <property name="geometry">
-           <rect>
-            <x>5</x>
-            <y>6</y>
-            <width>30</width>
-            <height>30</height>
-           </rect>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">background-color: white;
-</string>
-          </property>
-         </widget>
-         <widget class="QLabel" name="Geld_5">
-          <property name="geometry">
-           <rect>
-            <x>353</x>
-            <y>10</y>
-            <width>71</width>
-            <height>20</height>
-           </rect>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">border: 0px solid black;
-font-weight: 800;
-font-size : 15px;</string>
-          </property>
-          <property name="text">
-           <string>2000DNT</string>
-          </property>
-         </widget>
-         <widget class="QLabel" name="Geld_6">
-          <property name="geometry">
-           <rect>
-            <x>50</x>
-            <y>9</y>
-            <width>291</width>
-            <height>20</height>
-           </rect>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">border: 0px solid black;
-font-weight: 800;
-font-size : 20px;</string>
-          </property>
-          <property name="text">
-           <string>Turner</string>
-          </property>
-         </widget>
-        </widget>
         <widget class="QLabel" name="playersHeaderLabel">
          <property name="geometry">
           <rect>
            <x>30</x>
-           <y>90</y>
+           <y>20</y>
            <width>441</width>
            <height>21</height>
           </rect>
@@ -3523,9 +3445,9 @@ font-size : 14px;</string>
          <property name="geometry">
           <rect>
            <x>30</x>
-           <y>120</y>
+           <y>50</y>
            <width>441</width>
-           <height>110</height>
+           <height>171</height>
           </rect>
          </property>
          <property name="styleSheet">
@@ -3557,7 +3479,7 @@ padding: 6px;</string>
         <property name="geometry">
          <rect>
           <x>1360</x>
-          <y>720</y>
+          <y>670</y>
           <width>500</width>
           <height>160</height>
          </rect>
@@ -3633,29 +3555,11 @@ padding-left:12px;</string>
          <string/>
         </property>
        </widget>
-       <widget class="QPushButton" name="backButton">
-        <property name="geometry">
-         <rect>
-          <x>1690</x>
-          <y>320</y>
-          <width>161</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background-color:#252850;
-border-radius:10px;
-color:white;</string>
-        </property>
-        <property name="text">
-         <string>Einstellungen</string>
-        </property>
-       </widget>
        <widget class="QPushButton" name="buyButton">
         <property name="geometry">
          <rect>
           <x>1690</x>
-          <y>380</y>
+          <y>310</y>
           <width>161</width>
           <height>51</height>
          </rect>
@@ -3673,7 +3577,7 @@ color:white;</string>
         <property name="geometry">
          <rect>
           <x>1690</x>
-          <y>520</y>
+          <y>400</y>
           <width>161</width>
           <height>51</height>
          </rect>
@@ -3691,7 +3595,7 @@ color:white;</string>
         <property name="geometry">
          <rect>
           <x>1690</x>
-          <y>590</y>
+          <y>490</y>
           <width>161</width>
           <height>51</height>
          </rect>
@@ -3709,7 +3613,7 @@ color:white;</string>
         <property name="geometry">
          <rect>
           <x>1690</x>
-          <y>660</y>
+          <y>580</y>
           <width>161</width>
           <height>51</height>
          </rect>
@@ -3721,25 +3625,6 @@ color:white;</string>
         </property>
         <property name="text">
          <string>Aufgeben</string>
-        </property>
-       </widget>
-       <widget class="QPushButton" name="sellButton">
-        <property name="geometry">
-         <rect>
-          <x>1690</x>
-          <y>450</y>
-          <width>161</width>
-          <height>51</height>
-         </rect>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">background-color:#252850;
-border-radius:10px;
-color:white;
-</string>
-        </property>
-        <property name="text">
-         <string>Verkaufen</string>
         </property>
        </widget>
        <widget class="QWidget" name="widget_3" native="true">
@@ -3847,11 +3732,9 @@ background-color:transparent;
        <zorder>surrenderButton</zorder>
        <zorder>Brettspiel_2</zorder>
        <zorder>Spieleranzeige_3</zorder>
-       <zorder>backButton</zorder>
        <zorder>buyButton</zorder>
        <zorder>readyButton</zorder>
        <zorder>buyProperty</zorder>
-       <zorder>sellButton</zorder>
        <zorder>Spieleraktivitaet_3</zorder>
       </widget>
       <widget class="QWidget" name="winView">

@@ -20,6 +20,8 @@ qt_add_executable(MonopolyServer
     board.h board.cpp
     game.h game.cpp
     jailfield.h jailfield.cpp
+    gotojailfield.h gotojailfield.cpp
+    cardfield.h cardfield.cpp
 
 
 )

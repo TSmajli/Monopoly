@@ -59,7 +59,9 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     ui->textEdit_3->setReadOnly(true);
+    ui->textEdit_3->setAcceptRichText(true);
     ui->playersText->setReadOnly(true);
+    ui->playersText->setAcceptRichText(true);
 
     ui->ServerButton->setStyleSheet(
         "QPushButton {"
@@ -101,7 +103,6 @@ MainWindow::MainWindow(QWidget *parent)
     ui->readyStartButton->setStyleSheet(buttonStyle("#252850", "#191970"));
     ui->rollDiceButton->setStyleSheet(buttonStyle("#469536", "#38772B"));
     ui->buyButton->setStyleSheet(buttonStyle("#275EA8", "#1e4b85"));
-    ui->sellButton->setStyleSheet(buttonStyle("#842d2d", "#6d2323"));
     ui->readyButton->setStyleSheet(buttonStyle("#252850", "#191970"));
     ui->buyProperty->setStyleSheet(buttonStyle("#252850", "#191970"));
     ui->surrenderButton->setStyleSheet(buttonStyle("#842d2d", "#6d2323"));
@@ -111,7 +112,6 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->readyButton->setEnabled(false);
     ui->buyButton->setEnabled(false);
-    ui->sellButton->setEnabled(false);
     ui->rollDiceButton->setEnabled(false);
     ui->surrenderButton->setEnabled(true);
 
@@ -182,12 +182,14 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(network, &NetworkClient::connected, this, [this]() {
         setConnectionStatus("Verbunden", "#1b5e20");
-        appendLog("✅ Mit Server verbunden.", "Server");
+        appendLog("Verbunden mit Server.", "Server");
+        // Nach Reconnect: State anfordern
+        network->sendGetState();
     });
 
     connect(network, &NetworkClient::disconnected, this, [this]() {
-        setConnectionStatus("Getrennt", "#b00020");
-        appendLog("⚠️ Verbindung getrennt.", "Server");
+        setConnectionStatus("Getrennt – Verbinde neu...", "#b00020");
+        appendLog("Verbindung getrennt. Automatischer Reconnect...", "Server");
     });
 
     connect(network, &NetworkClient::errorOccurred, this, [this](const QString &err) {
@@ -199,8 +201,7 @@ MainWindow::MainWindow(QWidget *parent)
 
         if (type == "assignPlayerId") {
             myPlayerId = obj.value("playerId").toInt(-1);
-            appendLog(QString("🎲 Spieler-ID erhalten: %1").arg(myPlayerId), "Server");
-            ui->player1->setText(QString("Spieler %1 (Du)").arg(myPlayerId));
+            appendLog(QString("Verbunden als Spieler %1").arg(myPlayerId), "Server");
             network->sendGetState();
             return;
         }
@@ -298,6 +299,7 @@ MainWindow::MainWindow(QWidget *parent)
             QStringList playerLines;
             QStringList playerNamesForStart;
             QStringList playerReadyForStart;
+            QList<int> playerIdsForStart;
             int readyCount = 0;
             for (const QJsonValue &v : players) {
                 const QJsonObject p = v.toObject();
@@ -312,31 +314,60 @@ MainWindow::MainWindow(QWidget *parent)
                 if (ready) {
                     readyCount++;
                 }
-
-                if (id == currentPlayerId) {
-                    ui->Geld_6->setText(name);
-                    ui->Geld_5->setText(QString("%1$").arg(money));
-                }
                 if (id == myPlayerId) {
                     localReady = ready;
                 }
+
                 const QString readyMark = ready ? "✅" : "⏳";
-                const QString turnMark = (id == currentPlayerId) ? "▶" : "•";
-                playerLines << QString("%1 %2 (ID %3) – Feld %4 – %5$ %6")
-                                   .arg(turnMark)
-                                   .arg(name)
-                                   .arg(id)
-                                   .arg(pos)
-                                   .arg(money)
-                                   .arg(readyMark);
+
+                // Spielerübersicht: einfache Karte wie im Design-Bild
+                const bool bankrupt = p.value("bankrupt").toBool(false);
+                const bool inJail   = p.value("inJail").toBool(false);
+                const QColor pColor   = playerColors.value(id, QColor("#888888"));
+                const QString colorHex = pColor.name();
+
+                // Hintergrund: aktiver Spieler etwas heller
+                const QString bg = (id == currentPlayerId) ? "#2a4a7f" : "#1e3a5f";
+
+                // Extras als kleine Labels hinter dem Namen
+                QString extras;
+                if (id == myPlayerId)     extras += " <span style='color:#ffd700; font-size:10px;'>(Du)</span>";
+                if (id == currentPlayerId) extras += " <span style='color:#ffffff; font-size:10px;'>&#9654;</span>";
+                if (inJail)               extras += " <span style='color:#ff8a80; font-size:10px;'>&#128681;</span>";
+                if (bankrupt)             extras += " <span style='color:#ff5252; font-size:11px; font-weight:bold;'>PLEITE</span>";
+
+                const QString moneyColor = (money < 100) ? "#ff5252" : (money < 300 ? "#ffab40" : "#ffffff");
+
+                // Eintrag: farbiges Quadrat | fetter Name | Extras | Geld rechts
+                playerLines << QString(
+                    "<table width='100%%' cellspacing='0' cellpadding='0' style='margin:3px 0;'>"
+                    "<tr style='background:%1; border-radius:8px;'>"
+                    "<td width='30' style='padding:7px 6px;'>"
+                      "<div style='width:18px;height:18px;background:%2;border-radius:4px;'>&nbsp;</div>"
+                    "</td>"
+                    "<td style='padding:7px 4px; color:white; font-weight:bold; font-size:13px;'>"
+                      "%3%4"
+                    "</td>"
+                    "<td align='right' style='padding:7px 10px; color:%5; font-size:13px; font-weight:bold; white-space:nowrap;'>"
+                      "%6$"
+                    "</td>"
+                    "</tr>"
+                    "</table>")
+                    .arg(bg)
+                    .arg(colorHex)
+                    .arg(name.toHtmlEscaped())
+                    .arg(extras)
+                    .arg(moneyColor)
+                    .arg(money);
                 playerNamesForStart << name;
                 playerReadyForStart << readyMark;
+                playerIdsForStart << id;
             }
 
             if (playerLines.isEmpty()) {
-                ui->playersText->setText("Keine Spieler verbunden.");
+                ui->playersText->setHtml("<div style='color:#aaaaaa;'>Keine Spieler verbunden.</div>");
             } else {
-                ui->playersText->setText(playerLines.join("\n"));
+                ui->playersText->setHtml(playerLines.join(""));
             }
 
             const QList<QPushButton *> startButtons = {
@@ -347,10 +378,33 @@ MainWindow::MainWindow(QWidget *parent)
             };
             for (int i = 0; i < startButtons.size(); ++i) {
                 if (i < playerNamesForStart.size()) {
-                    startButtons[i]->setText(QString("%1 %2")
+                    const int pid = playerIdsForStart.value(i, -1);
+                    const bool isMe = (pid == myPlayerId);
+                    const QString meMark = isMe ? " (Du)" : "";
+                    startButtons[i]->setText(QString("%1%2 %3")
                                                  .arg(playerNamesForStart.at(i))
+                                                 .arg(meMark)
                                                  .arg(playerReadyForStart.value(i)));
                     startButtons[i]->setVisible(true);
+
+                    // Spielerfarbe als linke Border anzeigen
+                    QColor pColor = playerColors.value(pid, QColor("#555555"));
+                    QString borderColor = pColor.name();
+                    QString bgColor = isMe ? "#2a3a50" : "#1e2d3d";
+                    startButtons[i]->setStyleSheet(QString(
+                        "QPushButton {"
+                        "border-left:5px solid %1;"
+                        "border-radius:8px;"
+                        "background-color:%2;"
+                        "color:white;"
+                        "font-weight:%3;"
+                        "text-align:left;"
+                        "padding-left:8px;"
+                        "}"
+                        "QPushButton:hover { background-color:#2e4060; }")
+                        .arg(borderColor)
+                        .arg(bgColor)
+                        .arg(isMe ? "bold" : "normal"));
                 } else {
                     startButtons[i]->setText(QString("Spieler %1").arg(i + 1));
                     startButtons[i]->setVisible(false);
@@ -389,9 +443,14 @@ MainWindow::MainWindow(QWidget *parent)
                 ui->winnerLabel->setVisible(false);
             } else if (gameFinished) {
                 if (winnerId > 0) {
-                    ui->winWinnerLabel->setText(QString("🏆 Gewinner: %1").arg(resolvePlayerName(winnerId)));
+                    const QString winName = resolvePlayerName(winnerId);
+                    const QString winColor = playerColors.value(winnerId, QColor("#FFD700")).name();
+                    ui->winWinnerLabel->setText(QString("Gewinner: %1").arg(winName));
+                    ui->winWinnerLabel->setStyleSheet(QString(
+                        "color:%1; font-size:28px; font-weight:bold;").arg(winColor));
                 } else {
-                    ui->winWinnerLabel->setText("🏆 Gewinner: -");
+                    ui->winWinnerLabel->setText("Kein Gewinner");
+                    ui->winWinnerLabel->setStyleSheet("color:#aaaaaa; font-size:22px;");
                 }
                 ui->stackedWidget->setCurrentWidget(ui->winView);
             } else if (gameStarted) {
@@ -428,16 +487,18 @@ MainWindow::MainWindow(QWidget *parent)
     });
 
     connect(ui->buyProperty, &QPushButton::clicked, this, [this]() {
-        if (!ui->buyProperty->isEnabled()) {
+        if (!ui->buyProperty->isEnabled() || pendingHouseFieldIndex < 0) {
             return;
         }
-        network->sendBuyDecision(true,myPlayerId,pendingBuyFieldIndex);
-        appendLog("🏠 Hauskauf angefragt.", resolvePlayerName(myPlayerId));
+        network->sendBuyHouse(pendingHouseFieldIndex);
+        appendLog("Haus gekauft.", resolvePlayerName(myPlayerId));
+        ui->buyProperty->setEnabled(false);
+        ui->buyProperty->setVisible(false);
     });
 
     connect(ui->readyStartButton, &QPushButton::clicked, this, [this]() {
         localReady = !localReady;
-        network->sendStartGame();
+        network->sendSetReady(localReady);
         ui->readyStartButton->setText(localReady ? "Bereit ✔" : "Bereit");
     });
 
@@ -508,19 +569,6 @@ void MainWindow::on_buyButton_clicked()
     appendLog("✅ Kauf bestätigt.", resolvePlayerName(myPlayerId));
 }
 
-void MainWindow::on_sellButton_clicked()
-{
-    if (!ui->sellButton->isEnabled()) {
-        return;
-    }
-    network->sendBuyDecision(false, myPlayerId, pendingBuyFieldIndex);
-    pendingBuyFieldIndex = -1;
-    setAwaitingBuyDecision(false);
-    pendingEndTurnPlayerId = myPlayerId;
-    setAwaitingEndTurn(true);
-    ensureDiceEnabled(false);
-    appendLog("❌ Kauf abgelehnt.", resolvePlayerName(myPlayerId));
-}
 
 void MainWindow::on_addPlayer_clicked()
 {
@@ -536,27 +584,73 @@ void MainWindow::on_rollDiceButton_clicked()
     appendLog("🎲 Würfeln angefragt.", resolvePlayerName(myPlayerId));
 }
 
+// Gibt die Spielerfarbe für einen Namen zurück (Fallback: grau)
+QString MainWindow::colorForPlayerName(const QString &name) const
+{
+    for (auto it = playerNames.constBegin(); it != playerNames.constEnd(); ++it) {
+        if (it.value() == name) {
+            QColor c = playerColors.value(it.key(), QColor("#888888"));
+            return c.name();
+        }
+    }
+    return QStringLiteral("#888888");
+}
+
+// Gibt die passende Nachrichtenfarbe zurück (für dezente Einfärbung der Nachricht)
+static QString msgColor(const QString &msg)
+{
+    if (msg.contains("Würfelwurf"))          return "#a8d8a8"; // hellgrün
+    if (msg.contains("kauft") || msg.contains("Kaufangebot")) return "#a8c4e8"; // hellblau
+    if (msg.contains("Haus") || msg.contains("Hotel"))        return "#ffe082"; // gelb
+    if (msg.contains("Gefaengnis") || msg.contains("pleite")) return "#ef9a9a"; // hellrot
+    if (msg.contains("Unterrichtskarte"))    return "#ffcc80"; // orange
+    if (msg.contains("gewinnt"))             return "#fff176"; // gold
+    return "#dddddd"; // standard
+}
+
+// Gibt eine Log-Zeile als HTML zurück (ein inline Span – append() fügt den Zeilenumbruch hinzu)
+QString MainWindow::logEntryToHtml(const LogEntry &entry) const
+{
+    const QString timeStr = entry.timestamp.toString("HH:mm:ss");
+
+    QString nameColor = "#888888";
+    if (entry.playerName == "Server" || entry.playerName == "System") {
+        nameColor = "#777777";
+    } else if (entry.playerName == "Client") {
+        nameColor = "#888888";
+    } else {
+        nameColor = colorForPlayerName(entry.playerName);
+    }
+
+    const QString mc = msgColor(entry.message);
+
+    // Einfache Zeile: [Zeit] Name: Nachricht
+    return QString(
+        "<span style='color:#666666;'>[%1]</span>"
+        " <b style='color:%2;'>%3</b>"
+        "<span style='color:#bbbbbb;'>: </span>"
+        "<span style='color:%4;'>%5</span>")
+        .arg(timeStr)
+        .arg(nameColor)
+        .arg(entry.playerName.toHtmlEscaped())
+        .arg(mc)
+        .arg(entry.message.toHtmlEscaped());
+}
+
 void MainWindow::appendLog(const QString &message, const QString &playerName)
 {
     const QString name = playerName.isEmpty() ? QString("System") : playerName;
     const QDateTime timestamp = QDateTime::currentDateTime();
     logEntries.push_back({timestamp, name, message});
-    const QString line = QString("[%1] %2: %3")
-                             .arg(timestamp.toString("yyyy-MM-dd HH:mm:ss"))
-                             .arg(name)
-                             .arg(message);
-    ui->textEdit_3->append(line);
+    // append() fügt automatisch einen Zeilenumbruch hinzu → saubere Trennung
+    ui->textEdit_3->append(logEntryToHtml(logEntries.back()));
 }
 
 void MainWindow::refreshLogView()
 {
     ui->textEdit_3->clear();
     for (const auto &entry : logEntries) {
-        const QString line = QString("[%1] %2: %3")
-                                 .arg(entry.timestamp.toString("yyyy-MM-dd HH:mm:ss"))
-                                 .arg(entry.playerName)
-                                 .arg(entry.message);
-        ui->textEdit_3->append(line);
+        ui->textEdit_3->append(logEntryToHtml(entry));
     }
 }
 
@@ -666,17 +760,21 @@ void MainWindow::updateBoardHighlights()
         field->setStyleSheet(style);
     }
 
+    // Meine aktuelle Position: mit meiner Spielerfarbe umranden
     const int myPos = playerPositions.value(myPlayerId, -1);
     if (myPos >= 0 && myPos < boardFields.size()) {
+        QColor myColor = playerColors.value(myPlayerId, QColor("#00cc44"));
         QWidget *field = boardFields.at(myPos);
-        field->setStyleSheet(highlightStyle(field->styleSheet(), "#00cc44"));
+        field->setStyleSheet(highlightStyle(field->styleSheet(), myColor.name()));
     }
 
+    // Position des aktiven Spielers (falls nicht ich): mit DESSEN Farbe umranden
     if (currentPlayerId != myPlayerId) {
         const int currentPos = playerPositions.value(currentPlayerId, -1);
         if (currentPos >= 0 && currentPos < boardFields.size()) {
+            QColor theirColor = playerColors.value(currentPlayerId, QColor("#ffb300"));
             QWidget *field = boardFields.at(currentPos);
-            field->setStyleSheet(highlightStyle(field->styleSheet(), "#ffb300"));
+            field->setStyleSheet(highlightStyle(field->styleSheet(), theirColor.name()));
         }
     }
 }
@@ -753,13 +851,30 @@ void MainWindow::updateFieldInfo(int index)
 
     QStringList lines;
     lines << name;
+
+    if (type == "card") {
+        lines << "[Unterrichtskarte]";
+        lines << "Ziehe eine Karte!";
+    } else if (type == "gotojail") {
+        lines << "Gehe direkt in die";
+        lines << "Berufsschule!";
+    } else if (type == "tax") {
+        if (price > 0) {
+            lines << QString("Steuer: %1$").arg(price);
+        }
+    } else if (type == "jail") {
+        lines << "Nur zu Besuch";
+    } else if (type == "start") {
+        lines << "Start: +200$ Bonus";
+    }
+
     if (!color.isEmpty()) {
         lines << QString("Farbe: %1").arg(color);
     }
-    if (price >= 0) {
+    if (price >= 0 && type == "property") {
         lines << QString("Preis: %1$").arg(price);
     }
-    if (baseRent >= 0) {
+    if (baseRent >= 0 && type == "property") {
         lines << QString("Miete: %1$").arg(baseRent);
     }
     if (type == "property") {
@@ -768,39 +883,47 @@ void MainWindow::updateFieldInfo(int index)
             const int hotelPrice = info.value("hotelPrice").toInt(-1);
             const int hotelRent = info.value("hotelRent").toInt(-1);
             const bool hasHotel = info.value("hasHotel").toBool(false);
-            if (hotelPrice >= 0) {
-                lines << QString("Hauspreis: %1$").arg(hotelPrice);
+            if (hasHotel) {
+                lines << QString("Haus: JA  (+%1$ Miete)").arg(hotelRent >= 0 ? hotelRent : 0);
+            } else {
+                if (hotelPrice >= 0) {
+                    lines << QString("Haus kaufen: %1$").arg(hotelPrice);
+                }
+                lines << "Haus: nein";
             }
-            if (hotelRent >= 0) {
-                lines << QString("Miete mit Haus: %1$").arg(hotelRent);
-            }
-            lines << QString("Haus: %1").arg(hasHotel ? "ja" : "nein");
         }
+        lines << QString("Besitzer: %1").arg(ownerName);
     }
-    lines << QString("Besitzer: %1").arg(ownerName);
 
     ui->fieldInfoValue->setText(lines.join("\n"));
 }
 
 void MainWindow::updateHouseBuyAvailability()
 {
+    pendingHouseFieldIndex = -1;
+
     const int myPos = playerPositions.value(myPlayerId, -1);
-    if (myPos < 0) {
+    if (myPos < 0 || !gameStarted) {
         ui->buyProperty->setEnabled(false);
         ui->buyProperty->setVisible(false);
         return;
     }
 
-    const QJsonObject info = fieldInfoByIndex.value(myPos);
-    const int ownerId = info.value("ownerId").toInt(-1);
-    const QString subtype = info.value("subtype").toString();
-    const bool hasHotel = info.value("hasHotel").toBool(false);
-    const bool isStreet = subtype == "street";
-    const bool isOwner = ownerId == myPlayerId;
+    const QJsonObject &info = fieldInfoByIndex.value(myPos);
+    const bool isStreet  = info.value("subtype").toString() == "street";
+    const bool isOwner   = info.value("ownerId").toInt(-1) == myPlayerId;
+    const bool hasHotel  = info.value("hasHotel").toBool(false);
+    const bool isMyTurn  = currentPlayerId == myPlayerId;
 
-    const bool canBuyHouse = isStreet && isOwner && !hasHotel && gameStarted;
-    ui->buyProperty->setEnabled(canBuyHouse);
-    ui->buyProperty->setVisible(canBuyHouse);
+    const bool canBuy = isStreet && isOwner && !hasHotel && isMyTurn;
+    ui->buyProperty->setVisible(canBuy);
+    ui->buyProperty->setEnabled(canBuy);
+
+    if (canBuy) {
+        pendingHouseFieldIndex = myPos;
+        ui->buyProperty->setText("Haus kaufen (200$)");
+        ui->buyProperty->setStyleSheet(buttonStyle("#2e7d32", "#1b5e20"));
+    }
 }
 
 void MainWindow::updateHouseMarkers()
@@ -823,20 +946,35 @@ void MainWindow::updateHouseMarkers()
             continue;
         }
 
+        // Besitzerfarbe für den Haus-Marker ermitteln
+        const int ownerId = info.value("ownerId").toInt(-1);
+        QColor ownerColor = playerColors.value(ownerId, QColor("#2e7d32"));
+        // Randfarbe: etwas hellere Version der Besitzerfarbe
+        QColor borderColor = ownerColor.lighter(160);
+
         QLabel *marker = houseMarkers.value(index, nullptr);
         if (!marker) {
             marker = new QLabel(ui->Brettspiel_2);
-            marker->setText("🏠");
             marker->setAlignment(Qt::AlignCenter);
-            marker->setFixedSize(18, 18);
-            marker->setStyleSheet("background-color:#ffffff; border-radius:9px; font-size:12px;");
+            marker->setFixedSize(22, 22);
             houseMarkers.insert(index, marker);
         }
+        // Stil immer aktualisieren (Besitzer kann sich ändern)
+        marker->setText("H");
+        marker->setStyleSheet(QString(
+            "background-color:%1;"
+            "color:#ffffff;"
+            "font-weight:bold;"
+            "font-size:12px;"
+            "border-radius:5px;"
+            "border:2px solid %2;")
+            .arg(ownerColor.name())
+            .arg(borderColor.name()));
 
         const QWidget *field = boardFields.at(index);
         const QRect rect = field->geometry();
-        const int x = rect.x() + rect.width() - marker->width() - 4;
-        const int y = rect.y() + 4;
+        const int x = rect.x() + rect.width() - marker->width() - 2;
+        const int y = rect.y() + 2;
         marker->move(x, y);
         marker->raise();
         marker->show();
@@ -859,7 +997,6 @@ void MainWindow::setAwaitingBuyDecision(bool awaiting)
 {
     const bool canRespond = awaiting && pendingBuyPlayerId == myPlayerId;
     ui->buyButton->setEnabled(canRespond);
-    ui->sellButton->setEnabled(canRespond);
     if (!awaiting) {
         pendingBuyFieldIndex = -1;
         pendingBuyPlayerId = -1;
