@@ -45,6 +45,7 @@ private:
     QVector<QWidget *> boardFields;
     QMap<QWidget *, QString> fieldBaseStyles;
     bool localReady = false;
+    bool awaitingBuyDecisionLocal = false;
     QMap<int, QLabel *> playerTokens;
     QMap<int, QColor> playerColors;
     QJsonObject lastStateSnapshot;
@@ -75,6 +76,7 @@ private:
     void setAwaitingBuyDecision(bool awaiting);
     void setAwaitingEndTurn(bool awaiting);
     void ensureDiceEnabled(bool enabled);
+    bool eventFilter(QObject *watched, QEvent *event) override;
 
 private slots:
     void
