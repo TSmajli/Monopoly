@@ -173,3 +173,10 @@ void NetworkClient::sendGetState()
     msg["type"] = "getState";
     sendJson(msg);
 }
+
+void NetworkClient::sendRestartGame()
+{
+    QJsonObject msg;
+    msg["type"] = "restartGame";
+    sendJson(msg);
+}

@@ -24,6 +24,7 @@ public:
     void sendSurrender();
     void sendSetReady(bool ready);
     void sendBuyHouse(int fieldIndex);
+    void sendRestartGame();
 
 signals:
     void connected();

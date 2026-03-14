@@ -170,6 +170,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     for (QWidget *field : boardFields) {
         fieldBaseStyles.insert(field, field->styleSheet());
+        field->installEventFilter(this);
+        field->setCursor(Qt::PointingHandCursor);
     }
 
     playerColors.insert(1, QColor("#00cc44"));
@@ -263,8 +265,6 @@ MainWindow::MainWindow(QWidget *parent)
             if (newPosition >= 0) {
                 playerPositions.insert(playerId, newPosition);
                 updatePlayerTokens();
-            }
-            if (playerId == myPlayerId && newPosition >= 0) {
                 currentFieldIndex = newPosition;
                 updateFieldInfo(newPosition);
             }
@@ -459,6 +459,17 @@ MainWindow::MainWindow(QWidget *parent)
                 ui->stackedWidget->setCurrentWidget(ui->startView);
             }
             ui->winnerLabel->setVisible(false);
+
+            // CSV-View: alle Interaktions-Buttons deaktivieren
+            if (logViewActive) {
+                ensureDiceEnabled(false);
+                ui->readyButton->setEnabled(false);
+                ui->buyButton->setEnabled(false);
+                ui->buyProperty->setEnabled(false);
+                ui->buyProperty->setVisible(false);
+                ui->readyStartButton->setEnabled(false);
+                ui->surrenderButton->setEnabled(false);
+            }
         }
     });
 
@@ -519,19 +530,24 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(ui->playAgainButton, &QPushButton::clicked, this, [this]() {
         localReady = false;
+        logViewActive = false;
         ui->readyStartButton->setText("Bereit");
-        //network->sendRestartGame();
+        ui->readyStartButton->setEnabled(true);
+        network->sendRestartGame();
         ui->stackedWidget->setCurrentWidget(ui->startView);
         ui->winnerLabel->setVisible(false);
         ui->logExitButton->setVisible(false);
-        logViewActive = false;
-        appendLog("🔄 Neustart angefragt.", resolvePlayerName(myPlayerId));
+        appendLog("━━━━━━━━━━━━━━━━━━━━━━━━━━━━", "System");
+        appendLog("🔄 Neustart – neues Spiel beginnt.", resolvePlayerName(myPlayerId));
     });
 
     connect(ui->logExitButton, &QPushButton::clicked, this, [this]() {
         ui->stackedWidget->setCurrentWidget(ui->startView);
         ui->logExitButton->setVisible(false);
         logViewActive = false;
+        localReady = false;
+        ui->readyStartButton->setEnabled(true);
+        ui->readyStartButton->setText("Bereit");
     });
 
     ui->surrenderButton->raise();
@@ -874,11 +890,13 @@ void MainWindow::updateFieldInfo(int index)
     if (price >= 0 && type == "property") {
         lines << QString("Preis: %1$").arg(price);
     }
-    if (baseRent >= 0 && type == "property") {
-        lines << QString("Miete: %1$").arg(baseRent);
-    }
     if (type == "property") {
         const QString subtype = info.value("subtype").toString();
+        if (subtype == "utility") {
+            lines << "Miete: Würfel × 4";
+        } else if (baseRent >= 0) {
+            lines << QString("Miete: %1$").arg(baseRent);
+        }
         if (subtype == "street") {
             const int hotelPrice = info.value("hotelPrice").toInt(-1);
             const int hotelRent = info.value("hotelRent").toInt(-1);
@@ -995,8 +1013,10 @@ void MainWindow::setConnectionStatus(const QString &text, const QString &color)
 
 void MainWindow::setAwaitingBuyDecision(bool awaiting)
 {
-    const bool canRespond = awaiting && pendingBuyPlayerId == myPlayerId;
-    ui->buyButton->setEnabled(canRespond);
+    awaitingBuyDecisionLocal = awaiting && pendingBuyPlayerId == myPlayerId;
+    // Kaufentscheidung entfernt: buyButton wird nie aktiviert.
+    // Fertig-Button (readyButton) lehnt automatisch ab.
+    ui->buyButton->setEnabled(false);
     if (!awaiting) {
         pendingBuyFieldIndex = -1;
         pendingBuyPlayerId = -1;
@@ -1005,13 +1025,29 @@ void MainWindow::setAwaitingBuyDecision(bool awaiting)
 
 void MainWindow::setAwaitingEndTurn(bool awaiting)
 {
-    const bool canEndTurn = awaiting
+    const bool canEndTurn = (awaiting
         && pendingEndTurnPlayerId == myPlayerId
-        && currentPlayerId == myPlayerId;
+        && currentPlayerId == myPlayerId)
+        || awaitingBuyDecisionLocal;
     ui->readyButton->setEnabled(canEndTurn);
 }
 
 void MainWindow::ensureDiceEnabled(bool enabled)
 {
     ui->rollDiceButton->setEnabled(enabled);
+}
+
+bool MainWindow::eventFilter(QObject *watched, QEvent *event)
+{
+    if (event->type() == QEvent::MouseButtonPress) {
+        QWidget *w = qobject_cast<QWidget*>(watched);
+        if (w) {
+            const int idx = boardFields.indexOf(w);
+            if (idx >= 0) {
+                updateFieldInfo(idx);
+                return true;
+            }
+        }
+    }
+    return QMainWindow::eventFilter(watched, event);
 }
