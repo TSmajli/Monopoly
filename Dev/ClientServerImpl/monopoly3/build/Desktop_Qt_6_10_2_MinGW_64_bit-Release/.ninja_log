@@ -1,0 +1,13 @@
+# ninja log v6
+11	5295	7951906000354774	monopoly3_autogen/timestamp	98fe18e870a0a1a3
+11	5295	7951906000354774	monopoly3_autogen/mocs_compilation.cpp	98fe18e870a0a1a3
+11	5295	7951906000354774	D:/Git Repository/Monopoly/Dev/ClientServerImpl/monopoly3/build/Desktop_Qt_6_10_2_MinGW_64_bit-Release/monopoly3_autogen/timestamp	98fe18e870a0a1a3
+11	5295	7951906000354774	D:/Git Repository/Monopoly/Dev/ClientServerImpl/monopoly3/build/Desktop_Qt_6_10_2_MinGW_64_bit-Release/monopoly3_autogen/mocs_compilation.cpp	98fe18e870a0a1a3
+5300	5436	7951906003567445	qrc_images.cpp	a6129927d6efe1ec
+5300	5436	7951906003567445	D:/Git Repository/Monopoly/Dev/ClientServerImpl/monopoly3/build/Desktop_Qt_6_10_2_MinGW_64_bit-Release/qrc_images.cpp	a6129927d6efe1ec
+5440	9092	7951906003669481	CMakeFiles/monopoly3.dir/main.cpp.obj	b4e70815d661acbf
+5449	9133	7951906003757173	CMakeFiles/monopoly3.dir/networkclient.cpp.obj	bcd33dc3b85fcc86
+5437	9136	7951906003629494	CMakeFiles/monopoly3.dir/monopoly3_autogen/mocs_compilation.cpp.obj	bed11ede264de3a9
+5454	9393	7951906003802232	CMakeFiles/monopoly3.dir/qrc_images.cpp.obj	c9abdab9dc4e0b9e
+5445	13077	7951906003712004	CMakeFiles/monopoly3.dir/mainwindow.cpp.obj	f846752925491c5c
+13078	13307	7951906080043871	monopoly3.exe	520339bada9c4a26

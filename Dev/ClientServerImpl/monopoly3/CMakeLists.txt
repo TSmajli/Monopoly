@@ -1,6 +1,14 @@
 cmake_minimum_required(VERSION 3.19)
 project(monopoly3 LANGUAGES CXX)
 
+if(NOT DEFINED Qt6_DIR AND EXISTS "C:/Qt/6.10.2/mingw_64/lib/cmake/Qt6")
+    set(Qt6_DIR "C:/Qt/6.10.2/mingw_64/lib/cmake/Qt6")
+endif()
+
+if(EXISTS "C:/Qt/6.10.2/mingw_64")
+    list(APPEND CMAKE_PREFIX_PATH "C:/Qt/6.10.2/mingw_64")
+endif()
+
 find_package(Qt6 6.5 REQUIRED COMPONENTS Core Widgets Network)
 
 qt_standard_project_setup()
@@ -14,16 +22,16 @@ qt_add_executable(monopoly3
     networkclient.h
     mainwindow.ui
     images.qrc
-    networkclient.h networkclient.cpp
-    networkclient.h networkclient.cpp
 )
+
 qt_add_resources(app_resources
-images.qrc
+    images.qrc
 )
 
 target_sources(monopoly3 PRIVATE
     ${app_resources}
 )
+
 target_link_libraries(monopoly3
     PRIVATE
         Qt::Core

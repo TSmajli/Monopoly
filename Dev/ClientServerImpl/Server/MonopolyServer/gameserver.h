@@ -70,6 +70,8 @@ private:
     void finishTurnAndBroadcast();
     void updateWinnerIfNeeded(const QString &reason);
     bool areAllPlayersReady() const;
+    void releasePlayerAssets(Player &player);
+    void clearPendingStateForPlayer(int playerId);
 
     // JSON helpers
     void sendToSocket(QTcpSocket *socket, const QJsonObject &obj);

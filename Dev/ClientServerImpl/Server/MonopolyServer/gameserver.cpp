@@ -1,4 +1,4 @@
-#include "gameserver.h"
+﻿#include "gameserver.h"
 
 #include <QJsonDocument>
 #include <QJsonArray>
@@ -276,11 +276,7 @@ void GameServer::handleRestartGame(Player &player)
     gameStarted = false;
     gameFinished = false;
     winnerId = -1;
-    awaitingBuyDecision = false;
-    pendingBuyPlayerId = -1;
-    pendingBuyFieldIndex = -1;
-    awaitingEndTurn = false;
-    pendingEndTurnPlayerId = -1;
+    clearPendingStateForPlayer(-1);
 
     boardInitialized = false;
     initBoardIfNeeded();
@@ -506,6 +502,7 @@ void GameServer::handleRollDice(Player &player)
         // Pleite-Check nach jedem Feld
         if (current->isBankrupt) {
             broadcastLog(current->id, "ist pleite!");
+            releasePlayerAssets(*current);
             updateWinnerIfNeeded("playerBankrupt");
             if (gameFinished) {
                 return;
@@ -592,25 +589,22 @@ void GameServer::handleSurrender(Player &player)
     if (!gameStarted || gameFinished) {
         QJsonObject err;
         err["type"] = "error";
-        err["message"] = "Aufgeben ist nur während eines laufenden Spiels möglich.";
+        err["message"] = "Aufgeben ist nur waehrend eines laufenden Spiels moeglich.";
         sendToPlayer(player, err);
         return;
     }
 
-    if (awaitingBuyDecision && pendingBuyPlayerId == player.id) {
-        awaitingBuyDecision = false;
-        pendingBuyPlayerId = -1;
-        pendingBuyFieldIndex = -1;
-    }
-
-    if (awaitingEndTurn && pendingEndTurnPlayerId == player.id) {
-        awaitingEndTurn = false;
-        pendingEndTurnPlayerId = -1;
-    }
+    const bool wasCurrentPlayer = game.getCurrentPlayer() == &player;
 
     player.isBankrupt = true;
+    releasePlayerAssets(player);
+    clearPendingStateForPlayer(player.id);
     broadcastLog(player.id, "gibt auf");
     updateWinnerIfNeeded("playerSurrendered");
+    if (!gameFinished && wasCurrentPlayer) {
+        finishTurnAndBroadcast();
+        return;
+    }
     broadcastGameState("playerSurrendered");
 }
 
@@ -767,6 +761,33 @@ void GameServer::finishTurnAndBroadcast()
     qDebug() << "[TURN] nextTurn -> currentPlayerId="
              << (game.getCurrentPlayer() ? game.getCurrentPlayer()->id : -1);
     broadcastGameState("nextTurn");
+}
+
+void GameServer::releasePlayerAssets(Player &player)
+{
+    for (PropertyField *property : player.properties) {
+        if (!property) {
+            continue;
+        }
+        property->release();
+        if (auto *street = dynamic_cast<StreetField*>(property)) {
+            street->hasHotel = false;
+        }
+    }
+    player.properties.clear();
+}
+
+void GameServer::clearPendingStateForPlayer(int playerId)
+{
+    if (playerId < 0 || pendingBuyPlayerId == playerId) {
+        awaitingBuyDecision = false;
+        pendingBuyPlayerId = -1;
+        pendingBuyFieldIndex = -1;
+    }
+    if (playerId < 0 || pendingEndTurnPlayerId == playerId) {
+        awaitingEndTurn = false;
+        pendingEndTurnPlayerId = -1;
+    }
 }
 
 void GameServer::sendToSocket(QTcpSocket *socket, const QJsonObject &obj)
@@ -962,22 +983,17 @@ void GameServer::onClientDisconnected()
     if (it != players.end()) {
         qDebug() << "[NET] client disconnected:" << (*it)->name;
 
-        // pending buy abbrechen, falls nötig
-        if (awaitingBuyDecision && pendingBuyPlayerId == (*it)->id) {
-            qWarning() << "[BUY] pending buy canceled due disconnect";
-            awaitingBuyDecision = false;
-            pendingBuyPlayerId = -1;
-            pendingBuyFieldIndex = -1;
-        }
-        if (awaitingEndTurn && pendingEndTurnPlayerId == (*it)->id) {
-            qWarning() << "[TURN] pending endTurn canceled due disconnect";
-            awaitingEndTurn = false;
-            pendingEndTurnPlayerId = -1;
-        }
+        Player *disconnectedPlayer = it->get();
+        const bool wasCurrentPlayer = game.getCurrentPlayer() == disconnectedPlayer;
 
-        game.removePlayer(it->get());
+        clearPendingStateForPlayer(disconnectedPlayer->id);
+        releasePlayerAssets(*disconnectedPlayer);
+        game.removePlayer(disconnectedPlayer);
         players.erase(it);
         updateWinnerIfNeeded("playerLeft");
+        if (!gameFinished && wasCurrentPlayer && gameStarted && game.getCurrentPlayer()) {
+            broadcastLog(0, "Aktiver Spieler getrennt, Zug geht an den naechsten Spieler");
+        }
         broadcastGameState("playerLeft");
     }
 

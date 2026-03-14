@@ -1,4 +1,4 @@
-#include "mainwindow.h"
+﻿#include "mainwindow.h"
 #include "ui_mainwindow.h"
 
 #include "networkclient.h"
@@ -253,7 +253,7 @@ MainWindow::MainWindow(QWidget *parent)
 
             ui->diceResult->setText(QString("%1 + %2 = %3").arg(d1).arg(d2).arg(steps));
 
-            QString rollMessage = QString("🎲 Würfelwurf: %1 + %2 = %3").arg(d1).arg(d2).arg(steps);
+            QString rollMessage = QString("[Wuerfel] %1 + %2 = %3").arg(d1).arg(d2).arg(steps);
             if (!fieldName.isEmpty()) {
                 rollMessage += QString(" → %1").arg(fieldName);
             }
@@ -318,7 +318,7 @@ MainWindow::MainWindow(QWidget *parent)
                     localReady = ready;
                 }
 
-                const QString readyMark = ready ? "✅" : "⏳";
+                const QString readyMark = ready ? "OK" : "...";
 
                 // Spielerübersicht: einfache Karte wie im Design-Bild
                 const bool bankrupt = p.value("bankrupt").toBool(false);
@@ -582,9 +582,12 @@ void MainWindow::on_buyButton_clicked()
     pendingEndTurnPlayerId = myPlayerId;
     setAwaitingEndTurn(true);
     ensureDiceEnabled(false);
-    appendLog("✅ Kauf bestätigt.", resolvePlayerName(myPlayerId));
+    appendLog("Kauf bestaetigt.", resolvePlayerName(myPlayerId));
 }
 
+void MainWindow::on_sellButton_clicked()
+{
+}
 
 void MainWindow::on_addPlayer_clicked()
 {
@@ -597,7 +600,7 @@ void MainWindow::on_addPlayer_clicked()
 void MainWindow::on_rollDiceButton_clicked()
 {
     network->sendRollDice();
-    appendLog("🎲 Würfeln angefragt.", resolvePlayerName(myPlayerId));
+    appendLog("Wuerfeln angefragt.", resolvePlayerName(myPlayerId));
 }
 
 // Gibt die Spielerfarbe für einen Namen zurück (Fallback: grau)
@@ -615,7 +618,7 @@ QString MainWindow::colorForPlayerName(const QString &name) const
 // Gibt die passende Nachrichtenfarbe zurück (für dezente Einfärbung der Nachricht)
 static QString msgColor(const QString &msg)
 {
-    if (msg.contains("Würfelwurf"))          return "#a8d8a8"; // hellgrün
+    if (msg.contains("Wuerfelwurf"))          return "#a8d8a8"; // hellgruen
     if (msg.contains("kauft") || msg.contains("Kaufangebot")) return "#a8c4e8"; // hellblau
     if (msg.contains("Haus") || msg.contains("Hotel"))        return "#ffe082"; // gelb
     if (msg.contains("Gefaengnis") || msg.contains("pleite")) return "#ef9a9a"; // hellrot
@@ -893,7 +896,7 @@ void MainWindow::updateFieldInfo(int index)
     if (type == "property") {
         const QString subtype = info.value("subtype").toString();
         if (subtype == "utility") {
-            lines << "Miete: Würfel × 4";
+            lines << "Miete: Wuerfel x 4";
         } else if (baseRent >= 0) {
             lines << QString("Miete: %1$").arg(baseRent);
         }
@@ -1014,9 +1017,7 @@ void MainWindow::setConnectionStatus(const QString &text, const QString &color)
 void MainWindow::setAwaitingBuyDecision(bool awaiting)
 {
     awaitingBuyDecisionLocal = awaiting && pendingBuyPlayerId == myPlayerId;
-    // Kaufentscheidung entfernt: buyButton wird nie aktiviert.
-    // Fertig-Button (readyButton) lehnt automatisch ab.
-    ui->buyButton->setEnabled(false);
+    ui->buyButton->setEnabled(awaitingBuyDecisionLocal);
     if (!awaiting) {
         pendingBuyFieldIndex = -1;
         pendingBuyPlayerId = -1;
@@ -1051,3 +1052,4 @@ bool MainWindow::eventFilter(QObject *watched, QEvent *event)
     }
     return QMainWindow::eventFilter(watched, event);
 }
+

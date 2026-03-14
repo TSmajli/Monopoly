@@ -19,6 +19,8 @@ public:
 private:
     QVector<Player*> players;
     int currentPlayerIndex = 0;
+
+    void normalizeCurrentPlayer();
 };
 
 #endif // GAME_H

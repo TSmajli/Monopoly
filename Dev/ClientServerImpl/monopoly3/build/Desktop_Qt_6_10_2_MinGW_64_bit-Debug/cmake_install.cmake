@@ -1,4 +1,4 @@
-# Install script for directory: C:/.Programing/Projects/MP/monopoly3
+# Install script for directory: D:/Git Repository/Monopoly/Dev/ClientServerImpl/monopoly3
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -38,7 +38,7 @@ if(NOT DEFINED CMAKE_OBJDUMP)
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE EXECUTABLE FILES "C:/.Programing/Projects/MP/monopoly3/build/Desktop_Qt_6_10_2_MinGW_64_bit-Debug/monopoly3.exe")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE EXECUTABLE FILES "D:/Git Repository/Monopoly/Dev/ClientServerImpl/monopoly3/build/Desktop_Qt_6_10_2_MinGW_64_bit-Debug/monopoly3.exe")
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/monopoly3.exe" AND
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/monopoly3.exe")
     if(CMAKE_INSTALL_DO_STRIP)
@@ -48,7 +48,7 @@ if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT
 endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  include("C:/.Programing/Projects/MP/monopoly3/build/Desktop_Qt_6_10_2_MinGW_64_bit-Debug/.qt/deploy_monopoly3_f28e7e3757.cmake")
+  include("D:/Git Repository/Monopoly/Dev/ClientServerImpl/monopoly3/build/Desktop_Qt_6_10_2_MinGW_64_bit-Debug/.qt/deploy_monopoly3_f28e7e3757.cmake")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT)
@@ -66,6 +66,6 @@ endif()
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-  file(WRITE "C:/.Programing/Projects/MP/monopoly3/build/Desktop_Qt_6_10_2_MinGW_64_bit-Debug/${CMAKE_INSTALL_MANIFEST}"
+  file(WRITE "D:/Git Repository/Monopoly/Dev/ClientServerImpl/monopoly3/build/Desktop_Qt_6_10_2_MinGW_64_bit-Debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
 endif()

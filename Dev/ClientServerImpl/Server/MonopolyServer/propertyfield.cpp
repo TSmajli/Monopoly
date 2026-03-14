@@ -8,3 +8,7 @@ void PropertyField::buy(Player& player) {
         player.properties.append(this);
     }
 }
+
+void PropertyField::release() {
+    owner = nullptr;
+}

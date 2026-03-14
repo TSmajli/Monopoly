@@ -8,6 +8,7 @@
 #include <QVector>
 #include <QColor>
 #include <QLabel>
+#include <QEvent>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -79,17 +80,12 @@ private:
     bool eventFilter(QObject *watched, QEvent *event) override;
 
 private slots:
-    void
-    on_startButton_clicked();
-    void
-    on_backButton_clicked();
-    void
-    on_buyButton_clicked();
-    void
-     on_sellButton_clicked();
-    void
-    on_addPlayer_clicked();
-    void
-    on_rollDiceButton_clicked();
+    void on_startButton_clicked();
+    void on_backButton_clicked();
+    void on_buyButton_clicked();
+    void on_sellButton_clicked();
+    void on_addPlayer_clicked();
+    void on_rollDiceButton_clicked();
 };
 #endif // MAINWINDOW_H
+

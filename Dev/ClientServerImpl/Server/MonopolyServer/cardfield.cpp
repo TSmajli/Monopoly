@@ -20,7 +20,7 @@ void CardField::onLand(Player& player) {
         {"Hausaufgaben vergessen!  Zahle 20$",     -20},
         {"Vorzeigeschueler des Monats!  Erhalte 60$", 60},
         {"Schule geschwanzt!  Zahle 50$",          -50},
-        {"Klassensprecher gewählt!  Erhalte 35$",   35},
+        {"Klassensprecher gewaehlt!  Erhalte 35$",   35},
         {"Nachsitzen!  Zahle 15$",                 -15},
     };
 

@@ -1,8 +1,15 @@
 cmake_minimum_required(VERSION 3.19)
 project(MonopolyServer LANGUAGES CXX)
 
-find_package(Qt6 6.5 REQUIRED COMPONENTS Core Network)
+if(NOT DEFINED Qt6_DIR AND EXISTS "C:/Qt/6.10.2/mingw_64/lib/cmake/Qt6")
+    set(Qt6_DIR "C:/Qt/6.10.2/mingw_64/lib/cmake/Qt6")
+endif()
 
+if(EXISTS "C:/Qt/6.10.2/mingw_64")
+    list(APPEND CMAKE_PREFIX_PATH "C:/Qt/6.10.2/mingw_64")
+endif()
+
+find_package(Qt6 6.5 REQUIRED COMPONENTS Core Network)
 
 qt_standard_project_setup()
 
@@ -22,8 +29,6 @@ qt_add_executable(MonopolyServer
     jailfield.h jailfield.cpp
     gotojailfield.h gotojailfield.cpp
     cardfield.h cardfield.cpp
-
-
 )
 
 target_link_libraries(MonopolyServer
