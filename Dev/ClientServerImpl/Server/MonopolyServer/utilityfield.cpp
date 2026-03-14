@@ -2,7 +2,7 @@
 #include "player.h"
 
 int UtilityField::calculateRent() const {
-    return lastDiceRoll * 4;
+    return lastDiceRoll * 6;
 }
 
 void UtilityField::onLand(Player& player) {
@@ -11,3 +11,4 @@ void UtilityField::onLand(Player& player) {
         owner->receive(calculateRent());
     }
 }
+

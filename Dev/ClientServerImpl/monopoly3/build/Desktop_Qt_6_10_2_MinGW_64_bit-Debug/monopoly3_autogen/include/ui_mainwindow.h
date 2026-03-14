@@ -412,7 +412,8 @@ public:
         label_18->setGeometry(QRect(5, 28, 61, 31));
         label_18->setLayoutDirection(Qt::LayoutDirection::LeftToRight);
         label_18->setStyleSheet(QString::fromUtf8("font-size:8px;\n"
-"border: 0px solid black;"));
+"border: 0px solid black;\n"
+"color: black;"));
         label_18->setTextFormat(Qt::TextFormat::AutoText);
         label_18->setAlignment(Qt::AlignmentFlag::AlignJustify|Qt::AlignmentFlag::AlignVCenter);
         label_19 = new QLabel(Feld10_4);
@@ -420,7 +421,8 @@ public:
         label_19->setGeometry(QRect(30, 20, 71, 31));
         label_19->setLayoutDirection(Qt::LayoutDirection::LeftToRight);
         label_19->setStyleSheet(QString::fromUtf8("font-size:8px;\n"
-"border: 0px solid black;"));
+"border: 0px solid black;\n"
+"color: black;"));
         label_19->setTextFormat(Qt::TextFormat::AutoText);
         label_19->setAlignment(Qt::AlignmentFlag::AlignJustify|Qt::AlignmentFlag::AlignVCenter);
         Feld16_3 = new QWidget(Brettspiel_2);
@@ -683,7 +685,8 @@ public:
         label_61->setGeometry(QRect(20, 10, 91, 91));
         label_61->setLayoutDirection(Qt::LayoutDirection::LeftToRight);
         label_61->setStyleSheet(QString::fromUtf8("font-size:8px;\n"
-"border: 0px solid black;"));
+"border: 0px solid black;\n"
+"color: black;"));
         label_61->setTextFormat(Qt::TextFormat::AutoText);
         label_61->setAlignment(Qt::AlignmentFlag::AlignJustify|Qt::AlignmentFlag::AlignVCenter);
         Feld32_3 = new QWidget(Brettspiel_2);
@@ -1015,7 +1018,8 @@ public:
         label_45->setGeometry(QRect(40, 50, 61, 61));
         label_45->setLayoutDirection(Qt::LayoutDirection::LeftToRight);
         label_45->setStyleSheet(QString::fromUtf8("font-size:8px;\n"
-"border: 0px solid black;"));
+"border: 0px solid black;\n"
+"color: black;"));
         label_45->setTextFormat(Qt::TextFormat::AutoText);
         label_45->setAlignment(Qt::AlignmentFlag::AlignJustify|Qt::AlignmentFlag::AlignVCenter);
         Feld13_3 = new QWidget(Brettspiel_2);
@@ -1346,8 +1350,8 @@ public:
 "border-color:transparent\n"
 ";\n"
 "color:white;\n"
-"padding-bottom:10px;\n"
-"font: 25pt ;\n"
+"padding-bottom:3px;\n"
+"font: 18pt ;\n"
 "font-weight:bold;\n"
 "\n"
 ""));
@@ -1401,7 +1405,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(0);
+        stackedWidget->setCurrentIndex(2);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -1576,7 +1580,7 @@ public:
         label->setText(QCoreApplication::translate("MainWindow", "MONOPOLY", nullptr));
         player3->setText(QCoreApplication::translate("MainWindow", "Spieler 2", nullptr));
         player4->setText(QCoreApplication::translate("MainWindow", "Spieler 2", nullptr));
-        addPlayer->setText(QCoreApplication::translate("MainWindow", "+", nullptr));
+        addPlayer->setText(QCoreApplication::translate("MainWindow", "\342\234\216", nullptr));
         label_2->setText(QCoreApplication::translate("MainWindow", "Name:", nullptr));
         playerNameInput->setText(QCoreApplication::translate("MainWindow", "nickname", nullptr));
         readyStartButton->setText(QCoreApplication::translate("MainWindow", "Bereit", nullptr));

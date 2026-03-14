@@ -4,7 +4,7 @@ void Player::move(int steps) {
     position += steps;
     if (position >= 40) {
         position -= 40; // Startbonus könnte hier kommen
-        money += 200;          // Startfeld Bonus
+        money += 300;          // Startfeld Bonus
     }
 }
 
@@ -28,3 +28,4 @@ void Player::goToJail(int jailPos)
     inJail = true;
     jailTurns = 3;
 }
+

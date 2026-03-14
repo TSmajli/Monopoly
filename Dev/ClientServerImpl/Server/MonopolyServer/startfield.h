@@ -3,7 +3,8 @@
 
 class StartField : public Field {
 public:
-    int startBonus = 200;
+    int startBonus = 300;
 
     void onLand(Player& player) override;
 };
+

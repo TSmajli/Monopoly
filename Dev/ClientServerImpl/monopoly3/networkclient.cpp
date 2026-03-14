@@ -23,7 +23,6 @@ void NetworkClient::connectToServer(const QString &host, quint16 port)
 {
     lastHost = host;
     lastPort = port;
-    reconnectEnabled = true;
     reconnectDelay = 2000;
     reconnectTimer->stop();
 
@@ -52,6 +51,14 @@ void NetworkClient::scheduleReconnect()
 {
     reconnectTimer->start(reconnectDelay);
     reconnectDelay = qMin(reconnectDelay * 2, maxReconnectDelay);
+}
+
+void NetworkClient::setReconnectEnabled(bool enabled)
+{
+    reconnectEnabled = enabled;
+    if (!reconnectEnabled) {
+        reconnectTimer->stop();
+    }
 }
 
 void NetworkClient::tryReconnect()
@@ -180,3 +187,4 @@ void NetworkClient::sendRestartGame()
     msg["type"] = "restartGame";
     sendJson(msg);
 }
+

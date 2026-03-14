@@ -1,4 +1,4 @@
-﻿#include "mainwindow.h"
+#include "mainwindow.h"
 #include "ui_mainwindow.h"
 
 #include "networkclient.h"
@@ -179,27 +179,34 @@ MainWindow::MainWindow(QWidget *parent)
     playerColors.insert(3, QColor("#4dd0e1"));
     playerColors.insert(4, QColor("#ab47bc"));
 
-    setConnectionStatus("Verbinde...", "#d17f00");
-    network->connectToServer("127.0.0.1", 4242);
+    network->setReconnectEnabled(false);
+    setConnectionStatus("Nicht verbunden", "#842d2d");
+    ui->stackedWidget->setCurrentWidget(ui->startView);
 
     connect(network, &NetworkClient::connected, this, [this]() {
         setConnectionStatus("Verbunden", "#1b5e20");
         appendLog("Verbunden mit Server.", "Server");
-        // Nach Reconnect: State anfordern
         network->sendGetState();
     });
 
     connect(network, &NetworkClient::disconnected, this, [this]() {
-        setConnectionStatus("Getrennt – Verbinde neu...", "#b00020");
-        appendLog("Verbindung getrennt. Automatischer Reconnect...", "Server");
+        setConnectionStatus("Nicht verbunden", "#842d2d");
+        ui->stackedWidget->setCurrentWidget(ui->startView);
+        appendLog("Verbindung getrennt. Bitte erneut verbinden.", "Server");
     });
 
     connect(network, &NetworkClient::errorOccurred, this, [this](const QString &err) {
-        appendLog(QString("❌ Netzwerkfehler: %1").arg(err), "Server");
+        setConnectionStatus("Nicht verbunden", "#842d2d");
+        ui->stackedWidget->setCurrentWidget(ui->startView);
+        appendLog(QString("Netzwerkfehler: %1").arg(err), "Server");
     });
 
     connect(network, &NetworkClient::jsonReceived, this, [this](const QJsonObject &obj) {
         const QString type = obj.value("type").toString();
+
+        if (logViewActive && !applyingArchivedState && type == "state") {
+            return;
+        }
 
         if (type == "assignPlayerId") {
             myPlayerId = obj.value("playerId").toInt(-1);
@@ -209,12 +216,12 @@ MainWindow::MainWindow(QWidget *parent)
         }
 
         if (type == "info") {
-            appendLog(QString("ℹ️ %1").arg(obj.value("message").toString()), "Server");
+            appendLog(QString("?? %1").arg(obj.value("message").toString()), "Server");
             return;
         }
 
         if (type == "error") {
-            appendLog(QString("❌ %1").arg(obj.value("message").toString()), "Server");
+            appendLog(QString("? %1").arg(obj.value("message").toString()), "Server");
             return;
         }
 
@@ -233,7 +240,7 @@ MainWindow::MainWindow(QWidget *parent)
             const QString playerName = resolvePlayerName(playerId);
 
             pendingBuyPlayerId = playerId;
-            appendLog(QString("🟢 Kaufangebot: %1 (%2$)").arg(fieldName).arg(price), playerName);
+            appendLog(QString("?? Kaufangebot: %1 (%2$)").arg(fieldName).arg(price), playerName);
             currentFieldName = QString("%1 (%2$)").arg(fieldName).arg(price);
             ui->fieldInfoValue->setText(currentFieldName);
             currentFieldIndex = pendingBuyFieldIndex;
@@ -255,7 +262,7 @@ MainWindow::MainWindow(QWidget *parent)
 
             QString rollMessage = QString("[Wuerfel] %1 + %2 = %3").arg(d1).arg(d2).arg(steps);
             if (!fieldName.isEmpty()) {
-                rollMessage += QString(" → %1").arg(fieldName);
+                rollMessage += QString(" ? %1").arg(fieldName);
             }
             appendLog(rollMessage, playerName);
             if (!fieldName.isEmpty()) {
@@ -320,7 +327,7 @@ MainWindow::MainWindow(QWidget *parent)
 
                 const QString readyMark = ready ? "OK" : "...";
 
-                // Spielerübersicht: einfache Karte wie im Design-Bild
+                // Spieler�bersicht: einfache Karte wie im Design-Bild
                 const bool bankrupt = p.value("bankrupt").toBool(false);
                 const bool inJail   = p.value("inJail").toBool(false);
                 const QColor pColor   = playerColors.value(id, QColor("#888888"));
@@ -413,7 +420,7 @@ MainWindow::MainWindow(QWidget *parent)
 
             const bool allReady = !players.isEmpty() && readyCount == players.size();
             ui->readyStartButton->setEnabled(!gameStarted);
-            const QString readyButtonText = localReady ? "Bereit ✔" : "Bereit";
+            const QString readyButtonText = localReady ? "Bereit ?" : "Bereit";
             ui->readyStartButton->setText(readyButtonText);
 
             const QJsonArray fields = obj.value("fields").toArray();
@@ -479,10 +486,11 @@ MainWindow::MainWindow(QWidget *parent)
         }
         network->sendEndTurn();
         setAwaitingEndTurn(false);
-        appendLog("🔁 Zugende angefragt.", resolvePlayerName(myPlayerId));
+        appendLog("?? Zugende angefragt.", resolvePlayerName(myPlayerId));
     });
 
     connect(ui->ServerButton, &QPushButton::clicked, this, [this]() {
+        network->setReconnectEnabled(false);
         setConnectionStatus("Verbinde...", "#d17f00");
         network->connectToServer("127.0.0.1", 4242);
     });
@@ -494,7 +502,7 @@ MainWindow::MainWindow(QWidget *parent)
             return;
         }
         loadLogFromCsv(path);
-        appendLog(QString("📂 Log geladen: %1").arg(path), "Client");
+        appendLog(QString("?? Log geladen: %1").arg(path), "Client");
     });
 
     connect(ui->buyProperty, &QPushButton::clicked, this, [this]() {
@@ -510,12 +518,12 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->readyStartButton, &QPushButton::clicked, this, [this]() {
         localReady = !localReady;
         network->sendSetReady(localReady);
-        ui->readyStartButton->setText(localReady ? "Bereit ✔" : "Bereit");
+        ui->readyStartButton->setText(localReady ? "Bereit ?" : "Bereit");
     });
 
     connect(ui->surrenderButton, &QPushButton::clicked, this, [this]() {
         network->sendSurrender();
-        appendLog("🏳️ Du hast aufgegeben.", resolvePlayerName(myPlayerId));
+        appendLog("??? Du hast aufgegeben.", resolvePlayerName(myPlayerId));
     });
 
     connect(ui->saveCsvButton, &QPushButton::clicked, this, [this]() {
@@ -525,7 +533,7 @@ MainWindow::MainWindow(QWidget *parent)
             return;
         }
         saveLogToCsv(path);
-        appendLog(QString("💾 Log gespeichert: %1").arg(path), "Client");
+        appendLog(QString("?? Log gespeichert: %1").arg(path), "Client");
     });
 
     connect(ui->playAgainButton, &QPushButton::clicked, this, [this]() {
@@ -537,8 +545,8 @@ MainWindow::MainWindow(QWidget *parent)
         ui->stackedWidget->setCurrentWidget(ui->startView);
         ui->winnerLabel->setVisible(false);
         ui->logExitButton->setVisible(false);
-        appendLog("━━━━━━━━━━━━━━━━━━━━━━━━━━━━", "System");
-        appendLog("🔄 Neustart – neues Spiel beginnt.", resolvePlayerName(myPlayerId));
+        appendLog("????????????????????????????", "System");
+        appendLog("?? Neustart � neues Spiel beginnt.", resolvePlayerName(myPlayerId));
     });
 
     connect(ui->logExitButton, &QPushButton::clicked, this, [this]() {
@@ -603,7 +611,7 @@ void MainWindow::on_rollDiceButton_clicked()
     appendLog("Wuerfeln angefragt.", resolvePlayerName(myPlayerId));
 }
 
-// Gibt die Spielerfarbe für einen Namen zurück (Fallback: grau)
+// Gibt die Spielerfarbe f�r einen Namen zur�ck (Fallback: grau)
 QString MainWindow::colorForPlayerName(const QString &name) const
 {
     for (auto it = playerNames.constBegin(); it != playerNames.constEnd(); ++it) {
@@ -615,7 +623,7 @@ QString MainWindow::colorForPlayerName(const QString &name) const
     return QStringLiteral("#888888");
 }
 
-// Gibt die passende Nachrichtenfarbe zurück (für dezente Einfärbung der Nachricht)
+// Gibt die passende Nachrichtenfarbe zur�ck (f�r dezente Einf�rbung der Nachricht)
 static QString msgColor(const QString &msg)
 {
     if (msg.contains("Wuerfelwurf"))          return "#a8d8a8"; // hellgruen
@@ -627,7 +635,7 @@ static QString msgColor(const QString &msg)
     return "#dddddd"; // standard
 }
 
-// Gibt eine Log-Zeile als HTML zurück (ein inline Span – append() fügt den Zeilenumbruch hinzu)
+// Gibt eine Log-Zeile als HTML zur�ck (ein inline Span � append() f�gt den Zeilenumbruch hinzu)
 QString MainWindow::logEntryToHtml(const LogEntry &entry) const
 {
     const QString timeStr = entry.timestamp.toString("HH:mm:ss");
@@ -661,7 +669,7 @@ void MainWindow::appendLog(const QString &message, const QString &playerName)
     const QString name = playerName.isEmpty() ? QString("System") : playerName;
     const QDateTime timestamp = QDateTime::currentDateTime();
     logEntries.push_back({timestamp, name, message});
-    // append() fügt automatisch einen Zeilenumbruch hinzu → saubere Trennung
+    // append() f�gt automatisch einen Zeilenumbruch hinzu ? saubere Trennung
     ui->textEdit_3->append(logEntryToHtml(logEntries.back()));
 }
 
@@ -677,7 +685,7 @@ void MainWindow::saveLogToCsv(const QString &filePath)
 {
     QFile file(filePath);
     if (!file.open(QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::Text)) {
-        appendLog(QString("❌ Konnte CSV nicht speichern: %1").arg(filePath), "Client");
+        appendLog(QString("? Konnte CSV nicht speichern: %1").arg(filePath), "Client");
         return;
     }
 
@@ -698,13 +706,14 @@ void MainWindow::loadLogFromCsv(const QString &filePath)
 {
     QFile file(filePath);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        appendLog(QString("❌ Konnte CSV nicht laden: %1").arg(filePath), "Client");
+        appendLog(QString("? Konnte CSV nicht laden: %1").arg(filePath), "Client");
         return;
     }
 
     QTextStream in(&file);
     QVector<LogEntry> loaded;
     QJsonObject loadedState;
+    QStringList archivedPlayerNames;
     bool firstLine = true;
 
     while (!in.atEnd()) {
@@ -732,23 +741,112 @@ void MainWindow::loadLogFromCsv(const QString &filePath)
             continue;
         }
         const QDateTime ts = QDateTime::fromString(parts.at(0), Qt::ISODate);
-        const QString player = parts.at(1);
+        const QString player = parts.at(1).trimmed();
         const QString message = parts.mid(2).join(';');
         loaded.push_back({ts.isValid() ? ts : QDateTime::currentDateTime(), player, message});
+        if (!player.isEmpty() && player != "Server" && player != "Client" && !archivedPlayerNames.contains(player)) {
+            archivedPlayerNames.push_back(player);
+        }
+    }
+
+    if (!loadedState.isEmpty()) {
+        const QJsonArray archivedPlayers = loadedState.value("players").toArray();
+        for (const QJsonValue &value : archivedPlayers) {
+            const QString name = value.toObject().value("name").toString().trimmed();
+            if (!name.isEmpty() && !archivedPlayerNames.contains(name)) {
+                archivedPlayerNames.push_back(name);
+            }
+        }
     }
 
     logEntries = loaded;
     refreshLogView();
+    logViewActive = true;
+    ui->logExitButton->setVisible(true);
+    applyArchivedPlayerNames(archivedPlayerNames);
+
     if (!loadedState.isEmpty()) {
         lastStateSnapshot = loadedState;
         if (loadedState.value("type").toString() != "state") {
             loadedState["type"] = "state";
         }
         suppressWinViewOnce = true;
-        logViewActive = true;
-        ui->logExitButton->setVisible(true);
+        applyingArchivedState = true;
         emit network->jsonReceived(loadedState);
+        applyingArchivedState = false;
+        applyArchivedPlayerNames(archivedPlayerNames);
     }
+}
+
+void MainWindow::applyArchivedPlayerNames(const QStringList &names)
+{
+    playerNames.clear();
+    playerPositions.clear();
+
+    QStringList playerLines;
+    const QList<QPushButton *> startButtons = {
+        ui->player1,
+        ui->player2,
+        ui->player3,
+        ui->player4,
+    };
+
+    for (int i = 0; i < startButtons.size(); ++i) {
+        if (i < names.size()) {
+            const int playerId = i + 1;
+            const QString name = names.at(i);
+            playerNames.insert(playerId, name);
+            playerLines << QString(
+                "<table width='100%%' cellspacing='0' cellpadding='0' style='margin:3px 0;'>"
+                "<tr style='background:#1e3a5f; border-radius:8px;'>"
+                "<td width='30' style='padding:7px 6px;'>"
+                  "<div style='width:18px;height:18px;background:%1;border-radius:4px;'>&nbsp;</div>"
+                "</td>"
+                "<td style='padding:7px 4px; color:white; font-weight:bold; font-size:13px;'>"
+                  "%2"
+                "</td>"
+                "<td align='right' style='padding:7px 10px; color:#aaaaaa; font-size:13px; font-weight:bold; white-space:nowrap;'>"
+                  "Archiv"
+                "</td>"
+                "</tr>"
+                "</table>")
+                .arg(playerColors.value(playerId, QColor("#888888")).name())
+                .arg(name.toHtmlEscaped());
+
+            startButtons[i]->setText(QString("%1 Archiv").arg(name));
+            startButtons[i]->setVisible(true);
+            startButtons[i]->setStyleSheet(QString(
+                "QPushButton {"
+                "border-left:5px solid %1;"
+                "border-radius:8px;"
+                "background-color:#1e2d3d;"
+                "color:white;"
+                "font-weight:normal;"
+                "text-align:left;"
+                "padding-left:8px;"
+                "}"
+                "QPushButton:hover { background-color:#1e2d3d; }")
+                .arg(playerColors.value(playerId, QColor("#555555")).name()));
+        } else {
+            startButtons[i]->setText(QString("Spieler %1").arg(i + 1));
+            startButtons[i]->setVisible(false);
+        }
+    }
+
+    if (playerLines.isEmpty()) {
+        ui->playersText->setHtml("<div style='color:#aaaaaa;'>Keine Spielernamen in der CSV gefunden.</div>");
+    } else {
+        ui->playersText->setHtml(playerLines.join(""));
+    }
+
+    ui->stackedWidget->setCurrentWidget(ui->gameView);
+    ensureDiceEnabled(false);
+    ui->readyButton->setEnabled(false);
+    ui->buyButton->setEnabled(false);
+    ui->buyProperty->setEnabled(false);
+    ui->buyProperty->setVisible(false);
+    ui->readyStartButton->setEnabled(false);
+    ui->surrenderButton->setEnabled(false);
 }
 
 QString MainWindow::resolvePlayerName(int playerId) const
@@ -967,7 +1065,7 @@ void MainWindow::updateHouseMarkers()
             continue;
         }
 
-        // Besitzerfarbe für den Haus-Marker ermitteln
+        // Besitzerfarbe f�r den Haus-Marker ermitteln
         const int ownerId = info.value("ownerId").toInt(-1);
         QColor ownerColor = playerColors.value(ownerId, QColor("#2e7d32"));
         // Randfarbe: etwas hellere Version der Besitzerfarbe
@@ -980,7 +1078,7 @@ void MainWindow::updateHouseMarkers()
             marker->setFixedSize(22, 22);
             houseMarkers.insert(index, marker);
         }
-        // Stil immer aktualisieren (Besitzer kann sich ändern)
+        // Stil immer aktualisieren (Besitzer kann sich �ndern)
         marker->setText("H");
         marker->setStyleSheet(QString(
             "background-color:%1;"
@@ -1052,4 +1150,5 @@ bool MainWindow::eventFilter(QObject *watched, QEvent *event)
     }
     return QMainWindow::eventFilter(watched, event);
 }
+
 

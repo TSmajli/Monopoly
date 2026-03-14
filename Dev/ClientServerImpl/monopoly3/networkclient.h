@@ -25,6 +25,7 @@ public:
     void sendSetReady(bool ready);
     void sendBuyHouse(int fieldIndex);
     void sendRestartGame();
+    void setReconnectEnabled(bool enabled);
 
 signals:
     void connected();

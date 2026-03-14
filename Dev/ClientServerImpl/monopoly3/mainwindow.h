@@ -53,6 +53,7 @@ private:
     QMap<int, QLabel *> houseMarkers;
     bool suppressWinViewOnce = false;
     bool logViewActive = false;
+    bool applyingArchivedState = false;
 
     struct LogEntry {
         QDateTime timestamp;
@@ -65,6 +66,7 @@ private:
     void refreshLogView();
     void saveLogToCsv(const QString &filePath);
     void loadLogFromCsv(const QString &filePath);
+    void applyArchivedPlayerNames(const QStringList &names);
     QString resolvePlayerName(int playerId) const;
     QString colorForPlayerName(const QString &name) const;
     QString logEntryToHtml(const LogEntry &entry) const;

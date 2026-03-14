@@ -39,7 +39,7 @@
        <string notr="true"/>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="gameView">
        <property name="enabled">
@@ -831,7 +831,8 @@ background-color:transparent;</string>
            </property>
            <property name="styleSheet">
             <string notr="true">font-size:8px;
-border: 0px solid black;</string>
+border: 0px solid black;
+color: black;</string>
            </property>
            <property name="text">
             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:7pt; font-weight:700;&quot;&gt;Berufsschule&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -858,7 +859,8 @@ border: 0px solid black;</string>
           </property>
           <property name="styleSheet">
            <string notr="true">font-size:8px;
-border: 0px solid black;</string>
+border: 0px solid black;
+color: black;</string>
           </property>
           <property name="text">
            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:700;&quot;&gt;Schulfrei&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:700;&quot;&gt;&lt;br/&gt;&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:700;&quot;&gt;&lt;br/&gt;&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -1837,7 +1839,8 @@ border: 0px solid black;</string>
           </property>
           <property name="styleSheet">
            <string notr="true">font-size:8px;
-border: 0px solid black;</string>
+border: 0px solid black;
+color: black;</string>
           </property>
           <property name="text">
            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:10pt; font-weight:700;&quot;&gt;Gehe in die&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:10pt; font-weight:700;&quot;&gt;Berufsschule&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -3124,7 +3127,8 @@ border: 0px solid black;</string>
           </property>
           <property name="styleSheet">
            <string notr="true">font-size:8px;
-border: 0px solid black;</string>
+border: 0px solid black;
+color: black;</string>
           </property>
           <property name="text">
            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt; font-weight:700;&quot;&gt;Ferien&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;span style=&quot; font-size:10pt; font-weight:700;&quot;&gt;&lt;br/&gt;&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -3967,14 +3971,14 @@ border-width:2px;
 border-color:transparent
 ;
 color:white;
-padding-bottom:10px;
-font: 25pt ;
+padding-bottom:3px;
+font: 18pt ;
 font-weight:bold;
 
 </string>
          </property>
          <property name="text">
-          <string>+</string>
+          <string>✎</string>
          </property>
         </widget>
         <widget class="QLabel" name="label_2">

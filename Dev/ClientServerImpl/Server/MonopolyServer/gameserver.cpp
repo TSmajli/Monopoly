@@ -1,4 +1,4 @@
-Ôªø#include "gameserver.h"
+#include "gameserver.h"
 
 #include <QJsonDocument>
 #include <QJsonArray>
@@ -30,7 +30,7 @@ void GameServer::startServer(quint16 port)
         qWarning() << "[SERVER] konnte nicht starten:" << server.errorString();
         return;
     }
-    qDebug() << "[SERVER] l√§uft auf Port" << port;
+    qDebug() << "[SERVER] l‰uft auf Port" << port;
 }
 
 void GameServer::onNewConnection()
@@ -179,7 +179,7 @@ void GameServer::processMessage(Player &player, const QJsonObject &msg)
                          << "for" << pf->price << "(money before=" << p->money << ")";
                 pf->buy(*p);
                 qDebug() << "[BUY] money after=" << p->money;
-                broadcastLog(p->id, QString("kauft %1 f√ºr %2$")
+                broadcastLog(p->id, QString("kauft %1 f¸r %2$")
                                        .arg(pf->name)
                                        .arg(pf->price));
             } else {
@@ -222,12 +222,12 @@ void GameServer::handleStartGame(Player &player)
         return;
     }
 
-    // Mindestspieler (√§ndere auf 1 wenn du solo willst)
+    // Mindestspieler (‰ndere auf 1 wenn du solo willst)
     if (players.size() < 2) {
         qDebug() << "[GAME] startGame blocked (need 2 players), have" << players.size();
         QJsonObject err;
         err["type"] = "error";
-        err["message"] = "Mindestens 2 Spieler n√∂tig um zu starten.";
+        err["message"] = "Mindestens 2 Spieler nˆtig um zu starten.";
         sendToPlayer(player, err);
         return;
     }
@@ -235,7 +235,7 @@ void GameServer::handleStartGame(Player &player)
     if (!areAllPlayersReady()) {
         QJsonObject err;
         err["type"] = "error";
-        err["message"] = "Alle Spieler m√ºssen bereit sein, bevor das Spiel startet.";
+        err["message"] = "Alle Spieler m¸ssen bereit sein, bevor das Spiel startet.";
         sendToPlayer(player, err);
         return;
     }
@@ -267,7 +267,7 @@ void GameServer::handleSetName(Player &player, const QString &name)
         return;
     }
     player.name = name.left(20);
-    broadcastLog(player.id, QString("hei√üt jetzt %1").arg(player.name));
+    broadcastLog(player.id, QString("heiﬂt jetzt %1").arg(player.name));
     broadcastGameState("playerName");
 }
 
@@ -305,7 +305,7 @@ void GameServer::handleBuyHouse(Player &player, int fieldIndex)
     if (!gameStarted || gameFinished) {
         QJsonObject err;
         err["type"] = "error";
-        err["message"] = "Hauskauf ist nur w√§hrend eines laufenden Spiels m√∂glich.";
+        err["message"] = "Hauskauf ist nur w‰hrend eines laufenden Spiels mˆglich.";
         sendToPlayer(player, err);
         return;
     }
@@ -327,7 +327,7 @@ void GameServer::handleBuyHouse(Player &player, int fieldIndex)
         return;
     }
 
-    // Spieler muss auf der Stra√üe stehen
+    // Spieler muss auf der Straﬂe stehen
     (void)fieldIndex;
     Field *f = board.getField(player.position);
     auto *sf = dynamic_cast<StreetField*>(f);
@@ -335,7 +335,7 @@ void GameServer::handleBuyHouse(Player &player, int fieldIndex)
     if (!sf || sf->owner != &player) {
         QJsonObject err;
         err["type"] = "error";
-        err["message"] = "Hauskauf nur auf eigener Stra√üe m√∂glich.";
+        err["message"] = "Hauskauf nur auf eigener Straﬂe mˆglich.";
         sendToPlayer(player, err);
         return;
     }
@@ -351,13 +351,13 @@ void GameServer::handleBuyHouse(Player &player, int fieldIndex)
     if (player.money < sf->hotelPrice) {
         QJsonObject err;
         err["type"] = "error";
-        err["message"] = "Nicht genug Geld f√ºr ein Haus.";
+        err["message"] = "Nicht genug Geld f¸r ein Haus.";
         sendToPlayer(player, err);
         return;
     }
 
     sf->buyHotel(player);
-    broadcastLog(player.id, QString("kauft ein Haus auf %1 f√ºr %2$")
+    broadcastLog(player.id, QString("kauft ein Haus auf %1 f¸r %2$")
                                .arg(sf->name)
                                .arg(sf->hotelPrice));
     broadcastGameState("houseBought");
@@ -458,7 +458,7 @@ void GameServer::handleRollDice(Player &player)
         qDebug() << "[FIELD] Utility lastDiceRoll set to" << steps;
     }
 
-    // W√ºrfel-Event an alle
+    // W¸rfel-Event an alle
     QJsonObject roll;
     roll["type"] = "diceRolled";
     roll["playerId"] = current->id;
@@ -480,6 +480,38 @@ void GameServer::handleRollDice(Player &player)
         qDebug() << "[FIELD] onLand done"
                  << "| playerMoneyAfter=" << current->money;
 
+
+        const int delta = current->money - before;
+        if (auto *tf = dynamic_cast<TaxField*>(f)) {
+            broadcastLog(current->id, QString("muss auf %1 %2$ zahlen")
+                                       .arg(tf->name)
+                                       .arg(tf->taxAmount));
+        } else if (auto *sf = dynamic_cast<StreetField*>(f)) {
+            if (sf->owner && sf->owner != current) {
+                broadcastLog(current->id, QString("zahlt %1$ Miete an %2 fuer %3")
+                                           .arg(sf->calculateRent())
+                                           .arg(sf->owner->name)
+                                           .arg(sf->name));
+            }
+        } else if (auto *rf = dynamic_cast<RailroadField*>(f)) {
+            if (rf->owner && rf->owner != current) {
+                broadcastLog(current->id, QString("zahlt %1$ Miete an %2 fuer %3")
+                                           .arg(rf->calculateRent())
+                                           .arg(rf->owner->name)
+                                           .arg(rf->name));
+            }
+        } else if (auto *uf = dynamic_cast<UtilityField*>(f)) {
+            if (uf->owner && uf->owner != current) {
+                broadcastLog(current->id, QString("zahlt %1$ Miete an %2 fuer %3")
+                                           .arg(uf->calculateRent())
+                                           .arg(uf->owner->name)
+                                           .arg(uf->name));
+            }
+        }
+        if (delta > 0 && !dynamic_cast<CardField*>(f)) {
+            broadcastLog(current->id, QString("erhaelt %1$ auf %2").arg(delta).arg(f->name));
+        }
+
         // Ereigniskarte: Nachricht an alle senden
         if (auto *cf = dynamic_cast<CardField*>(f)) {
             if (!cf->lastCardMessage.isEmpty()) {
@@ -488,7 +520,7 @@ void GameServer::handleRollDice(Player &player)
             }
         }
 
-        // Gehe zu Berufsschule: Spieler ist jetzt im Gef√§ngnis
+        // Gehe zu Berufsschule: Spieler ist jetzt im Gef‰ngnis
         if (dynamic_cast<GoToJailField*>(f)) {
             broadcastLog(current->id, "geht in die Berufsschule! (Gefaengnis, 3 Zuege)");
             // Position wurde bereits in goToJail() auf 10 gesetzt
@@ -634,15 +666,15 @@ void GameServer::initBoardIfNeeded()
     };
 
     auto mkStreet = [&](int idx, const QString &nm, const QString &color,
-                        int price, int baseRent, int /*hotelPrice*/, int /*hotelRent*/){
+                        int price, int baseRent, int hotelPrice, int hotelRent){
         auto *f = new StreetField();
         f->index = idx;
         f->name = nm;
         f->color = color;
         f->price = fast(price);
-        f->baseRent = fast(baseRent);
-        f->hotelPrice = 200;
-        f->hotelRent  = 0; // dynamisch berechnet: baseRent * 1.5
+        f->baseRent = fast(baseRent * 2);
+        f->hotelPrice = fast(hotelPrice);
+        f->hotelRent  = fast(hotelRent);
         board.fields.append(f);
     };
 
@@ -651,7 +683,7 @@ void GameServer::initBoardIfNeeded()
         f->index = idx;
         f->name = nm;
         f->price = fast(price);
-        f->baseRent = fast(rent);
+        f->baseRent = fast(rent * 2);
         board.fields.append(f);
     };
 
@@ -693,26 +725,26 @@ void GameServer::initBoardIfNeeded()
         board.fields.append(f);
     };
 
-    mkStart(0, "Start", 200);
+    mkStart(0, "Start", 300);
     mkStreet(1, "Altbau", "brown", 60, 2, 50, 10);
     mkCard(2, "Unterricht");
     mkStreet(3, "Sporthalle", "brown", 60, 4, 50, 20);
-    mkTax(4, "Papiergeld", 200);
+    mkTax(4, "Papiergeld", 100);
     mkRail(5, "Erlanger Bahnhof", 200, 25);
     mkStreet(6, "Kaufland", "lightblue", 100, 6, 50, 30);
     mkCard(7, "Unterricht");
     mkStreet(8, "Back21", "lightblue", 100, 6, 50, 30);
     mkStreet(9, "Brezenkolb", "lightblue", 120, 8, 50, 40);
     mkJail(10, "Berufsschule / Schulfrei");
-    mkStreet(11, "Franken D√∂ner", "pink", 140, 10, 100, 50);
+    mkStreet(11, "Franken Dˆner", "pink", 140, 10, 100, 50);
     mkUtil(12, "Wasserspender", 150);
-    mkStreet(13, "Berlinder D√∂ner", "pink", 140, 10, 100, 50);
+    mkStreet(13, "Berliner Dˆner", "pink", 140, 10, 100, 50);
     mkStreet(14, "Subway", "pink", 160, 12, 100, 60);
-    mkRail(15, "N√ºrnberger Bahnhof", 200, 25);
+    mkRail(15, "N¸rnberger Bahnhof", 200, 25);
     mkStreet(16, "Sekretariat", "orange", 180, 14, 100, 70);
     mkCard(17, "Unterricht");
     mkStreet(18, "Lehrerzimmer", "orange", 180, 14, 100, 70);
-    mkStreet(19, "B√ºro-Direktor", "orange", 200, 16, 100, 80);
+    mkStreet(19, "B¸ro-Direktor", "orange", 200, 16, 100, 80);
     mkTax(20, "Ferien", 0);
     mkStreet(21, "Neubau", "red", 220, 18, 150, 90);
     mkCard(22, "Unterricht");
@@ -724,8 +756,8 @@ void GameServer::initBoardIfNeeded()
     mkUtil(28, "Toilette", 150);
     mkStreet(29, "Klassenraum", "yellow", 280, 24, 150, 120);
     mkGoToJail(30, "Gehe zu Berufsschule");
-    mkStreet(31, "IHK Pr√ºfungshalle", "green", 300, 26, 200, 130);
-    mkStreet(32, "Fr√§nky", "green", 300, 26, 200, 130);
+    mkStreet(31, "IHK Pr¸fungshalle", "green", 300, 26, 200, 130);
+    mkStreet(32, "Fr‰nky", "green", 300, 26, 200, 130);
     mkCard(33, "Unterricht");
     mkStreet(34, "DerBeck", "green", 320, 28, 200, 150);
     mkRail(35, "Baiersdorfer Bahnhof", 200, 25);
@@ -875,7 +907,7 @@ QJsonObject GameServer::buildGameState(const QString &reason) const
                 fo["color"] = sf->color;
                 fo["hasHotel"] = sf->hasHotel;
                 fo["hotelPrice"] = sf->hotelPrice;
-                fo["hotelRent"] = static_cast<int>(sf->baseRent * 1.5);
+                fo["hotelRent"] = sf->hotelRent;
             } else if (dynamic_cast<RailroadField*>(f)) {
                 fo["subtype"] = "railroad";
             } else if (dynamic_cast<UtilityField*>(f)) {
@@ -1000,3 +1032,5 @@ void GameServer::onClientDisconnected()
     recvBuffers.remove(socket);
     socket->deleteLater();
 }
+
+
