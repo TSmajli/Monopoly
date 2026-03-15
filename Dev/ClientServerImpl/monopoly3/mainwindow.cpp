@@ -1,4 +1,4 @@
-#include "mainwindow.h"
+ï»¿#include "mainwindow.h"
 #include "ui_mainwindow.h"
 
 #include "networkclient.h"
@@ -100,7 +100,7 @@ MainWindow::MainWindow(QWidget *parent)
         "}");
 
 
-    ui->readyStartButton->setStyleSheet(buttonStyle("#252850", "#191970"));
+    updateReadyStartButtonAppearance();
     ui->rollDiceButton->setStyleSheet(buttonStyle("#469536", "#38772B"));
     ui->buyButton->setStyleSheet(buttonStyle("#275EA8", "#1e4b85"));
     ui->readyButton->setStyleSheet(buttonStyle("#252850", "#191970"));
@@ -327,7 +327,7 @@ MainWindow::MainWindow(QWidget *parent)
 
                 const QString readyMark = ready ? "OK" : "...";
 
-                // Spielerübersicht: einfache Karte wie im Design-Bild
+                // Spieleruebersicht: einfache Karte wie im Design-Bild
                 const bool bankrupt = p.value("bankrupt").toBool(false);
                 const bool inJail   = p.value("inJail").toBool(false);
                 const QColor pColor   = playerColors.value(id, QColor("#888888"));
@@ -420,8 +420,7 @@ MainWindow::MainWindow(QWidget *parent)
 
             const bool allReady = !players.isEmpty() && readyCount == players.size();
             ui->readyStartButton->setEnabled(!gameStarted);
-            const QString readyButtonText = localReady ? "Bereit ?" : "Bereit";
-            ui->readyStartButton->setText(readyButtonText);
+            updateReadyStartButtonAppearance();
 
             const QJsonArray fields = obj.value("fields").toArray();
             fieldInfoByIndex.clear();
@@ -518,7 +517,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->readyStartButton, &QPushButton::clicked, this, [this]() {
         localReady = !localReady;
         network->sendSetReady(localReady);
-        ui->readyStartButton->setText(localReady ? "Bereit ?" : "Bereit");
+        updateReadyStartButtonAppearance();
     });
 
     connect(ui->surrenderButton, &QPushButton::clicked, this, [this]() {
@@ -539,14 +538,12 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->playAgainButton, &QPushButton::clicked, this, [this]() {
         localReady = false;
         logViewActive = false;
-        ui->readyStartButton->setText("Bereit");
-        ui->readyStartButton->setEnabled(true);
-        network->sendRestartGame();
+        updateReadyStartButtonAppearance();
         ui->stackedWidget->setCurrentWidget(ui->startView);
         ui->winnerLabel->setVisible(false);
         ui->logExitButton->setVisible(false);
-        appendLog("????????????????????????????", "System");
-        appendLog("?? Neustart – neues Spiel beginnt.", resolvePlayerName(myPlayerId));
+        appendLog("----------------------------", "System");
+        appendLog("Neustart - neues Spiel beginnt.", resolvePlayerName(myPlayerId));
     });
 
     connect(ui->logExitButton, &QPushButton::clicked, this, [this]() {
@@ -555,7 +552,7 @@ MainWindow::MainWindow(QWidget *parent)
         logViewActive = false;
         localReady = false;
         ui->readyStartButton->setEnabled(true);
-        ui->readyStartButton->setText("Bereit");
+        updateReadyStartButtonAppearance();
     });
 
     ui->surrenderButton->raise();
@@ -611,7 +608,7 @@ void MainWindow::on_rollDiceButton_clicked()
     appendLog("Wuerfeln angefragt.", resolvePlayerName(myPlayerId));
 }
 
-// Gibt die Spielerfarbe für einen Namen zurück (Fallback: grau)
+// Gibt die Spielerfarbe fuer einen Namen zurueck (Fallback: grau)
 QString MainWindow::colorForPlayerName(const QString &name) const
 {
     for (auto it = playerNames.constBegin(); it != playerNames.constEnd(); ++it) {
@@ -623,7 +620,7 @@ QString MainWindow::colorForPlayerName(const QString &name) const
     return QStringLiteral("#888888");
 }
 
-// Gibt die passende Nachrichtenfarbe zurück (für dezente Einfärbung der Nachricht)
+// Gibt die passende Nachrichtenfarbe zurueck (fuer dezente Einfaerbung der Nachricht)
 static QString msgColor(const QString &msg)
 {
     if (msg.contains("Wuerfelwurf"))          return "#a8d8a8"; // hellgruen
@@ -635,7 +632,7 @@ static QString msgColor(const QString &msg)
     return "#dddddd"; // standard
 }
 
-// Gibt eine Log-Zeile als HTML zurück (ein inline Span – append() fügt den Zeilenumbruch hinzu)
+// Gibt eine Log-Zeile als HTML zurueck (ein inline Span - append() fuegt den Zeilenumbruch hinzu)
 QString MainWindow::logEntryToHtml(const LogEntry &entry) const
 {
     const QString timeStr = entry.timestamp.toString("HH:mm:ss");
@@ -669,7 +666,7 @@ void MainWindow::appendLog(const QString &message, const QString &playerName)
     const QString name = playerName.isEmpty() ? QString("System") : playerName;
     const QDateTime timestamp = QDateTime::currentDateTime();
     logEntries.push_back({timestamp, name, message});
-    // append() fügt automatisch einen Zeilenumbruch hinzu ? saubere Trennung
+    // append() fuegt automatisch einen Zeilenumbruch hinzu - saubere Trennung
     ui->textEdit_3->append(logEntryToHtml(logEntries.back()));
 }
 
@@ -1045,6 +1042,15 @@ void MainWindow::updateHouseBuyAvailability()
     }
 }
 
+void MainWindow::updateReadyStartButtonAppearance()
+{
+    ui->readyStartButton->setText(localReady ? "Nicht Bereit" : "Bereit");
+    if (localReady) {
+        ui->readyStartButton->setStyleSheet(buttonStyle("#c94f4f", "#b53f3f"));
+    } else {
+        ui->readyStartButton->setStyleSheet(buttonStyle("#469536", "#38772B"));
+    }
+}
 void MainWindow::updateHouseMarkers()
 {
     for (auto it = houseMarkers.begin(); it != houseMarkers.end(); ++it) {
@@ -1065,7 +1071,7 @@ void MainWindow::updateHouseMarkers()
             continue;
         }
 
-        // Besitzerfarbe für den Haus-Marker ermitteln
+        // Besitzerfarbe fuer den Haus-Marker ermitteln
         const int ownerId = info.value("ownerId").toInt(-1);
         QColor ownerColor = playerColors.value(ownerId, QColor("#2e7d32"));
         // Randfarbe: etwas hellere Version der Besitzerfarbe
@@ -1078,7 +1084,7 @@ void MainWindow::updateHouseMarkers()
             marker->setFixedSize(22, 22);
             houseMarkers.insert(index, marker);
         }
-        // Stil immer aktualisieren (Besitzer kann sich ändern)
+        // Stil immer aktualisieren (Besitzer kann sich aendern)
         marker->setText("H");
         marker->setStyleSheet(QString(
             "background-color:%1;"
@@ -1150,5 +1156,9 @@ bool MainWindow::eventFilter(QObject *watched, QEvent *event)
     }
     return QMainWindow::eventFilter(watched, event);
 }
+
+
+
+
 
 

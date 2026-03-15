@@ -1,9 +1,9 @@
-#include "player.h"
+﻿#include "player.h"
 
 void Player::move(int steps) {
     position += steps;
     if (position >= 40) {
-        position -= 40; // Startbonus könnte hier kommen
+        position -= 40; // Startbonus koennte hier kommen
         money += 300;          // Startfeld Bonus
     }
 }
@@ -28,4 +28,5 @@ void Player::goToJail(int jailPos)
     inJail = true;
     jailTurns = 3;
 }
+
 

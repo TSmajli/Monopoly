@@ -1,4 +1,4 @@
-#ifndef MAINWINDOW_H
+﻿#ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
 #include <QMainWindow>
@@ -75,6 +75,7 @@ private:
     void updatePlayerTokens();
     void updateHouseBuyAvailability();
     void updateHouseMarkers();
+    void updateReadyStartButtonAppearance();
     void setConnectionStatus(const QString &text, const QString &color);
     void setAwaitingBuyDecision(bool awaiting);
     void setAwaitingEndTurn(bool awaiting);

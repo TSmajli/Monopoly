@@ -1,8 +1,8 @@
-#include "railroadfield.h"
+﻿#include "railroadfield.h"
 #include "player.h"
 
 int RailroadField::calculateRent() const {
-    return baseRent; // später: abhängig von Anzahl Bahnhöfe
+    return baseRent; // spaeter: abhaengig von Anzahl Bahnhoefe
 }
 
 void RailroadField::onLand(Player& player) {
@@ -11,3 +11,5 @@ void RailroadField::onLand(Player& player) {
         owner->receive(calculateRent());
     }
 }
+
+

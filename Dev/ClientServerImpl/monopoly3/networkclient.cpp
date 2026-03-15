@@ -1,4 +1,4 @@
-#include "networkclient.h"
+﻿#include "networkclient.h"
 #include <QJsonDocument>
 
 NetworkClient::NetworkClient(QObject *parent)
@@ -34,7 +34,7 @@ void NetworkClient::connectToServer(const QString &host, quint16 port)
 
 void NetworkClient::onConnected()
 {
-    reconnectDelay = 2000; // Backoff zurücksetzen
+    reconnectDelay = 2000; // Backoff zuruecksetzen
     reconnectTimer->stop();
     emit connected();
 }
@@ -187,4 +187,5 @@ void NetworkClient::sendRestartGame()
     msg["type"] = "restartGame";
     sendJson(msg);
 }
+
 

@@ -1,4 +1,4 @@
-#include "gameserver.h"
+ï»¿#include "gameserver.h"
 
 #include <QJsonDocument>
 #include <QJsonArray>
@@ -30,7 +30,7 @@ void GameServer::startServer(quint16 port)
         qWarning() << "[SERVER] konnte nicht starten:" << server.errorString();
         return;
     }
-    qDebug() << "[SERVER] läuft auf Port" << port;
+    qDebug() << "[SERVER] laeuft auf Port" << port;
 }
 
 void GameServer::onNewConnection()
@@ -179,7 +179,7 @@ void GameServer::processMessage(Player &player, const QJsonObject &msg)
                          << "for" << pf->price << "(money before=" << p->money << ")";
                 pf->buy(*p);
                 qDebug() << "[BUY] money after=" << p->money;
-                broadcastLog(p->id, QString("kauft %1 für %2$")
+                broadcastLog(p->id, QString("kauft %1 fuer %2$")
                                        .arg(pf->name)
                                        .arg(pf->price));
             } else {
@@ -222,12 +222,12 @@ void GameServer::handleStartGame(Player &player)
         return;
     }
 
-    // Mindestspieler (ändere auf 1 wenn du solo willst)
+    // Mindestspieler (aendere auf 1 wenn du solo willst)
     if (players.size() < 2) {
         qDebug() << "[GAME] startGame blocked (need 2 players), have" << players.size();
         QJsonObject err;
         err["type"] = "error";
-        err["message"] = "Mindestens 2 Spieler nötig um zu starten.";
+        err["message"] = "Mindestens 2 Spieler noetig um zu starten.";
         sendToPlayer(player, err);
         return;
     }
@@ -235,7 +235,7 @@ void GameServer::handleStartGame(Player &player)
     if (!areAllPlayersReady()) {
         QJsonObject err;
         err["type"] = "error";
-        err["message"] = "Alle Spieler müssen bereit sein, bevor das Spiel startet.";
+        err["message"] = "Alle Spieler muessen bereit sein, bevor das Spiel startet.";
         sendToPlayer(player, err);
         return;
     }
@@ -267,7 +267,7 @@ void GameServer::handleSetName(Player &player, const QString &name)
         return;
     }
     player.name = name.left(20);
-    broadcastLog(player.id, QString("heißt jetzt %1").arg(player.name));
+    broadcastLog(player.id, QString("heisst jetzt %1").arg(player.name));
     broadcastGameState("playerName");
 }
 
@@ -305,7 +305,7 @@ void GameServer::handleBuyHouse(Player &player, int fieldIndex)
     if (!gameStarted || gameFinished) {
         QJsonObject err;
         err["type"] = "error";
-        err["message"] = "Hauskauf ist nur während eines laufenden Spiels möglich.";
+        err["message"] = "Hauskauf ist nur waehrend eines laufenden Spiels moeglich.";
         sendToPlayer(player, err);
         return;
     }
@@ -327,7 +327,7 @@ void GameServer::handleBuyHouse(Player &player, int fieldIndex)
         return;
     }
 
-    // Spieler muss auf der Straße stehen
+    // Spieler muss auf der Strasse stehen
     (void)fieldIndex;
     Field *f = board.getField(player.position);
     auto *sf = dynamic_cast<StreetField*>(f);
@@ -335,7 +335,7 @@ void GameServer::handleBuyHouse(Player &player, int fieldIndex)
     if (!sf || sf->owner != &player) {
         QJsonObject err;
         err["type"] = "error";
-        err["message"] = "Hauskauf nur auf eigener Straße möglich.";
+        err["message"] = "Hauskauf nur auf eigener Strasse moeglich.";
         sendToPlayer(player, err);
         return;
     }
@@ -351,13 +351,13 @@ void GameServer::handleBuyHouse(Player &player, int fieldIndex)
     if (player.money < sf->hotelPrice) {
         QJsonObject err;
         err["type"] = "error";
-        err["message"] = "Nicht genug Geld für ein Haus.";
+        err["message"] = "Nicht genug Geld fuer ein Haus.";
         sendToPlayer(player, err);
         return;
     }
 
     sf->buyHotel(player);
-    broadcastLog(player.id, QString("kauft ein Haus auf %1 für %2$")
+    broadcastLog(player.id, QString("kauft ein Haus auf %1 fuer %2$")
                                .arg(sf->name)
                                .arg(sf->hotelPrice));
     broadcastGameState("houseBought");
@@ -458,7 +458,7 @@ void GameServer::handleRollDice(Player &player)
         qDebug() << "[FIELD] Utility lastDiceRoll set to" << steps;
     }
 
-    // Würfel-Event an alle
+    // Wuerfel-Event an alle
     QJsonObject roll;
     roll["type"] = "diceRolled";
     roll["playerId"] = current->id;
@@ -483,7 +483,7 @@ void GameServer::handleRollDice(Player &player)
 
         const int delta = current->money - before;
         if (auto *tf = dynamic_cast<TaxField*>(f)) {
-            broadcastLog(current->id, QString("muss auf %1 %2$ zahlen")
+            broadcastLog(current->id, QString("muss %1 %2$ Papiergeld zahlen")
                                        .arg(tf->name)
                                        .arg(tf->taxAmount));
         } else if (auto *sf = dynamic_cast<StreetField*>(f)) {
@@ -520,7 +520,7 @@ void GameServer::handleRollDice(Player &player)
             }
         }
 
-        // Gehe zu Berufsschule: Spieler ist jetzt im Gefängnis
+        // Gehe zu Berufsschule: Spieler ist jetzt im Gefaengnis
         if (dynamic_cast<GoToJailField*>(f)) {
             broadcastLog(current->id, "geht in die Berufsschule! (Gefaengnis, 3 Zuege)");
             // Position wurde bereits in goToJail() auf 10 gesetzt
@@ -726,45 +726,45 @@ void GameServer::initBoardIfNeeded()
     };
 
     mkStart(0, "Start", 300);
-    mkStreet(1, "Altbau", "brown", 60, 2, 50, 10);
+    mkStreet(1, "Altbau", "Braun", 60, 2, 50, 10);
     mkCard(2, "Unterricht");
-    mkStreet(3, "Sporthalle", "brown", 60, 4, 50, 20);
+    mkStreet(3, "Sporthalle", "Braun", 60, 4, 50, 20);
     mkTax(4, "Papiergeld", 100);
     mkRail(5, "Erlanger Bahnhof", 200, 25);
-    mkStreet(6, "Kaufland", "lightblue", 100, 6, 50, 30);
+    mkStreet(6, "Kaufland", "Hellblau", 100, 6, 50, 30);
     mkCard(7, "Unterricht");
-    mkStreet(8, "Back21", "lightblue", 100, 6, 50, 30);
-    mkStreet(9, "Brezenkolb", "lightblue", 120, 8, 50, 40);
+    mkStreet(8, "Back21", "Hellblau", 100, 6, 50, 30);
+    mkStreet(9, "Brezenkolb", "Hellblau", 120, 8, 50, 40);
     mkJail(10, "Berufsschule / Schulfrei");
-    mkStreet(11, "Franken Döner", "pink", 140, 10, 100, 50);
+    mkStreet(11, "Franken Doener", "Pink", 140, 10, 100, 50);
     mkUtil(12, "Wasserspender", 150);
-    mkStreet(13, "Berliner Döner", "pink", 140, 10, 100, 50);
-    mkStreet(14, "Subway", "pink", 160, 12, 100, 60);
-    mkRail(15, "Nürnberger Bahnhof", 200, 25);
-    mkStreet(16, "Sekretariat", "orange", 180, 14, 100, 70);
+    mkStreet(13, "Berliner Doener", "Pink", 140, 10, 100, 50);
+    mkStreet(14, "Subway", "Pink", 160, 12, 100, 60);
+    mkRail(15, "Nuernberger Bahnhof", 200, 25);
+    mkStreet(16, "Sekretariat", "Orange", 180, 14, 100, 70);
     mkCard(17, "Unterricht");
-    mkStreet(18, "Lehrerzimmer", "orange", 180, 14, 100, 70);
-    mkStreet(19, "Büro-Direktor", "orange", 200, 16, 100, 80);
+    mkStreet(18, "Lehrerzimmer", "Orange", 180, 14, 100, 70);
+    mkStreet(19, "Buero-Direktor", "Orange", 200, 16, 100, 80);
     mkTax(20, "Ferien", 0);
-    mkStreet(21, "Neubau", "red", 220, 18, 150, 90);
+    mkStreet(21, "Neubau", "Rot", 220, 18, 150, 90);
     mkCard(22, "Unterricht");
-    mkStreet(23, "FOS", "red", 220, 18, 150, 90);
-    mkStreet(24, "Pausenhof", "red", 240, 20, 150, 100);
+    mkStreet(23, "FOS", "Rot", 220, 18, 150, 90);
+    mkStreet(24, "Pausenhof", "Rot", 240, 20, 150, 100);
     mkRail(25, "Busbahnhof Erlangen", 200, 25);
-    mkStreet(26, "Serverraum", "yellow", 260, 22, 150, 110);
-    mkStreet(27, "Lager", "yellow", 260, 22, 150, 110);
+    mkStreet(26, "Serverraum", "Gelb", 260, 22, 150, 110);
+    mkStreet(27, "Lager", "Gelb", 260, 22, 150, 110);
     mkUtil(28, "Toilette", 150);
-    mkStreet(29, "Klassenraum", "yellow", 280, 24, 150, 120);
+    mkStreet(29, "Klassenraum", "Gelb", 280, 24, 150, 120);
     mkGoToJail(30, "Gehe zu Berufsschule");
-    mkStreet(31, "IHK Prüfungshalle", "green", 300, 26, 200, 130);
-    mkStreet(32, "Fränky", "green", 300, 26, 200, 130);
+    mkStreet(31, "IHK Pruefungshalle", "Gruen", 300, 26, 200, 130);
+    mkStreet(32, "Fraenky", "Gruen", 300, 26, 200, 130);
     mkCard(33, "Unterricht");
-    mkStreet(34, "DerBeck", "green", 320, 28, 200, 150);
+    mkStreet(34, "DerBeck", "Gruen", 320, 28, 200, 150);
     mkRail(35, "Baiersdorfer Bahnhof", 200, 25);
     mkCard(36, "Unterricht");
-    mkStreet(37, "Berufsagentur", "darkblue", 350, 35, 200, 175);
+    mkStreet(37, "Berufsagentur", "Dunkelblau", 350, 35, 200, 175);
     mkTax(38, "Papiergeld", 100);
-    mkStreet(39, "ProLeiT", "darkblue", 400, 50, 200, 200);
+    mkStreet(39, "ProLeiT", "Dunkelblau", 400, 50, 200, 200);
 
     qDebug() << "[BOARD] ready with fields=" << board.fields.size();
 }
@@ -1032,5 +1032,7 @@ void GameServer::onClientDisconnected()
     recvBuffers.remove(socket);
     socket->deleteLater();
 }
+
+
 
 
