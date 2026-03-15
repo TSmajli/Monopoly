@@ -49,6 +49,28 @@ QString buttonStyle(const QString &bg, const QString &hover)
         "color:#bbb;"
         "}").arg(bg, hover);
 }
+
+QString mobileActionButtonStyle(const QString &bg, const QString &hover, const QString &border)
+{
+    return QString(
+        "QPushButton {"
+        "background-color:%1;"
+        "border:2px solid %3;"
+        "border-radius:18px;"
+        "padding:8px 10px;"
+        "color:white;"
+        "font-weight:700;"
+        "font-size:15px;"
+        "}"
+        "QPushButton:hover {"
+        "background-color:%2;"
+        "}"
+        "QPushButton:disabled {"
+        "background-color:#7d8894;"
+        "border:2px solid #7d8894;"
+        "color:#d7dde4;"
+        "}").arg(bg, hover, border);
+}
 }
 
 MainWindow::MainWindow(QWidget *parent)
@@ -70,14 +92,22 @@ MainWindow::MainWindow(QWidget *parent)
     ui->playersHeaderLabel->setGeometry(16, 12, 260, 22);
     ui->playersText->setGeometry(16, 40, 268, 94);
     ui->logExitButton->setGeometry(130, 104, 154, 30);
-    ui->fieldInfoBox->setGeometry(380, 840, 420, 110);
+    ui->fieldInfoBox->setGeometry(380, 852, 420, 100);
     ui->fieldInfoTitle->setGeometry(16, 10, 388, 22);
-    ui->fieldInfoValue->setGeometry(16, 36, 388, 62);
-    ui->winnerLabel->setGeometry(820, 840, 360, 40);
-    ui->buyButton->setGeometry(820, 890, 170, 60);
-    ui->readyButton->setGeometry(1010, 890, 170, 60);
-    ui->buyProperty->setGeometry(820, 820, 170, 60);
-    ui->surrenderButton->setGeometry(1010, 820, 170, 60);
+    ui->fieldInfoValue->setGeometry(16, 36, 388, 54);
+    ui->rollDiceButton->setGeometry(316, 432, 190, 60);
+    ui->winnerLabel->setGeometry(820, 844, 360, 34);
+    ui->buyButton->setGeometry(820, 902, 164, 46);
+    ui->readyButton->setGeometry(996, 902, 164, 46);
+    ui->buyProperty->setGeometry(820, 850, 164, 46);
+    ui->surrenderButton->setGeometry(996, 850, 164, 46);
+    ui->Spieleraktivitaet_3->setFixedSize(300, 700);
+    ui->Brettspiel_2->setFixedSize(800, 800);
+    ui->Spieleranzeige_3->setFixedSize(300, 150);
+    ui->fieldInfoBox->setFixedSize(420, 100);
+    ui->winPanel->setFixedSize(640, 430);
+    ui->widget->setFixedSize(640, 760);
+
 
     ui->winPanel->setGeometry(320, 230, 640, 430);
     ui->winTitleLabel->setGeometry(30, 20, 580, 40);
@@ -143,10 +173,10 @@ MainWindow::MainWindow(QWidget *parent)
 
     updateReadyStartButtonAppearance();
     ui->rollDiceButton->setStyleSheet(buttonStyle("#469536", "#38772B"));
-    ui->buyButton->setStyleSheet(buttonStyle("#275EA8", "#1e4b85"));
-    ui->readyButton->setStyleSheet(buttonStyle("#252850", "#191970"));
-    ui->buyProperty->setStyleSheet(buttonStyle("#252850", "#191970"));
-    ui->surrenderButton->setStyleSheet(buttonStyle("#842d2d", "#6d2323"));
+    ui->buyButton->setStyleSheet(mobileActionButtonStyle("#3b6ea5", "#315d8b", "#aac4df"));
+    ui->readyButton->setStyleSheet(mobileActionButtonStyle("#2d936c", "#247a5a", "#9bd6c2"));
+    ui->buyProperty->setStyleSheet(mobileActionButtonStyle("#7b5ea7", "#654b8a", "#cdbfe2"));
+    ui->surrenderButton->setStyleSheet(mobileActionButtonStyle("#b55252", "#994545", "#e4b0b0"));
     ui->saveCsvButton->setStyleSheet(buttonStyle("#275EA8", "#1e4b85"));
     ui->playAgainButton->setStyleSheet(buttonStyle("#469536", "#38772B"));
     ui->logExitButton->setStyleSheet(buttonStyle("#842d2d", "#6d2323"));
@@ -366,7 +396,7 @@ MainWindow::MainWindow(QWidget *parent)
                     localReady = ready;
                 }
 
-                const QString readyMark = ready ? "OK" : "...";
+                const QString readyMark = ready ? "Bereit" : "...";
 
                 // Spieleruebersicht: einfache Karte wie im Design-Bild
                 const bool bankrupt = p.value("bankrupt").toBool(false);
@@ -579,10 +609,15 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->playAgainButton, &QPushButton::clicked, this, [this]() {
         localReady = false;
         logViewActive = false;
+        gameFinished = false;
+        winnerId = -1;
+        suppressWinViewOnce = true;
+        ui->readyStartButton->setEnabled(true);
         updateReadyStartButtonAppearance();
         ui->stackedWidget->setCurrentWidget(ui->startView);
         ui->winnerLabel->setVisible(false);
         ui->logExitButton->setVisible(false);
+        network->sendRestartGame();
         appendLog("----------------------------", "System");
         appendLog("Neustart - neues Spiel beginnt.", resolvePlayerName(myPlayerId));
     });
@@ -1079,7 +1114,7 @@ void MainWindow::updateHouseBuyAvailability()
     if (canBuy) {
         pendingHouseFieldIndex = myPos;
         ui->buyProperty->setText("Haus kaufen (200$)");
-        ui->buyProperty->setStyleSheet(buttonStyle("#2e7d32", "#1b5e20"));
+        ui->buyProperty->setStyleSheet(mobileActionButtonStyle("#2f8f55", "#267447", "#a8d9bb"));
     }
 }
 

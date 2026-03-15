@@ -325,7 +325,7 @@ MainWindow::MainWindow(QWidget *parent)
                     localReady = ready;
                 }
 
-                const QString readyMark = ready ? "OK" : "...";
+                const QString readyMark = ready ? "Bereit" : "...";
 
                 // Spieleruebersicht: einfache Karte wie im Design-Bild
                 const bool bankrupt = p.value("bankrupt").toBool(false);
@@ -538,10 +538,15 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->playAgainButton, &QPushButton::clicked, this, [this]() {
         localReady = false;
         logViewActive = false;
+        gameFinished = false;
+        winnerId = -1;
+        suppressWinViewOnce = true;
+        ui->readyStartButton->setEnabled(true);
         updateReadyStartButtonAppearance();
         ui->stackedWidget->setCurrentWidget(ui->startView);
         ui->winnerLabel->setVisible(false);
         ui->logExitButton->setVisible(false);
+        network->sendRestartGame();
         appendLog("----------------------------", "System");
         appendLog("Neustart - neues Spiel beginnt.", resolvePlayerName(myPlayerId));
     });
