@@ -1,0 +1,40 @@
+timestamp;player;message
+2026-03-15T20:58:50;Server;Verbunden mit Server.
+2026-03-15T20:58:50;Server;Verbunden als Spieler 1
+2026-03-15T20:58:52;Player2;heisst jetzt nickname
+2026-03-15T20:58:53;nickname;ist bereit
+2026-03-15T20:58:54;Player1;ist bereit
+2026-03-15T20:58:54;Player1;startet das Spiel
+2026-03-15T20:58:55;Player1;Wuerfeln angefragt.
+2026-03-15T20:58:55;Player1;[Wuerfel] 1 + 1 = 2 ? Unterricht
+2026-03-15T20:58:55;Player1;[Unterrichtskarte] Im Unterricht geschlafen!  Zahle 60$
+2026-03-15T20:58:55;Player1;?? Zugende angefragt.
+2026-03-15T20:58:55;Player1;beendet den Zug
+2026-03-15T20:58:57;nickname;[Wuerfel] 5 + 3 = 8 ? Back21
+2026-03-15T20:58:59;nickname;kauft Back21 fuer 50$
+2026-03-15T20:58:59;nickname;beendet den Zug
+2026-03-15T20:59:01;Player1;Wuerfeln angefragt.
+2026-03-15T20:59:01;Player1;[Wuerfel] 4 + 3 = 7 ? Brezenkolb
+2026-03-15T20:59:01;Player1;?? Kaufangebot: Brezenkolb (60$)
+2026-03-15T20:59:01;Player1;Kauf bestaetigt.
+2026-03-15T20:59:01;Player1;kauft Brezenkolb fuer 60$
+2026-03-15T20:59:02;Player1;?? Zugende angefragt.
+2026-03-15T20:59:02;Player1;beendet den Zug
+2026-03-15T20:59:04;nickname;[Wuerfel] 2 + 2 = 4 ? Wasserspender
+2026-03-15T20:59:06;nickname;kauft Wasserspender fuer 75$
+2026-03-15T20:59:06;nickname;beendet den Zug
+2026-03-15T20:59:07;Player1;Haus gekauft.
+2026-03-15T20:59:07;Player1;kauft ein Haus auf Brezenkolb fuer 25$
+2026-03-15T20:59:08;Player1;Wuerfeln angefragt.
+2026-03-15T20:59:08;Player1;[Wuerfel] 1 + 6 = 7 ? Sekretariat
+2026-03-15T20:59:08;Player1;?? Kaufangebot: Sekretariat (90$)
+2026-03-15T20:59:09;Player1;Kauf bestaetigt.
+2026-03-15T20:59:09;Player1;kauft Sekretariat fuer 90$
+2026-03-15T20:59:09;Player1;Haus gekauft.
+2026-03-15T20:59:09;Player1;kauft ein Haus auf Sekretariat fuer 50$
+2026-03-15T20:59:09;Player1;?? Zugende angefragt.
+2026-03-15T20:59:09;Player1;beendet den Zug
+2026-03-15T20:59:12;Player1;??? Du hast aufgegeben.
+2026-03-15T20:59:12;Player1;gibt auf
+2026-03-15T20:59:12;nickname;gewinnt das Spiel
+state;;{"awaitingBuyDecision":false,"awaitingEndTurn":false,"currentPlayerId":2,"fields":[{"index":0,"name":"Start","type":"start"},{"baseRent":2,"color":"Braun","hasHotel":false,"hotelPrice":25,"hotelRent":5,"index":1,"name":"Altbau","ownerId":-1,"price":30,"subtype":"street","type":"property"},{"index":2,"name":"Unterricht","type":"card"},{"baseRent":4,"color":"Braun","hasHotel":false,"hotelPrice":25,"hotelRent":10,"index":3,"name":"Sporthalle","ownerId":-1,"price":30,"subtype":"street","type":"property"},{"index":4,"name":"Papiergeld","price":50,"type":"tax"},{"baseRent":25,"index":5,"name":"Erlanger Bahnhof","ownerId":-1,"price":100,"subtype":"railroad","type":"property"},{"baseRent":6,"color":"Hellblau","hasHotel":false,"hotelPrice":25,"hotelRent":15,"index":6,"name":"Kaufland","ownerId":-1,"price":50,"subtype":"street","type":"property"},{"index":7,"name":"Unterricht","type":"card"},{"baseRent":6,"color":"Hellblau","hasHotel":false,"hotelPrice":25,"hotelRent":15,"index":8,"name":"Back21","ownerId":2,"price":50,"subtype":"street","type":"property"},{"baseRent":8,"color":"Hellblau","hasHotel":false,"hotelPrice":25,"hotelRent":20,"index":9,"name":"Brezenkolb","ownerId":-1,"price":60,"subtype":"street","type":"property"},{"index":10,"name":"Berufsschule / Schulfrei","type":"jail"},{"baseRent":10,"color":"Pink","hasHotel":false,"hotelPrice":50,"hotelRent":25,"index":11,"name":"Franken Doener","ownerId":-1,"price":70,"subtype":"street","type":"property"},{"baseRent":0,"index":12,"name":"Wasserspender","ownerId":2,"price":75,"subtype":"utility","type":"property"},{"baseRent":10,"color":"Pink","hasHotel":false,"hotelPrice":50,"hotelRent":25,"index":13,"name":"Berliner Doener","ownerId":-1,"price":70,"subtype":"street","type":"property"},{"baseRent":12,"color":"Pink","hasHotel":false,"hotelPrice":50,"hotelRent":30,"index":14,"name":"Subway","ownerId":-1,"price":80,"subtype":"street","type":"property"},{"baseRent":25,"index":15,"name":"Nuernberger Bahnhof","ownerId":-1,"price":100,"subtype":"railroad","type":"property"},{"baseRent":14,"color":"Orange","hasHotel":false,"hotelPrice":50,"hotelRent":35,"index":16,"name":"Sekretariat","ownerId":-1,"price":90,"subtype":"street","type":"property"},{"index":17,"name":"Unterricht","type":"card"},{"baseRent":14,"color":"Orange","hasHotel":false,"hotelPrice":50,"hotelRent":35,"index":18,"name":"Lehrerzimmer","ownerId":-1,"price":90,"subtype":"street","type":"property"},{"baseRent":16,"color":"Orange","hasHotel":false,"hotelPrice":50,"hotelRent":40,"index":19,"name":"Buero-Direktor","ownerId":-1,"price":100,"subtype":"street","type":"property"},{"index":20,"name":"Ferien","price":1,"type":"tax"},{"baseRent":18,"color":"Rot","hasHotel":false,"hotelPrice":75,"hotelRent":45,"index":21,"name":"Neubau","ownerId":-1,"price":110,"subtype":"street","type":"property"},{"index":22,"name":"Unterricht","type":"card"},{"baseRent":18,"color":"Rot","hasHotel":false,"hotelPrice":75,"hotelRent":45,"index":23,"name":"FOS","ownerId":-1,"price":110,"subtype":"street","type":"property"},{"baseRent":20,"color":"Rot","hasHotel":false,"hotelPrice":75,"hotelRent":50,"index":24,"name":"Pausenhof","ownerId":-1,"price":120,"subtype":"street","type":"property"},{"baseRent":25,"index":25,"name":"Busbahnhof Erlangen","ownerId":-1,"price":100,"subtype":"railroad","type":"property"},{"baseRent":22,"color":"Gelb","hasHotel":false,"hotelPrice":75,"hotelRent":55,"index":26,"name":"Serverraum","ownerId":-1,"price":130,"subtype":"street","type":"property"},{"baseRent":22,"color":"Gelb","hasHotel":false,"hotelPrice":75,"hotelRent":55,"index":27,"name":"Lager","ownerId":-1,"price":130,"subtype":"street","type":"property"},{"baseRent":0,"index":28,"name":"Toilette","ownerId":-1,"price":75,"subtype":"utility","type":"property"},{"baseRent":24,"color":"Gelb","hasHotel":false,"hotelPrice":75,"hotelRent":60,"index":29,"name":"Klassenraum","ownerId":-1,"price":140,"subtype":"street","type":"property"},{"index":30,"name":"Gehe zu Berufsschule","type":"gotojail"},{"baseRent":26,"color":"Gruen","hasHotel":false,"hotelPrice":100,"hotelRent":65,"index":31,"name":"IHK Pruefungshalle","ownerId":-1,"price":150,"subtype":"street","type":"property"},{"baseRent":26,"color":"Gruen","hasHotel":false,"hotelPrice":100,"hotelRent":65,"index":32,"name":"Fraenky","ownerId":-1,"price":150,"subtype":"street","type":"property"},{"index":33,"name":"Unterricht","type":"card"},{"baseRent":28,"color":"Gruen","hasHotel":false,"hotelPrice":100,"hotelRent":75,"index":34,"name":"DerBeck","ownerId":-1,"price":160,"subtype":"street","type":"property"},{"baseRent":25,"index":35,"name":"Baiersdorfer Bahnhof","ownerId":-1,"price":100,"subtype":"railroad","type":"property"},{"index":36,"name":"Unterricht","type":"card"},{"baseRent":35,"color":"Dunkelblau","hasHotel":false,"hotelPrice":100,"hotelRent":87,"index":37,"name":"Berufsagentur","ownerId":-1,"price":175,"subtype":"street","type":"property"},{"index":38,"name":"Papiergeld","price":50,"type":"tax"},{"baseRent":50,"color":"Dunkelblau","hasHotel":false,"hotelPrice":100,"hotelRent":100,"index":39,"name":"ProLeiT","ownerId":-1,"price":200,"subtype":"street","type":"property"}],"gameFinished":true,"gameStarted":true,"pendingBuyFieldIndex":-1,"pendingBuyPlayerId":-1,"pendingEndTurnPlayerId":-1,"players":[{"bankrupt":true,"id":1,"inJail":false,"jailTurns":0,"money":1215,"name":"Player1","position":16,"ready":true},{"bankrupt":false,"id":2,"inJail":false,"jailTurns":0,"money":1375,"name":"nickname","position":12,"ready":true}],"reason":"playerSurrendered","type":"state","winnerId":2}

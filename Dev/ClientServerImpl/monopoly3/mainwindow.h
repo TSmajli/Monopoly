@@ -50,6 +50,7 @@ private:
     QMap<int, QLabel *> playerTokens;
     QMap<int, QColor> playerColors;
     QJsonObject lastStateSnapshot;
+    QStringList historicalGamePlayers;
     QMap<int, QLabel *> houseMarkers;
     bool suppressWinViewOnce = false;
     bool logViewActive = false;

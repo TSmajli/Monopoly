@@ -8,6 +8,7 @@
 #include <QJsonArray>
 #include <QJsonObject>
 #include <QPushButton>
+#include <QSet>
 #include <QStringList>
 #include <QTextStream>
 
@@ -70,6 +71,26 @@ QString mobileActionButtonStyle(const QString &bg, const QString &hover, const Q
         "border:2px solid #7d8894;"
         "color:#d7dde4;"
         "}").arg(bg, hover, border);
+}
+
+QJsonObject filterArchivedStatePlayers(const QJsonObject &state, const QSet<QString> &allowedNames)
+{
+    if (state.isEmpty() || allowedNames.isEmpty() || !state.contains("players")) {
+        return state;
+    }
+
+    QJsonObject filteredState = state;
+    QJsonArray filteredPlayers;
+    const QJsonArray players = state.value("players").toArray();
+    for (const QJsonValue &value : players) {
+        const QJsonObject player = value.toObject();
+        const QString name = player.value("name").toString().trimmed();
+        if (allowedNames.contains(name)) {
+            filteredPlayers.push_back(player);
+        }
+    }
+    filteredState["players"] = filteredPlayers;
+    return filteredState;
 }
 }
 
@@ -354,6 +375,7 @@ MainWindow::MainWindow(QWidget *parent)
 
         if (type == "state") {
             lastStateSnapshot = obj;
+            const bool wasGameStarted = gameStarted;
             const int newCurrentPlayerId = obj.value("currentPlayerId").toInt(-1);
             const bool awaitingBuyDecision = obj.value("awaitingBuyDecision").toBool(false);
             const bool awaitingEndTurn = obj.value("awaitingEndTurn").toBool(false);
@@ -440,6 +462,12 @@ MainWindow::MainWindow(QWidget *parent)
                 playerNamesForStart << name;
                 playerReadyForStart << readyMark;
                 playerIdsForStart << id;
+            }
+
+            if (gameStarted && (!wasGameStarted || historicalGamePlayers.isEmpty())) {
+                historicalGamePlayers = playerNamesForStart;
+            } else if (!gameStarted && !gameFinished && !logViewActive && !applyingArchivedState) {
+                historicalGamePlayers.clear();
             }
 
             if (playerLines.isEmpty()) {
@@ -609,6 +637,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->playAgainButton, &QPushButton::clicked, this, [this]() {
         localReady = false;
         logViewActive = false;
+        historicalGamePlayers.clear();
         gameFinished = false;
         winnerId = -1;
         suppressWinViewOnce = true;
@@ -763,6 +792,7 @@ void MainWindow::saveLogToCsv(const QString &filePath)
     }
 
     QTextStream out(&file);
+    const QStringList archivedPlayers = historicalGamePlayers;
     out << "timestamp;player;message\n";
     for (const auto &entry : logEntries) {
         out << entry.timestamp.toString(Qt::ISODate) << ";"
@@ -770,7 +800,21 @@ void MainWindow::saveLogToCsv(const QString &filePath)
             << entry.message << "\n";
     }
     if (!lastStateSnapshot.isEmpty()) {
-        QJsonDocument doc(lastStateSnapshot);
+        QSet<QString> allowedNames;
+        for (const QString &name : archivedPlayers) {
+            if (!name.trimmed().isEmpty()) {
+                allowedNames.insert(name.trimmed());
+            }
+        }
+        QJsonObject filteredState = filterArchivedStatePlayers(lastStateSnapshot, allowedNames);
+        if (!archivedPlayers.isEmpty()) {
+            QJsonArray archivedPlayersArray;
+            for (const QString &name : archivedPlayers) {
+                archivedPlayersArray.push_back(name);
+            }
+            filteredState["archivedPlayers"] = archivedPlayersArray;
+        }
+        QJsonDocument doc(filteredState);
         out << "state;;" << QString::fromUtf8(doc.toJson(QJsonDocument::Compact)) << "\n";
     }
 }
@@ -787,6 +831,12 @@ void MainWindow::loadLogFromCsv(const QString &filePath)
     QVector<LogEntry> loaded;
     QJsonObject loadedState;
     QStringList archivedPlayerNames;
+    const auto collectArchivedPlayerName = [&archivedPlayerNames](const QString &name) {
+        if (!name.isEmpty() && name != "Server" && name != "Client" && name != "System"
+            && !archivedPlayerNames.contains(name)) {
+            archivedPlayerNames.push_back(name);
+        }
+    };
     bool firstLine = true;
 
     while (!in.atEnd()) {
@@ -817,18 +867,33 @@ void MainWindow::loadLogFromCsv(const QString &filePath)
         const QString player = parts.at(1).trimmed();
         const QString message = parts.mid(2).join(';');
         loaded.push_back({ts.isValid() ? ts : QDateTime::currentDateTime(), player, message});
-        if (!player.isEmpty() && player != "Server" && player != "Client" && !archivedPlayerNames.contains(player)) {
-            archivedPlayerNames.push_back(player);
-        }
+        collectArchivedPlayerName(player);
     }
 
     if (!loadedState.isEmpty()) {
+        QSet<QString> allowedNames;
+        const QJsonArray archivedPlayersArray = loadedState.value("archivedPlayers").toArray();
+        for (const QJsonValue &value : archivedPlayersArray) {
+            const QString name = value.toString().trimmed();
+            if (!name.isEmpty()) {
+                allowedNames.insert(name);
+                collectArchivedPlayerName(name);
+            }
+        }
+        if (allowedNames.isEmpty()) {
+            for (const LogEntry &entry : loaded) {
+                const QString name = entry.playerName.trimmed();
+                if (name.isEmpty() || name == "Server" || name == "Client" || name == "System") {
+                    continue;
+                }
+                allowedNames.insert(name);
+            }
+        }
+        loadedState = filterArchivedStatePlayers(loadedState, allowedNames);
         const QJsonArray archivedPlayers = loadedState.value("players").toArray();
         for (const QJsonValue &value : archivedPlayers) {
             const QString name = value.toObject().value("name").toString().trimmed();
-            if (!name.isEmpty() && !archivedPlayerNames.contains(name)) {
-                archivedPlayerNames.push_back(name);
-            }
+            collectArchivedPlayerName(name);
         }
     }
 
