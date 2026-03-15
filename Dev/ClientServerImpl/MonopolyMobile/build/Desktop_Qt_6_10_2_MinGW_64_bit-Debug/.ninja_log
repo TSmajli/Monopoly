@@ -1,0 +1,23 @@
+# ninja log v6
+16	178	7953030550160519	MonopolyMobile_autogen/timestamp	bcad042493d78584
+746	3710	7953027563606856	CMakeFiles/MonopolyMobile.dir/main.cpp.obj	aa2ad7524bcdfd91
+16	178	7953030550160519	MonopolyMobile_autogen/mocs_compilation.cpp	bcad042493d78584
+16	178	7953030550160519	D:/Git Repository/Monopoly/Dev/ClientServerImpl/MonopolyMobile/build/Desktop_Qt_6_10_2_MinGW_64_bit-Debug/MonopolyMobile_autogen/timestamp	bcad042493d78584
+16	178	7953030550160519	D:/Git Repository/Monopoly/Dev/ClientServerImpl/MonopolyMobile/build/Desktop_Qt_6_10_2_MinGW_64_bit-Debug/MonopolyMobile_autogen/mocs_compilation.cpp	bcad042493d78584
+754	3447	7953027563686857	CMakeFiles/MonopolyMobile.dir/networkclient.cpp.obj	839fd49df4906d79
+4708	7093	7953030597021939	MonopolyMobile.exe	fe84b485d4093d42
+1409	2734	7953020858443961	qrc_images.cpp	90b424cd677b25a8
+1409	2734	7953020858443961	D:/Git Repository/Monopoly/Dev/ClientServerImpl/MonopolyMobile/build/Desktop_Qt_6_10_2_MinGW_64_bit-Debug/qrc_images.cpp	90b424cd677b25a8
+758	3890	7953027563726859	CMakeFiles/MonopolyMobile.dir/qrc_images.cpp.obj	3ffff4b29c778e54
+742	3985	7953027563566848	CMakeFiles/MonopolyMobile.dir/MonopolyMobile_autogen/mocs_compilation.cpp.obj	d85903750dbd485c
+179	4708	7953030551780520	CMakeFiles/MonopolyMobile.dir/mainwindow.cpp.obj	6cfc3895b07dfee
+41	865	7953031425062865	MonopolyMobile_autogen/timestamp	bcad042493d78584
+41	865	7953031425062865	MonopolyMobile_autogen/mocs_compilation.cpp	bcad042493d78584
+41	865	7953031425062865	D:/Git Repository/Monopoly/Dev/ClientServerImpl/MonopolyMobile/build/Desktop_Qt_6_10_2_MinGW_64_bit-Debug/MonopolyMobile_autogen/timestamp	bcad042493d78584
+41	865	7953031425062865	D:/Git Repository/Monopoly/Dev/ClientServerImpl/MonopolyMobile/build/Desktop_Qt_6_10_2_MinGW_64_bit-Debug/MonopolyMobile_autogen/mocs_compilation.cpp	bcad042493d78584
+877	3148	7953031426052865	CMakeFiles/MonopolyMobile.dir/networkclient.cpp.obj	839fd49df4906d79
+870	3495	7953031425982845	CMakeFiles/MonopolyMobile.dir/main.cpp.obj	aa2ad7524bcdfd91
+881	3598	7953031426092839	CMakeFiles/MonopolyMobile.dir/qrc_images.cpp.obj	3ffff4b29c778e54
+866	3701	7953031425942843	CMakeFiles/MonopolyMobile.dir/MonopolyMobile_autogen/mocs_compilation.cpp.obj	d85903750dbd485c
+873	6041	7953031426022826	CMakeFiles/MonopolyMobile.dir/mainwindow.cpp.obj	6cfc3895b07dfee
+6042	7891	7953031477699763	MonopolyMobile.exe	fe84b485d4093d42

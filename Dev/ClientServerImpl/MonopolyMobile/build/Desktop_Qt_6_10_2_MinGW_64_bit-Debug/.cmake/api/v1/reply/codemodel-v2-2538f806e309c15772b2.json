@@ -1,0 +1,79 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-1979d74935efce33189f.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "MonopolyMobile",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "MonopolyMobile::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-MonopolyMobile-Debug-f0296d3ff4febf523e41.json",
+					"name" : "MonopolyMobile",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "MonopolyMobile_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-MonopolyMobile_autogen-Debug-6bdc935fa9a4417c950a.json",
+					"name" : "MonopolyMobile_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "MonopolyMobile_autogen_timestamp_deps::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-MonopolyMobile_autogen_timestamp_deps-Debug-ba02ffafb0a72cb16ff1.json",
+					"name" : "MonopolyMobile_autogen_timestamp_deps",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "D:/Git Repository/Monopoly/Dev/ClientServerImpl/MonopolyMobile/build/Desktop_Qt_6_10_2_MinGW_64_bit-Debug",
+		"source" : "D:/Git Repository/Monopoly/Dev/ClientServerImpl/MonopolyMobile"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 7
+	}
+}
