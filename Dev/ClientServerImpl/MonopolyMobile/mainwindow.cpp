@@ -396,7 +396,7 @@ MainWindow::MainWindow(QWidget *parent)
                     localReady = ready;
                 }
 
-                const QString readyMark = ready ? "Bereit" : "...";
+                const QString readyMark = ready ? "(Bereit)" : "...";
 
                 // Spieleruebersicht: einfache Karte wie im Design-Bild
                 const bool bankrupt = p.value("bankrupt").toBool(false);
