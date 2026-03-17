@@ -237,12 +237,12 @@ MainWindow::MainWindow(QWidget *parent)
         }
 
         if (type == "info") {
-            appendLog(QString("?? %1").arg(obj.value("message").toString()), "Server");
+            appendLog(QString("%1").arg(obj.value("message").toString()), "Server");
             return;
         }
 
         if (type == "error") {
-            appendLog(QString("? %1").arg(obj.value("message").toString()), "Server");
+            appendLog(QString("%1").arg(obj.value("message").toString()), "Server");
             return;
         }
 
@@ -261,7 +261,7 @@ MainWindow::MainWindow(QWidget *parent)
             const QString playerName = resolvePlayerName(playerId);
 
             pendingBuyPlayerId = playerId;
-            appendLog(QString("?? Kaufangebot: %1 (%2$)").arg(fieldName).arg(price), playerName);
+            appendLog(QString("Kaufangebot: %1 (%2$)").arg(fieldName).arg(price), playerName);
             currentFieldName = QString("%1 (%2$)").arg(fieldName).arg(price);
             ui->fieldInfoValue->setText(currentFieldName);
             currentFieldIndex = pendingBuyFieldIndex;
@@ -513,7 +513,7 @@ MainWindow::MainWindow(QWidget *parent)
         }
         network->sendEndTurn();
         setAwaitingEndTurn(false);
-        appendLog("?? Zugende angefragt.", resolvePlayerName(myPlayerId));
+        appendLog("Zugende angefragt.", resolvePlayerName(myPlayerId));
     });
 
     connect(ui->ServerButton, &QPushButton::clicked, this, [this]() {
@@ -529,7 +529,7 @@ MainWindow::MainWindow(QWidget *parent)
             return;
         }
         loadLogFromCsv(path);
-        appendLog(QString("?? Log geladen: %1").arg(path), "Client");
+        appendLog(QString("Log geladen: %1").arg(path), "Client");
     });
 
     connect(ui->buyProperty, &QPushButton::clicked, this, [this]() {
@@ -550,7 +550,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(ui->surrenderButton, &QPushButton::clicked, this, [this]() {
         network->sendSurrender();
-        appendLog("??? Du hast aufgegeben.", resolvePlayerName(myPlayerId));
+        appendLog("Du hast aufgegeben.", resolvePlayerName(myPlayerId));
     });
 
     connect(ui->saveCsvButton, &QPushButton::clicked, this, [this]() {
@@ -560,7 +560,7 @@ MainWindow::MainWindow(QWidget *parent)
             return;
         }
         saveLogToCsv(path);
-        appendLog(QString("?? Log gespeichert: %1").arg(path), "Client");
+        appendLog(QString("Log gespeichert: %1").arg(path), "Client");
     });
 
     connect(ui->playAgainButton, &QPushButton::clicked, this, [this]() {
@@ -716,7 +716,7 @@ void MainWindow::saveLogToCsv(const QString &filePath)
 {
     QFile file(filePath);
     if (!file.open(QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::Text)) {
-        appendLog(QString("? Konnte CSV nicht speichern: %1").arg(filePath), "Client");
+        appendLog(QString("Konnte CSV nicht speichern: %1").arg(filePath), "Client");
         return;
     }
 
@@ -752,7 +752,7 @@ void MainWindow::loadLogFromCsv(const QString &filePath)
 {
     QFile file(filePath);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        appendLog(QString("? Konnte CSV nicht laden: %1").arg(filePath), "Client");
+        appendLog(QString("Konnte CSV nicht laden: %1").arg(filePath), "Client");
         return;
     }
 

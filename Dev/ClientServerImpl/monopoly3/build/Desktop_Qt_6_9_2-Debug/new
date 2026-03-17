@@ -1,0 +1,221 @@
+timestamp;player;message
+2026-03-17T08:29:07;Server;Verbunden mit Server.
+2026-03-17T08:29:07;Server;Verbunden als Spieler 1
+2026-03-17T08:29:18;Player2;heisst jetzt nickname
+2026-03-17T08:29:19;nickname;ist bereit
+2026-03-17T08:29:21;Player1;ist bereit
+2026-03-17T08:29:21;Player1;startet das Spiel
+2026-03-17T08:29:32;Player1;Wuerfeln angefragt.
+2026-03-17T08:29:32;Player1;[Wuerfel] 6 + 4 = 10 ? Berufsschule / Schulfrei
+2026-03-17T08:29:33;Player1;Zugende angefragt.
+2026-03-17T08:29:33;Player1;beendet den Zug
+2026-03-17T08:29:39;nickname;[Wuerfel] 1 + 3 = 4 ? Papiergeld
+2026-03-17T08:29:39;nickname;muss 50$ Papiergeld zahlen
+2026-03-17T08:29:45;nickname;beendet den Zug
+2026-03-17T08:29:47;Player1;Wuerfeln angefragt.
+2026-03-17T08:29:47;Player1;[Wuerfel] 1 + 1 = 2 ? Wasserspender
+2026-03-17T08:29:47;Player1;Kaufangebot: Wasserspender (75$)
+2026-03-17T08:29:51;Player1;Kauf bestaetigt.
+2026-03-17T08:29:51;Player1;kauft Wasserspender fuer 75$
+2026-03-17T08:29:52;Player1;Zugende angefragt.
+2026-03-17T08:29:52;Player1;beendet den Zug
+2026-03-17T08:30:12;nickname;[Wuerfel] 6 + 6 = 12 ? Sekretariat
+2026-03-17T08:30:14;nickname;kauft Sekretariat fuer 90$
+2026-03-17T08:30:15;nickname;beendet den Zug
+2026-03-17T08:30:17;Player1;Wuerfeln angefragt.
+2026-03-17T08:30:17;Player1;[Wuerfel] 2 + 2 = 4 ? Sekretariat
+2026-03-17T08:30:17;Player1;zahlt 14$ Miete an nickname fuer Sekretariat
+2026-03-17T08:30:20;Player1;Zugende angefragt.
+2026-03-17T08:30:20;Player1;beendet den Zug
+2026-03-17T08:30:25;nickname;[Wuerfel] 6 + 6 = 12 ? Toilette
+2026-03-17T08:30:27;nickname;kauft Toilette fuer 75$
+2026-03-17T08:30:27;nickname;beendet den Zug
+2026-03-17T08:30:33;Player1;Wuerfeln angefragt.
+2026-03-17T08:30:33;Player1;[Wuerfel] 4 + 3 = 7 ? FOS
+2026-03-17T08:30:33;Player1;Kaufangebot: FOS (110$)
+2026-03-17T08:30:34;Player1;Kauf bestaetigt.
+2026-03-17T08:30:34;Player1;kauft FOS fuer 110$
+2026-03-17T08:30:35;Player1;Haus gekauft.
+2026-03-17T08:30:35;Player1;kauft ein Haus auf FOS fuer 75$
+2026-03-17T08:30:36;Player1;Zugende angefragt.
+2026-03-17T08:30:36;Player1;beendet den Zug
+2026-03-17T08:30:47;nickname;[Wuerfel] 6 + 2 = 8 ? Unterricht
+2026-03-17T08:30:47;nickname;[Unterrichtskarte] Frueher Schulschluss!  Erhalte 50$
+2026-03-17T08:30:52;nickname;beendet den Zug
+2026-03-17T08:31:00;Player1;Wuerfeln angefragt.
+2026-03-17T08:31:00;Player1;[Wuerfel] 5 + 1 = 6 ? Klassenraum
+2026-03-17T08:31:00;Player1;Kaufangebot: Klassenraum (140$)
+2026-03-17T08:31:02;Player1;Kauf bestaetigt.
+2026-03-17T08:31:02;Player1;kauft Klassenraum fuer 140$
+2026-03-17T08:31:03;Player1;Zugende angefragt.
+2026-03-17T08:31:03;Player1;beendet den Zug
+2026-03-17T08:31:27;nickname;[Wuerfel] 5 + 2 = 7 ? Sporthalle
+2026-03-17T08:31:28;nickname;kauft Sporthalle fuer 30$
+2026-03-17T08:31:29;nickname;kauft ein Haus auf Sporthalle fuer 25$
+2026-03-17T08:31:30;nickname;beendet den Zug
+2026-03-17T08:31:31;Player1;Haus gekauft.
+2026-03-17T08:31:31;Player1;kauft ein Haus auf Klassenraum fuer 75$
+2026-03-17T08:31:32;Player1;Wuerfeln angefragt.
+2026-03-17T08:31:32;Player1;[Wuerfel] 2 + 2 = 4 ? Unterricht
+2026-03-17T08:31:32;Player1;[Unterrichtskarte] Vorzeigeschueler des Monats!  Erhalte 100$
+2026-03-17T08:31:36;Player1;Zugende angefragt.
+2026-03-17T08:31:36;Player1;beendet den Zug
+2026-03-17T08:32:05;nickname;[Wuerfel] 5 + 1 = 6 ? Brezenkolb
+2026-03-17T08:32:07;nickname;kauft Brezenkolb fuer 60$
+2026-03-17T08:32:07;nickname;beendet den Zug
+2026-03-17T08:32:09;Player1;Wuerfeln angefragt.
+2026-03-17T08:32:09;Player1;[Wuerfel] 5 + 1 = 6 ? ProLeiT
+2026-03-17T08:32:09;Player1;Kaufangebot: ProLeiT (200$)
+2026-03-17T08:32:10;Player1;Kauf bestaetigt.
+2026-03-17T08:32:10;Player1;kauft ProLeiT fuer 200$
+2026-03-17T08:32:11;Player1;Zugende angefragt.
+2026-03-17T08:32:11;Player1;beendet den Zug
+2026-03-17T08:32:16;nickname;[Wuerfel] 4 + 5 = 9 ? Lehrerzimmer
+2026-03-17T08:32:17;nickname;kauft Lehrerzimmer fuer 90$
+2026-03-17T08:32:17;nickname;kauft ein Haus auf Lehrerzimmer fuer 50$
+2026-03-17T08:32:18;nickname;beendet den Zug
+2026-03-17T08:32:20;Player1;Wuerfeln angefragt.
+2026-03-17T08:32:20;Player1;[Wuerfel] 3 + 2 = 5 ? Papiergeld
+2026-03-17T08:32:20;Player1;muss 50$ Papiergeld zahlen
+2026-03-17T08:32:21;Player1;Zugende angefragt.
+2026-03-17T08:32:21;Player1;beendet den Zug
+2026-03-17T08:32:25;nickname;[Wuerfel] 1 + 2 = 3 ? Neubau
+2026-03-17T08:32:26;nickname;kauft Neubau fuer 110$
+2026-03-17T08:32:26;nickname;kauft ein Haus auf Neubau fuer 75$
+2026-03-17T08:32:27;nickname;beendet den Zug
+2026-03-17T08:32:30;Player1;Wuerfeln angefragt.
+2026-03-17T08:32:30;Player1;[Wuerfel] 6 + 6 = 12 ? Sekretariat
+2026-03-17T08:32:30;Player1;zahlt 14$ Miete an nickname fuer Sekretariat
+2026-03-17T08:32:37;Player1;Zugende angefragt.
+2026-03-17T08:32:37;Player1;beendet den Zug
+2026-03-17T08:32:40;nickname;[Wuerfel] 6 + 1 = 7 ? Toilette
+2026-03-17T08:32:42;nickname;beendet den Zug
+2026-03-17T08:32:47;Player1;Wuerfeln angefragt.
+2026-03-17T08:32:47;Player1;[Wuerfel] 4 + 4 = 8 ? Pausenhof
+2026-03-17T08:32:47;Player1;Kaufangebot: Pausenhof (120$)
+2026-03-17T08:32:49;Player1;Kauf bestaetigt.
+2026-03-17T08:32:49;Player1;kauft Pausenhof fuer 120$
+2026-03-17T08:32:50;Player1;Haus gekauft.
+2026-03-17T08:32:50;Player1;kauft ein Haus auf Pausenhof fuer 75$
+2026-03-17T08:32:50;Player1;Zugende angefragt.
+2026-03-17T08:32:50;Player1;beendet den Zug
+2026-03-17T08:32:59;nickname;[Wuerfel] 1 + 4 = 5 ? Unterricht
+2026-03-17T08:32:59;nickname;[Unterrichtskarte] Fehler im Code gefunden!  Erhalte 70$
+2026-03-17T08:33:21;nickname;beendet den Zug
+2026-03-17T08:33:32;Player1;Wuerfeln angefragt.
+2026-03-17T08:33:32;Player1;[Wuerfel] 1 + 2 = 3 ? Lager
+2026-03-17T08:33:32;Player1;Kaufangebot: Lager (130$)
+2026-03-17T08:33:33;Player1;Kauf bestaetigt.
+2026-03-17T08:33:33;Player1;kauft Lager fuer 130$
+2026-03-17T08:33:34;Player1;Haus gekauft.
+2026-03-17T08:33:34;Player1;kauft ein Haus auf Lager fuer 75$
+2026-03-17T08:33:35;Player1;Zugende angefragt.
+2026-03-17T08:33:35;Player1;beendet den Zug
+2026-03-17T08:33:37;nickname;[Wuerfel] 6 + 1 = 7 ? Start
+2026-03-17T08:33:37;nickname;erhaelt 150$ auf Start
+2026-03-17T08:33:38;nickname;beendet den Zug
+2026-03-17T08:33:48;Player1;Wuerfeln angefragt.
+2026-03-17T08:33:48;Player1;[Wuerfel] 5 + 1 = 6 ? Unterricht
+2026-03-17T08:33:48;Player1;[Unterrichtskarte] Im Unterricht geschlafen!  Zahle 60$
+2026-03-17T08:33:52;Player1;Zugende angefragt.
+2026-03-17T08:33:52;Player1;beendet den Zug
+2026-03-17T08:33:54;nickname;[Wuerfel] 3 + 4 = 7 ? Unterricht
+2026-03-17T08:33:54;nickname;[Unterrichtskarte] Hausaufgaben vergessen!  Zahle 35$
+2026-03-17T08:33:57;nickname;beendet den Zug
+2026-03-17T08:34:03;Player1;Wuerfeln angefragt.
+2026-03-17T08:34:03;Player1;[Wuerfel] 6 + 4 = 10 ? Sporthalle
+2026-03-17T08:34:03;Player1;zahlt 10$ Miete an nickname fuer Sporthalle
+2026-03-17T08:34:04;Player1;Zugende angefragt.
+2026-03-17T08:34:04;Player1;beendet den Zug
+2026-03-17T08:34:06;nickname;[Wuerfel] 1 + 2 = 3 ? Berufsschule / Schulfrei
+2026-03-17T08:34:10;nickname;beendet den Zug
+2026-03-17T08:34:19;Player1;Wuerfeln angefragt.
+2026-03-17T08:34:19;Player1;[Wuerfel] 1 + 1 = 2 ? Erlanger Bahnhof
+2026-03-17T08:34:19;Player1;Kaufangebot: Erlanger Bahnhof (100$)
+2026-03-17T08:34:21;Player1;Kauf bestaetigt.
+2026-03-17T08:34:21;Player1;kauft Erlanger Bahnhof fuer 100$
+2026-03-17T08:34:22;Player1;Zugende angefragt.
+2026-03-17T08:34:22;Player1;beendet den Zug
+2026-03-17T08:34:34;nickname;[Wuerfel] 4 + 4 = 8 ? Lehrerzimmer
+2026-03-17T08:34:35;nickname;beendet den Zug
+2026-03-17T08:34:36;Player1;Wuerfeln angefragt.
+2026-03-17T08:34:36;Player1;[Wuerfel] 2 + 5 = 7 ? Wasserspender
+2026-03-17T08:34:38;Player1;Zugende angefragt.
+2026-03-17T08:34:38;Player1;beendet den Zug
+2026-03-17T08:34:40;nickname;[Wuerfel] 2 + 4 = 6 ? Pausenhof
+2026-03-17T08:34:40;nickname;zahlt 50$ Miete an Player1 fuer Pausenhof
+2026-03-17T08:34:44;nickname;beendet den Zug
+2026-03-17T08:35:10;Player1;Wuerfeln angefragt.
+2026-03-17T08:35:10;Player1;[Wuerfel] 6 + 3 = 9 ? Neubau
+2026-03-17T08:35:10;Player1;zahlt 45$ Miete an nickname fuer Neubau
+2026-03-17T08:35:11;Player1;Zugende angefragt.
+2026-03-17T08:35:11;Player1;beendet den Zug
+2026-03-17T08:35:16;nickname;[Wuerfel] 1 + 6 = 7 ? IHK Pruefungshalle
+2026-03-17T08:35:20;nickname;kauft IHK Pruefungshalle fuer 150$
+2026-03-17T08:35:20;nickname;beendet den Zug
+2026-03-17T08:35:29;Player1;Wuerfeln angefragt.
+2026-03-17T08:35:29;Player1;[Wuerfel] 4 + 3 = 7 ? Toilette
+2026-03-17T08:35:29;Player1;zahlt 42$ Miete an nickname fuer Toilette
+2026-03-17T08:35:51;Player1;Zugende angefragt.
+2026-03-17T08:35:51;Player1;beendet den Zug
+2026-03-17T08:35:56;nickname;[Wuerfel] 6 + 5 = 11 ? Unterricht
+2026-03-17T08:35:56;nickname;[Unterrichtskarte] Klassensprecher gewaehlt!  Erhalte 60$
+2026-03-17T08:36:00;nickname;beendet den Zug
+2026-03-17T08:36:09;Player1;Wuerfeln angefragt.
+2026-03-17T08:36:09;Player1;[Wuerfel] 1 + 6 = 7 ? Baiersdorfer Bahnhof
+2026-03-17T08:36:09;Player1;Kaufangebot: Baiersdorfer Bahnhof (100$)
+2026-03-17T08:36:11;Player1;Kauf bestaetigt.
+2026-03-17T08:36:11;Player1;kauft Baiersdorfer Bahnhof fuer 100$
+2026-03-17T08:36:12;Player1;Zugende angefragt.
+2026-03-17T08:36:12;Player1;beendet den Zug
+2026-03-17T08:36:14;nickname;[Wuerfel] 1 + 3 = 4 ? Kaufland
+2026-03-17T08:36:21;nickname;kauft Kaufland fuer 50$
+2026-03-17T08:36:22;nickname;beendet den Zug
+2026-03-17T08:36:24;Player1;Wuerfeln angefragt.
+2026-03-17T08:36:24;Player1;[Wuerfel] 4 + 2 = 6 ? Altbau
+2026-03-17T08:36:24;Player1;Kaufangebot: Altbau (30$)
+2026-03-17T08:36:25;Player1;Kauf bestaetigt.
+2026-03-17T08:36:25;Player1;kauft Altbau fuer 30$
+2026-03-17T08:36:26;Player1;Haus gekauft.
+2026-03-17T08:36:26;Player1;kauft ein Haus auf Altbau fuer 25$
+2026-03-17T08:36:26;Player1;Zugende angefragt.
+2026-03-17T08:36:26;Player1;beendet den Zug
+2026-03-17T08:36:37;nickname;[Wuerfel] 1 + 5 = 6 ? Wasserspender
+2026-03-17T08:36:37;nickname;zahlt 36$ Miete an Player1 fuer Wasserspender
+2026-03-17T08:36:39;nickname;beendet den Zug
+2026-03-17T08:36:46;Player1;Wuerfeln angefragt.
+2026-03-17T08:36:46;Player1;[Wuerfel] 4 + 2 = 6 ? Unterricht
+2026-03-17T08:36:46;Player1;[Unterrichtskarte] Hausaufgaben vergessen!  Zahle 35$
+2026-03-17T08:36:51;Player1;Zugende angefragt.
+2026-03-17T08:36:51;Player1;beendet den Zug
+2026-03-17T08:37:47;nickname;[Wuerfel] 2 + 4 = 6 ? Lehrerzimmer
+2026-03-17T08:37:49;nickname;beendet den Zug
+2026-03-17T08:37:50;Player1;Wuerfeln angefragt.
+2026-03-17T08:37:50;Player1;[Wuerfel] 3 + 3 = 6 ? Berliner Doener
+2026-03-17T08:37:50;Player1;Kaufangebot: Berliner Doener (70$)
+2026-03-17T08:37:51;Player1;Kauf bestaetigt.
+2026-03-17T08:37:51;Player1;kauft Berliner Doener fuer 70$
+2026-03-17T08:37:51;Player1;Zugende angefragt.
+2026-03-17T08:37:51;Player1;beendet den Zug
+2026-03-17T08:37:58;nickname;[Wuerfel] 2 + 6 = 8 ? Serverraum
+2026-03-17T08:38:01;nickname;kauft Serverraum fuer 130$
+2026-03-17T08:38:02;nickname;kauft ein Haus auf Serverraum fuer 75$
+2026-03-17T08:38:03;nickname;beendet den Zug
+2026-03-17T08:38:04;Player1;Haus gekauft.
+2026-03-17T08:38:04;Player1;kauft ein Haus auf Berliner Doener fuer 50$
+2026-03-17T08:38:06;Player1;Wuerfeln angefragt.
+2026-03-17T08:38:06;Player1;[Wuerfel] 6 + 4 = 10 ? FOS
+2026-03-17T08:38:08;Player1;Zugende angefragt.
+2026-03-17T08:38:08;Player1;beendet den Zug
+2026-03-17T08:38:11;nickname;[Wuerfel] 6 + 1 = 7 ? Unterricht
+2026-03-17T08:38:11;nickname;[Unterrichtskarte] Vorzeigeschueler des Monats!  Erhalte 100$
+2026-03-17T08:38:12;nickname;beendet den Zug
+2026-03-17T08:38:18;Player1;Wuerfeln angefragt.
+2026-03-17T08:38:18;Player1;[Wuerfel] 3 + 4 = 7 ? Gehe zu Berufsschule
+2026-03-17T08:38:18;Player1;geht in die Berufsschule! (Gefaengnis, 3 Zuege)
+2026-03-17T08:38:20;Player1;Zugende angefragt.
+2026-03-17T08:38:20;Player1;beendet den Zug
+2026-03-17T08:38:26;Player1;Du hast aufgegeben.
+2026-03-17T08:38:26;Player1;gibt auf
+2026-03-17T08:38:26;nickname;gewinnt das Spiel
+state;;{"archivedPlayers":["Player1","nickname"],"awaitingBuyDecision":false,"awaitingEndTurn":false,"currentPlayerId":2,"fields":[{"index":0,"name":"Start","type":"start"},{"baseRent":2,"color":"Braun","hasHotel":false,"hotelPrice":25,"hotelRent":5,"index":1,"name":"Altbau","ownerId":-1,"price":30,"subtype":"street","type":"property"},{"index":2,"name":"Unterricht","type":"card"},{"baseRent":4,"color":"Braun","hasHotel":true,"hotelPrice":25,"hotelRent":10,"index":3,"name":"Sporthalle","ownerId":2,"price":30,"subtype":"street","type":"property"},{"index":4,"name":"Papiergeld","price":50,"type":"tax"},{"baseRent":25,"index":5,"name":"Erlanger Bahnhof","ownerId":-1,"price":100,"subtype":"railroad","type":"property"},{"baseRent":6,"color":"Hellblau","hasHotel":false,"hotelPrice":25,"hotelRent":15,"index":6,"name":"Kaufland","ownerId":2,"price":50,"subtype":"street","type":"property"},{"index":7,"name":"Unterricht","type":"card"},{"baseRent":6,"color":"Hellblau","hasHotel":false,"hotelPrice":25,"hotelRent":15,"index":8,"name":"Back21","ownerId":-1,"price":50,"subtype":"street","type":"property"},{"baseRent":8,"color":"Hellblau","hasHotel":false,"hotelPrice":25,"hotelRent":20,"index":9,"name":"Brezenkolb","ownerId":2,"price":60,"subtype":"street","type":"property"},{"index":10,"name":"Berufsschule / Schulfrei","type":"jail"},{"baseRent":10,"color":"Pink","hasHotel":false,"hotelPrice":50,"hotelRent":25,"index":11,"name":"Franken Doener","ownerId":-1,"price":70,"subtype":"street","type":"property"},{"baseRent":0,"index":12,"name":"Wasserspender","ownerId":-1,"price":75,"subtype":"utility","type":"property"},{"baseRent":10,"color":"Pink","hasHotel":false,"hotelPrice":50,"hotelRent":25,"index":13,"name":"Berliner Doener","ownerId":-1,"price":70,"subtype":"street","type":"property"},{"baseRent":12,"color":"Pink","hasHotel":false,"hotelPrice":50,"hotelRent":30,"index":14,"name":"Subway","ownerId":-1,"price":80,"subtype":"street","type":"property"},{"baseRent":25,"index":15,"name":"Nuernberger Bahnhof","ownerId":-1,"price":100,"subtype":"railroad","type":"property"},{"baseRent":14,"color":"Orange","hasHotel":false,"hotelPrice":50,"hotelRent":35,"index":16,"name":"Sekretariat","ownerId":2,"price":90,"subtype":"street","type":"property"},{"index":17,"name":"Unterricht","type":"card"},{"baseRent":14,"color":"Orange","hasHotel":true,"hotelPrice":50,"hotelRent":35,"index":18,"name":"Lehrerzimmer","ownerId":2,"price":90,"subtype":"street","type":"property"},{"baseRent":16,"color":"Orange","hasHotel":false,"hotelPrice":50,"hotelRent":40,"index":19,"name":"Buero-Direktor","ownerId":-1,"price":100,"subtype":"street","type":"property"},{"index":20,"name":"Ferien","price":1,"type":"tax"},{"baseRent":18,"color":"Rot","hasHotel":true,"hotelPrice":75,"hotelRent":45,"index":21,"name":"Neubau","ownerId":2,"price":110,"subtype":"street","type":"property"},{"index":22,"name":"Unterricht","type":"card"},{"baseRent":18,"color":"Rot","hasHotel":false,"hotelPrice":75,"hotelRent":45,"index":23,"name":"FOS","ownerId":-1,"price":110,"subtype":"street","type":"property"},{"baseRent":20,"color":"Rot","hasHotel":false,"hotelPrice":75,"hotelRent":50,"index":24,"name":"Pausenhof","ownerId":-1,"price":120,"subtype":"street","type":"property"},{"baseRent":25,"index":25,"name":"Busbahnhof Erlangen","ownerId":-1,"price":100,"subtype":"railroad","type":"property"},{"baseRent":22,"color":"Gelb","hasHotel":true,"hotelPrice":75,"hotelRent":55,"index":26,"name":"Serverraum","ownerId":2,"price":130,"subtype":"street","type":"property"},{"baseRent":22,"color":"Gelb","hasHotel":false,"hotelPrice":75,"hotelRent":55,"index":27,"name":"Lager","ownerId":-1,"price":130,"subtype":"street","type":"property"},{"baseRent":0,"index":28,"name":"Toilette","ownerId":2,"price":75,"subtype":"utility","type":"property"},{"baseRent":24,"color":"Gelb","hasHotel":false,"hotelPrice":75,"hotelRent":60,"index":29,"name":"Klassenraum","ownerId":-1,"price":140,"subtype":"street","type":"property"},{"index":30,"name":"Gehe zu Berufsschule","type":"gotojail"},{"baseRent":26,"color":"Gruen","hasHotel":false,"hotelPrice":100,"hotelRent":65,"index":31,"name":"IHK Pruefungshalle","ownerId":2,"price":150,"subtype":"street","type":"property"},{"baseRent":26,"color":"Gruen","hasHotel":false,"hotelPrice":100,"hotelRent":65,"index":32,"name":"Fraenky","ownerId":-1,"price":150,"subtype":"street","type":"property"},{"index":33,"name":"Unterricht","type":"card"},{"baseRent":28,"color":"Gruen","hasHotel":false,"hotelPrice":100,"hotelRent":75,"index":34,"name":"DerBeck","ownerId":-1,"price":160,"subtype":"street","type":"property"},{"baseRent":25,"index":35,"name":"Baiersdorfer Bahnhof","ownerId":-1,"price":100,"subtype":"railroad","type":"property"},{"index":36,"name":"Unterricht","type":"card"},{"baseRent":35,"color":"Dunkelblau","hasHotel":false,"hotelPrice":100,"hotelRent":87,"index":37,"name":"Berufsagentur","ownerId":-1,"price":175,"subtype":"street","type":"property"},{"index":38,"name":"Papiergeld","price":50,"type":"tax"},{"baseRent":50,"color":"Dunkelblau","hasHotel":false,"hotelPrice":100,"hotelRent":100,"index":39,"name":"ProLeiT","ownerId":-1,"price":200,"subtype":"street","type":"property"}],"gameFinished":true,"gameStarted":true,"pendingBuyFieldIndex":-1,"pendingBuyPlayerId":-1,"pendingEndTurnPlayerId":-1,"players":[{"bankrupt":true,"id":1,"inJail":true,"jailTurns":3,"money":866,"name":"Player1","position":10,"ready":true},{"bankrupt":false,"id":2,"inJail":false,"jailTurns":0,"money":1774,"name":"nickname","position":33,"ready":true}],"reason":"playerSurrendered","type":"state","winnerId":2}

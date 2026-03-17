@@ -96,12 +96,12 @@ void GameServer::onReadyRead()
         QJsonParseError err;
         QJsonDocument doc = QJsonDocument::fromJson(line, &err);
         if (err.error != QJsonParseError::NoError || !doc.isObject()) {
-            qWarning() << "[NET] JSON parse error:" << err.errorString()
+            qWarning() << "[SERVER] JSON error:" << err.errorString()
             << "raw=" << line;
             continue;
         }
 
-        qDebug() << "[NET] <= from" << playerPtr->name << line;
+        qDebug() << "[SERVER] <= from" << playerPtr->name << line;
         processMessage(*playerPtr, doc.object());
     }
 }
@@ -483,7 +483,7 @@ void GameServer::handleRollDice(Player &player)
 
         const int delta = current->money - before;
         if (auto *tf = dynamic_cast<TaxField*>(f)) {
-            broadcastLog(current->id, QString("muss %1 %2$ Papiergeld zahlen")
+            broadcastLog(current->id, QString("muss %2$ %1 zahlen")
                                        .arg(tf->name)
                                        .arg(tf->taxAmount));
         } else if (auto *sf = dynamic_cast<StreetField*>(f)) {
