@@ -1,0 +1,13 @@
+# ninja log v6
+1	405	1773730599171488314	MonopolyMobile_autogen/timestamp	4b30606fa0d3bdc6
+1	405	1773730599171488314	MonopolyMobile_autogen/mocs_compilation.cpp	4b30606fa0d3bdc6
+1	405	1773730599171488314	/home/user/Dokumente/GitHub/Monopoly/Dev/ClientServerImpl/MonopolyMobile/build/Desktop_Qt_6_9_2-Debug/MonopolyMobile_autogen/timestamp	4b30606fa0d3bdc6
+1	405	1773730599171488314	/home/user/Dokumente/GitHub/Monopoly/Dev/ClientServerImpl/MonopolyMobile/build/Desktop_Qt_6_9_2-Debug/MonopolyMobile_autogen/mocs_compilation.cpp	4b30606fa0d3bdc6
+405	538	1773730599302553814	qrc_images.cpp	c10544f197562fb1
+405	538	1773730599302553814	/home/user/Dokumente/GitHub/Monopoly/Dev/ClientServerImpl/MonopolyMobile/build/Desktop_Qt_6_9_2-Debug/qrc_images.cpp	c10544f197562fb1
+538	3111	1773730599310598334	CMakeFiles/MonopolyMobile.dir/main.cpp.o	7049d9cb7aa78286
+538	3530	1773730599302553814	CMakeFiles/MonopolyMobile.dir/MonopolyMobile_autogen/mocs_compilation.cpp.o	8a4384de702d7aff
+3530	5889	1773730602295049303	CMakeFiles/MonopolyMobile.dir/networkclient.cpp.o	1cf4e69727b5e265
+5889	8760	1773730604658230295	CMakeFiles/MonopolyMobile.dir/qrc_images.cpp.o	16a12863c64ad15f
+3111	9212	1773730601882843304	CMakeFiles/MonopolyMobile.dir/mainwindow.cpp.o	5685ec8efce7fdef
+9212	9527	1773730607981891282	MonopolyMobile	f49e9ced052f4121

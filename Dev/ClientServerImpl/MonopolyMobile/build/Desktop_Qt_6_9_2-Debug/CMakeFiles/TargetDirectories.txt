@@ -1,0 +1,9 @@
+/home/user/Dokumente/GitHub/Monopoly/Dev/ClientServerImpl/MonopolyMobile/build/Desktop_Qt_6_9_2-Debug/CMakeFiles/MonopolyMobile.dir
+/home/user/Dokumente/GitHub/Monopoly/Dev/ClientServerImpl/MonopolyMobile/build/Desktop_Qt_6_9_2-Debug/CMakeFiles/edit_cache.dir
+/home/user/Dokumente/GitHub/Monopoly/Dev/ClientServerImpl/MonopolyMobile/build/Desktop_Qt_6_9_2-Debug/CMakeFiles/rebuild_cache.dir
+/home/user/Dokumente/GitHub/Monopoly/Dev/ClientServerImpl/MonopolyMobile/build/Desktop_Qt_6_9_2-Debug/CMakeFiles/list_install_components.dir
+/home/user/Dokumente/GitHub/Monopoly/Dev/ClientServerImpl/MonopolyMobile/build/Desktop_Qt_6_9_2-Debug/CMakeFiles/install.dir
+/home/user/Dokumente/GitHub/Monopoly/Dev/ClientServerImpl/MonopolyMobile/build/Desktop_Qt_6_9_2-Debug/CMakeFiles/install/local.dir
+/home/user/Dokumente/GitHub/Monopoly/Dev/ClientServerImpl/MonopolyMobile/build/Desktop_Qt_6_9_2-Debug/CMakeFiles/install/strip.dir
+/home/user/Dokumente/GitHub/Monopoly/Dev/ClientServerImpl/MonopolyMobile/build/Desktop_Qt_6_9_2-Debug/CMakeFiles/MonopolyMobile_autogen_timestamp_deps.dir
+/home/user/Dokumente/GitHub/Monopoly/Dev/ClientServerImpl/MonopolyMobile/build/Desktop_Qt_6_9_2-Debug/CMakeFiles/MonopolyMobile_autogen.dir

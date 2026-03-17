@@ -8,6 +8,7 @@
  mdp:/home/user/Dokumente/GitHub/Monopoly/Dev/ClientServerImpl/monopoly3/build/Desktop_Qt_6_9_2-Debug/monopoly3_autogen/moc_predefs.h
  mdp:/home/user/Dokumente/GitHub/Monopoly/Dev/ClientServerImpl/monopoly3/mainwindow.h
  mdp:/home/user/Qt/6.9.2/gcc_64/include/QtCore/QDateTime
+ mdp:/home/user/Qt/6.9.2/gcc_64/include/QtCore/QEvent
  mdp:/home/user/Qt/6.9.2/gcc_64/include/QtCore/QJsonObject
  mdp:/home/user/Qt/6.9.2/gcc_64/include/QtCore/QMap
  mdp:/home/user/Qt/6.9.2/gcc_64/include/QtCore/QVector
@@ -18,6 +19,7 @@
  mdp:/home/user/Qt/6.9.2/gcc_64/include/QtCore/q20type_traits.h
  mdp:/home/user/Qt/6.9.2/gcc_64/include/QtCore/q20utility.h
  mdp:/home/user/Qt/6.9.2/gcc_64/include/QtCore/q23utility.h
+ mdp:/home/user/Qt/6.9.2/gcc_64/include/QtCore/qabstracteventdispatcher.h
  mdp:/home/user/Qt/6.9.2/gcc_64/include/QtCore/qalgorithms.h
  mdp:/home/user/Qt/6.9.2/gcc_64/include/QtCore/qanystringview.h
  mdp:/home/user/Qt/6.9.2/gcc_64/include/QtCore/qarraydata.h
@@ -27,6 +29,7 @@
  mdp:/home/user/Qt/6.9.2/gcc_64/include/QtCore/qatomic.h
  mdp:/home/user/Qt/6.9.2/gcc_64/include/QtCore/qatomic_cxx11.h
  mdp:/home/user/Qt/6.9.2/gcc_64/include/QtCore/qbasicatomic.h
+ mdp:/home/user/Qt/6.9.2/gcc_64/include/QtCore/qbasictimer.h
  mdp:/home/user/Qt/6.9.2/gcc_64/include/QtCore/qbindingstorage.h
  mdp:/home/user/Qt/6.9.2/gcc_64/include/QtCore/qbytearray.h
  mdp:/home/user/Qt/6.9.2/gcc_64/include/QtCore/qbytearrayalgorithms.h
@@ -46,11 +49,15 @@
  mdp:/home/user/Qt/6.9.2/gcc_64/include/QtCore/qcontainerinfo.h
  mdp:/home/user/Qt/6.9.2/gcc_64/include/QtCore/qcontainertools_impl.h
  mdp:/home/user/Qt/6.9.2/gcc_64/include/QtCore/qcontiguouscache.h
+ mdp:/home/user/Qt/6.9.2/gcc_64/include/QtCore/qcoreevent.h
  mdp:/home/user/Qt/6.9.2/gcc_64/include/QtCore/qdarwinhelpers.h
  mdp:/home/user/Qt/6.9.2/gcc_64/include/QtCore/qdatastream.h
  mdp:/home/user/Qt/6.9.2/gcc_64/include/QtCore/qdatetime.h
+ mdp:/home/user/Qt/6.9.2/gcc_64/include/QtCore/qdeadlinetimer.h
  mdp:/home/user/Qt/6.9.2/gcc_64/include/QtCore/qdebug.h
+ mdp:/home/user/Qt/6.9.2/gcc_64/include/QtCore/qelapsedtimer.h
  mdp:/home/user/Qt/6.9.2/gcc_64/include/QtCore/qendian.h
+ mdp:/home/user/Qt/6.9.2/gcc_64/include/QtCore/qeventloop.h
  mdp:/home/user/Qt/6.9.2/gcc_64/include/QtCore/qexceptionhandling.h
  mdp:/home/user/Qt/6.9.2/gcc_64/include/QtCore/qflags.h
  mdp:/home/user/Qt/6.9.2/gcc_64/include/QtCore/qfloat16.h

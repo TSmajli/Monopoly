@@ -88,6 +88,7 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 0: _t->on_startButton_clicked(); break;
         case 1: _t->on_backButton_clicked(); break;
         case 2: _t->on_buyButton_clicked(); break;
+        case 3: _t->on_sellButton_clicked(); break;
         case 4: _t->on_addPlayer_clicked(); break;
         case 5: _t->on_rollDiceButton_clicked(); break;
         default: ;

@@ -1,0 +1,2 @@
+set(__QT_DEPLOY_TARGET_MonopolyMobile_FILE /home/user/Dokumente/GitHub/Monopoly/Dev/ClientServerImpl/MonopolyMobile/build/Desktop_Qt_6_9_2-Debug/MonopolyMobile)
+set(__QT_DEPLOY_TARGET_MonopolyMobile_TYPE EXECUTABLE)
